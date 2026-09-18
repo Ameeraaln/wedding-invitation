@@ -1,409 +1,889 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عليا & أحمد | دعوة زفاف</title>
+<title>عليا & أحمد</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@500;600&display=swap');
-
 :root{
-  --ivory:#fbf6ec; --ivory2:#f0e5d2; --gold:#b08a4b; --gold2:#d8bf8d;
-  --brown:#5a4530; --rose:#d8b7a6; --shadow:rgba(67,45,25,.22);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--ivory);color:var(--brown);font-family:Amiri,serif}
-button{font:inherit}
-section{position:relative;padding:100px 22px;overflow:hidden}
-.container{max-width:1050px;margin:auto}
-.reveal{opacity:0;transform:translateY(35px);transition:1s ease}
-.reveal.show{opacity:1;transform:none}
-
-/* ---------- CINEMATIC OPENING ---------- */
-#opening{
- position:fixed;inset:0;z-index:9999;overflow:hidden;
- background:
- radial-gradient(circle at 50% 42%,#fffdf7 0,#eee2cd 45%,#c9b287 100%);
- transition:opacity 1.5s ease,visibility 1.5s ease;
-}
-#opening.closed{cursor:pointer}
-#opening.opened{opacity:0;visibility:hidden;pointer-events:none}
-
-.stage{
- position:absolute;inset:4%;
- border:1px solid rgba(176,138,75,.6);
- box-shadow:inset 0 0 0 8px rgba(255,255,255,.24),inset 0 0 70px rgba(85,57,27,.13);
- border-radius:48% 48% 4% 4%/20% 20% 4% 4%;
-}
-.stage:before{
- content:"";position:absolute;inset:3%;
- border:1px solid rgba(176,138,75,.35);
- border-radius:45% 45% 2% 2%/18% 18% 2% 2%;
-}
-.chandelier{
- position:absolute;top:2%;left:50%;transform:translateX(-50%);
- color:#b08a4b;font-size:22px;letter-spacing:8px;opacity:.9
+  --ivory:#f7f1e8;
+  --cream:#eee4d5;
+  --champagne:#b69a70;
+  --brown:#675647;
+  --shadow:rgba(75,55,35,.18);
 }
 
-/* Ornate reveal behind curtains */
-.revealStage{
- position:absolute;inset:13% 17% 10%;display:grid;place-items:center;text-align:center;
- background:
- radial-gradient(circle at 50% 45%,rgba(255,255,255,.95),transparent 58%),
- linear-gradient(145deg,rgba(255,255,255,.35),rgba(218,198,162,.28));
- border:1px solid rgba(176,138,75,.45);
- box-shadow:0 25px 80px rgba(76,51,24,.12),inset 0 0 60px rgba(255,255,255,.7);
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
-.revealStage:before,.revealStage:after{
- content:"";position:absolute;width:150px;height:150px;border:1px solid rgba(176,138,75,.5);
- transform:rotate(45deg)
+
+html{
+  scroll-behavior:smooth;
 }
-.revealStage:before{top:-65px;right:-65px}.revealStage:after{bottom:-65px;left:-65px}
 
-.heroNames{
- position:relative;z-index:3;color:#8c6b39;
- text-shadow:1px 1px 0 #fff,2px 3px 0 rgba(156,119,58,.16),0 12px 30px rgba(87,58,24,.18);
+body{
+  background:var(--ivory);
+  color:var(--brown);
+  font-family:"Amiri",serif;
+  overflow-x:hidden;
 }
-.heroNames .tiny{font-size:18px;letter-spacing:8px;color:#b08a4b}
-.heroNames h1{font-size:clamp(55px,12vw,125px);margin:8px 0;line-height:1}
-.heroNames .date{font-family:"Cormorant Garamond",serif;font-size:20px;letter-spacing:4px}
 
-.openButton{
- position:absolute;bottom:8%;left:50%;transform:translateX(-50%);z-index:30;
- padding:13px 34px;border-radius:999px;border:1px solid #b08a4b;
- background:rgba(255,250,239,.9);color:#765a34;cursor:pointer;
- box-shadow:0 12px 35px rgba(75,48,20,.18);
+/* =========================
+   OPENING
+========================= */
+
+.opening{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:
+    radial-gradient(circle at center,#fffaf2 0%,#f4eadc 48%,#e7d9c7 100%);
+  overflow:hidden;
+  transition:opacity 1.2s ease,visibility 1.2s ease;
 }
-.openButton:after{content:"  ✦";color:#b08a4b}
 
-/* Curtain fabric — many ridges like piped cake frosting */
-.curtain{
- position:absolute;top:-2%;bottom:-2%;width:59%;z-index:20;
- filter:drop-shadow(0 12px 20px rgba(55,36,18,.2));
- transition:transform 2.45s cubic-bezier(.76,0,.12,1);
+.opening.opened{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
-.curtain.left{left:-5%;transform-origin:left center}
-.curtain.right{right:-5%;transform-origin:right center}
-.curtain svg{width:100%;height:100%;display:block}
-#opening.openingNow .curtain.left{transform:translateX(-92%)}
-#opening.openingNow .curtain.right{transform:translateX(92%)}
 
-@keyframes floatPetal{0%{transform:translateY(0) rotate(0);opacity:.2}50%{opacity:.9}100%{transform:translateY(-100vh) rotate(260deg);opacity:0}}
-.petal{position:absolute;bottom:-20px;width:9px;height:13px;background:#d8b7a6;border-radius:80% 20% 80% 20%;opacity:0;animation:floatPetal 8s linear infinite}
-.p1{left:15%;animation-delay:1s}.p2{left:38%;animation-delay:4s}.p3{left:63%;animation-delay:2s}.p4{left:82%;animation-delay:5s}
+.opening-note{
+  position:absolute;
+  z-index:20;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:#8b765c;
+  transition:opacity .5s ease;
+  pointer-events:none;
+}
 
-/* ---------- INVITATION ---------- */
+.opening-note span{
+  display:block;
+  font-size:12px;
+  letter-spacing:4px;
+  margin-bottom:13px;
+  font-family:"Cormorant Garamond",serif;
+  direction:ltr;
+}
+
+.opening-note strong{
+  font-size:23px;
+  font-weight:400;
+}
+
+.opening-note small{
+  display:block;
+  margin-top:13px;
+  font-size:12px;
+  opacity:.7;
+}
+
+/* central flower interior */
+
+.flower-center{
+  position:absolute;
+  width:48vw;
+  height:48vw;
+  max-width:500px;
+  max-height:500px;
+  min-width:330px;
+  min-height:330px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 48%,
+      #fffdf8 0%,
+      #f9f0e5 27%,
+      #eadccc 58%,
+      #d9c6ad 100%);
+  box-shadow:
+    inset 0 0 50px rgba(126,96,63,.13),
+    0 20px 80px rgba(96,70,42,.12);
+}
+
+.flower-center:before,
+.flower-center:after{
+  content:"";
+  position:absolute;
+  inset:12%;
+  border-radius:50%;
+  border:1px solid rgba(182,154,112,.28);
+}
+
+.flower-center:after{
+  inset:24%;
+  border-color:rgba(182,154,112,.18);
+}
+
+/* Petal curtain */
+
+.petals{
+  position:absolute;
+  inset:-15%;
+  pointer-events:none;
+}
+
+.petal{
+  position:absolute;
+  width:32vw;
+  height:68vh;
+  min-width:230px;
+  min-height:430px;
+  background:
+    radial-gradient(ellipse at 65% 18%,
+      rgba(255,255,255,.95) 0%,
+      rgba(249,241,230,.98) 22%,
+      rgba(229,213,193,.98) 63%,
+      rgba(196,170,139,.9) 100%);
+  box-shadow:
+    inset -18px -25px 35px rgba(119,88,55,.16),
+    inset 15px 20px 35px rgba(255,255,255,.55),
+    0 18px 45px rgba(80,55,30,.12);
+  border-radius:
+    65% 45% 70% 35% /
+    55% 65% 35% 70%;
+  transition:
+    transform 1.8s cubic-bezier(.72,0,.18,1),
+    opacity 1.3s ease;
+}
+
+/* fine sculptural ridges */
+
+.petal:before,
+.petal:after{
+  content:"";
+  position:absolute;
+  width:75%;
+  height:90%;
+  left:12%;
+  top:5%;
+  border-radius:inherit;
+  border-left:1px solid rgba(126,96,64,.18);
+  transform:rotate(10deg);
+  box-shadow:
+    -9px 0 0 rgba(255,255,255,.18),
+    -18px 0 0 rgba(255,255,255,.12),
+    -27px 0 0 rgba(255,255,255,.08);
+}
+
+.petal:after{
+  transform:rotate(-8deg);
+  opacity:.55;
+}
+
+/* LEFT PETALS */
+
+.left1{
+  left:-5%;
+  top:12%;
+  transform:rotate(-42deg) translate(0,0);
+}
+
+.left2{
+  left:3%;
+  top:0;
+  transform:rotate(-27deg);
+}
+
+.left3{
+  left:9%;
+  top:22%;
+  transform:rotate(-16deg);
+}
+
+.left4{
+  left:-12%;
+  top:42%;
+  transform:rotate(-58deg);
+}
+
+.left5{
+  left:12%;
+  top:47%;
+  transform:rotate(-4deg);
+}
+
+/* RIGHT PETALS */
+
+.right1{
+  right:-5%;
+  top:12%;
+  transform:rotate(42deg);
+}
+
+.right2{
+  right:3%;
+  top:0;
+  transform:rotate(27deg);
+}
+
+.right3{
+  right:9%;
+  top:22%;
+  transform:rotate(16deg);
+}
+
+.right4{
+  right:-12%;
+  top:42%;
+  transform:rotate(58deg);
+}
+
+.right5{
+  right:12%;
+  top:47%;
+  transform:rotate(4deg);
+}
+
+/* OPENING MOVEMENT */
+
+.opening.opened .left1{
+  transform:translate(-75vw,-18vh) rotate(-62deg) scale(.92);
+}
+
+.opening.opened .left2{
+  transform:translate(-70vw,-5vh) rotate(-48deg) scale(.96);
+}
+
+.opening.opened .left3{
+  transform:translate(-62vw,8vh) rotate(-38deg) scale(.94);
+}
+
+.opening.opened .left4{
+  transform:translate(-78vw,22vh) rotate(-78deg) scale(.9);
+}
+
+.opening.opened .left5{
+  transform:translate(-60vw,30vh) rotate(-25deg) scale(.9);
+}
+
+.opening.opened .right1{
+  transform:translate(75vw,-18vh) rotate(62deg) scale(.92);
+}
+
+.opening.opened .right2{
+  transform:translate(70vw,-5vh) rotate(48deg) scale(.96);
+}
+
+.opening.opened .right3{
+  transform:translate(62vw,8vh) rotate(38deg) scale(.94);
+}
+
+.opening.opened .right4{
+  transform:translate(78vw,22vh) rotate(78deg) scale(.9);
+}
+
+.opening.opened .right5{
+  transform:translate(60vw,30vh) rotate(25deg) scale(.9);
+}
+
+.opening.opened .opening-note{
+  opacity:0;
+}
+
+/* =========================
+   MAIN INVITATION
+========================= */
+
+main{
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 0%,#fffdf9 0%,transparent 42%),
+    var(--ivory);
+}
+
+section{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:70px 24px;
+  overflow:hidden;
+}
+
+/* subtle botanical decoration */
+
+.botanical{
+  position:absolute;
+  width:170px;
+  height:250px;
+  opacity:.18;
+  border-left:1px solid var(--champagne);
+  border-radius:100%;
+}
+
+.botanical.left{
+  left:-70px;
+  bottom:80px;
+  transform:rotate(25deg);
+}
+
+.botanical.right{
+  right:-70px;
+  top:100px;
+  transform:rotate(-25deg);
+}
+
+.botanical:before,
+.botanical:after{
+  content:"";
+  position:absolute;
+  width:45px;
+  height:85px;
+  border:1px solid var(--champagne);
+  border-radius:100% 0 100% 0;
+}
+
+.botanical:before{
+  top:50px;
+  left:5px;
+  transform:rotate(-35deg);
+}
+
+.botanical:after{
+  top:105px;
+  left:-8px;
+  transform:rotate(20deg);
+}
+
+/* HERO */
+
 .hero{
- min-height:100vh;display:grid;place-items:center;text-align:center;
- background:
- radial-gradient(circle at 50% 20%,#fffefa 0,transparent 45%),
- linear-gradient(#fbf6ec,#eee1cd);
-}
-.frame{border:1px solid var(--gold);padding:9px;max-width:850px;width:100%}
-.frameInner{
- border:1px solid rgba(176,138,75,.55);padding:70px 25px;
- background:rgba(255,251,243,.55);box-shadow:0 25px 70px var(--shadow);
-}
-.orn{color:var(--gold);font-size:30px;letter-spacing:10px}
-h2{font-size:clamp(40px,8vw,75px);color:#8b6b3d;margin:10px 0}
-.subtitle{font-family:"Cormorant Garamond",serif;letter-spacing:4px;color:#9b7b4b}
-.divider{width:180px;height:1px;background:var(--gold);margin:25px auto;position:relative}
-.divider:before{content:"✦";position:absolute;left:50%;top:-14px;transform:translateX(-50%);background:var(--ivory);padding:0 10px;color:var(--gold)}
-.intro{font-size:24px;line-height:2}
-.namesLarge{font-size:clamp(52px,11vw,105px);color:#8c6b39;text-shadow:1px 2px 0 #fff,0 12px 24px rgba(91,60,25,.16)}
-.and{font-size:28px;color:var(--gold);margin:0 15px}
-
-/* decorative floral line art */
-.botanical{position:absolute;opacity:.38;color:var(--gold);font-size:140px}
-.botanical.one{left:-20px;top:50px;transform:rotate(-25deg)}
-.botanical.two{right:-25px;bottom:30px;transform:rotate(155deg)}
-.flowerRow{display:flex;justify-content:center;gap:10px;margin:30px 0;color:var(--gold)}
-.flowerRow span{font-size:38px}
-
-/* sections */
-.sectionTitle{text-align:center;margin-bottom:45px}
-.sectionTitle .small{font-family:"Cormorant Garamond",serif;letter-spacing:5px;color:#a48350}
-.sectionTitle h3{font-size:45px;margin:8px 0;color:#80613a}
-
-.welcome{background:linear-gradient(120deg,#f5ead9,#fffaf2,#eadcc7)}
-.timeline{background:#eee1cc}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
-.card{
- padding:30px 18px;text-align:center;background:rgba(255,250,240,.8);
- border:1px solid rgba(176,138,75,.5);box-shadow:0 18px 45px rgba(72,48,24,.11);
- position:relative
-}
-.card:before{content:"✦";color:var(--gold);font-size:22px}
-.card strong{display:block;font-size:29px;color:#8b6b3d;margin:8px}
-.card span{font-size:19px}
-.time{font-family:"Cormorant Garamond",serif;letter-spacing:2px;color:#a07e49}
-
-.venue{text-align:center;background:#fbf6ec}
-.venueBox{max-width:800px;margin:auto;padding:55px 25px;border:1px solid var(--gold);background:linear-gradient(145deg,#fffdf8,#efe2cd)}
-.venueBox h3{font-size:40px;margin:10px;color:#85653b}
-.mapBtn,.rsvpBtn{
- display:inline-block;margin-top:25px;padding:14px 34px;border-radius:999px;
- text-decoration:none;border:1px solid var(--gold);color:#765a34;background:#fffaf0;
- box-shadow:0 10px 30px rgba(80,53,23,.12)
+  text-align:center;
+  background:
+    radial-gradient(circle at center,#fffdf9 0%,#f5ecdf 65%,#eee1d1 100%);
 }
 
-.countdown{background:linear-gradient(135deg,#eadcc6,#fbf6ec);text-align:center}
-.countGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:700px;margin:35px auto}
-.countBox{padding:25px 8px;background:rgba(255,250,240,.7);border:1px solid #c8aa70}
-.countBox b{display:block;font-family:"Cormorant Garamond",serif;font-size:48px;color:#8a693d}
-.countBox span{font-size:17px}
-
-.rsvp{text-align:center}
-.rsvpBox{max-width:700px;margin:auto;padding:60px 20px;border:1px solid var(--gold);background:#fffaf1}
-.rsvpBox h3{font-size:42px;color:#85643b}
-footer{text-align:center;padding:80px 20px;background:#e9dcc8;color:#765a34}
-footer .namesLarge{font-size:60px}
-
-#musicBtn{
- position:fixed;bottom:18px;left:18px;z-index:200;
- width:50px;height:50px;border-radius:50%;border:1px solid var(--gold);
- background:rgba(255,250,240,.92);color:#8b6b3d;cursor:pointer;box-shadow:0 8px 25px var(--shadow)
+.hero-content{
+  position:relative;
+  z-index:2;
 }
 
-@media(max-width:650px){
- section{padding:75px 15px}
- .revealStage{inset:16% 7% 14%}
- .curtain{width:72%}
- .countGrid{grid-template-columns:repeat(2,1fr)}
- .cards{grid-template-columns:1fr 1fr}
- .intro{font-size:21px}
+.eyebrow{
+  font-family:"Cormorant Garamond",serif;
+  font-size:13px;
+  letter-spacing:5px;
+  color:var(--champagne);
+  direction:ltr;
+  margin-bottom:25px;
+}
+
+.names{
+  font-size:clamp(62px,15vw,145px);
+  line-height:.95;
+  font-weight:400;
+  color:#705b47;
+  margin-bottom:25px;
+}
+
+.names span{
+  display:block;
+  font-size:.45em;
+  color:var(--champagne);
+  margin:12px 0;
+}
+
+.hero-date{
+  font-family:"Cormorant Garamond",serif;
+  font-size:18px;
+  letter-spacing:3px;
+  direction:ltr;
+  color:#846e55;
+}
+
+.gold-line{
+  width:100px;
+  height:1px;
+  background:var(--champagne);
+  margin:28px auto;
+  opacity:.65;
+}
+
+.scroll{
+  margin-top:55px;
+  font-size:11px;
+  letter-spacing:3px;
+  color:#9b8872;
+  font-family:"Cormorant Garamond",serif;
+  direction:ltr;
+}
+
+/* DETAILS */
+
+.details{
+  text-align:center;
+}
+
+.section-title{
+  font-size:43px;
+  font-weight:400;
+  color:#735d48;
+  margin-bottom:15px;
+}
+
+.section-subtitle{
+  font-family:"Cormorant Garamond",serif;
+  direction:ltr;
+  font-size:14px;
+  letter-spacing:3px;
+  color:var(--champagne);
+  margin-bottom:40px;
+}
+
+.info{
+  max-width:600px;
+  width:100%;
+  display:grid;
+  gap:34px;
+}
+
+.info-item{
+  padding:24px 10px;
+  border-top:1px solid rgba(182,154,112,.35);
+}
+
+.info-item:last-child{
+  border-bottom:1px solid rgba(182,154,112,.35);
+}
+
+.info-label{
+  font-family:"Cormorant Garamond",serif;
+  direction:ltr;
+  font-size:12px;
+  letter-spacing:3px;
+  color:var(--champagne);
+  margin-bottom:8px;
+}
+
+.info-value{
+  font-size:23px;
+  color:#6c5846;
+}
+
+/* COUNTDOWN */
+
+.countdown-section{
+  background:#eee3d3;
+  text-align:center;
+}
+
+.countdown{
+  display:flex;
+  direction:ltr;
+  gap:18px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:35px;
+}
+
+.count{
+  width:75px;
+}
+
+.number{
+  font-family:"Cormorant Garamond",serif;
+  font-size:43px;
+  color:#735d48;
+}
+
+.unit{
+  font-size:11px;
+  letter-spacing:2px;
+  color:#9b8468;
+}
+
+/* RSVP */
+
+.rsvp{
+  text-align:center;
+  background:#f8f3eb;
+}
+
+.rsvp-text{
+  max-width:530px;
+  font-size:20px;
+  line-height:2;
+  margin:0 auto 30px;
+}
+
+.rsvp-button{
+  display:inline-block;
+  padding:14px 38px;
+  border:1px solid var(--champagne);
+  color:#735d48;
+  text-decoration:none;
+  font-size:17px;
+  transition:.3s ease;
+}
+
+.rsvp-button:hover{
+  background:#735d48;
+  color:#fffaf2;
+}
+
+/* FINAL */
+
+.final{
+  min-height:75vh;
+  text-align:center;
+  background:
+    radial-gradient(circle at center,#fffdf9 0%,#f0e5d7 100%);
+}
+
+.final-names{
+  font-size:clamp(48px,12vw,100px);
+  font-weight:400;
+  color:#735d48;
+}
+
+.final-date{
+  margin-top:25px;
+  font-family:"Cormorant Garamond",serif;
+  direction:ltr;
+  letter-spacing:4px;
+  color:var(--champagne);
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .petal{
+    width:58vw;
+    height:67vh;
+  }
+
+  .flower-center{
+    width:85vw;
+    height:85vw;
+    min-width:280px;
+    min-height:280px;
+  }
+
+  .opening-note strong{
+    font-size:20px;
+  }
+
+  .names{
+    font-size:19vw;
+  }
+
+  .section-title{
+    font-size:37px;
+  }
+
+  section{
+    padding:65px 20px;
+  }
+
+  .countdown{
+    gap:12px;
+  }
+
+  .count{
+    width:68px;
+  }
+
+  .number{
+    font-size:38px;
+  }
+}
+
+/* reduced motion fallback */
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *:before,
+  *:after{
+    animation:none!important;
+    transition:none!important;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<!-- LUXURY OPENING -->
-<div id="opening" class="closed">
- <div class="stage"></div>
- <div class="chandelier">✦ ─ ✦ ─ ✦</div>
+<!-- =========================
+     FLORAL OPENING
+========================= -->
 
- <div class="revealStage">
-   <div class="heroNames">
-     <div class="tiny">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div>
-     <h1>عليا &amp; أحمد</h1>
-     <div class="date">السبت · ١٢ ديسمبر ٢٠٢٦</div>
-   </div>
- </div>
+<div class="opening" id="opening">
 
- <!-- Left couture curtain -->
- <div class="curtain left">
- <svg viewBox="0 0 700 1000" preserveAspectRatio="none" aria-hidden="true">
-  <defs>
-   <linearGradient id="fabricL" x1="0" x2="1">
-    <stop offset="0" stop-color="#d8c5a5"/><stop offset=".13" stop-color="#fff9ee"/>
-    <stop offset=".25" stop-color="#d9c5a2"/><stop offset=".38" stop-color="#fffaf0"/>
-    <stop offset=".52" stop-color="#d1bb94"/><stop offset=".67" stop-color="#fffaf0"/>
-    <stop offset=".82" stop-color="#d6c09d"/><stop offset="1" stop-color="#fdf6e8"/>
-   </linearGradient>
-   <filter id="softL"><feGaussianBlur stdDeviation="1.2"/></filter>
-  </defs>
-  <path d="M0 0H700V1000H0Z" fill="url(#fabricL)"/>
-  <!-- deep vertical frosting-like ridges -->
-  <g fill="none" stroke-linecap="round">
-   <path d="M35 0 Q10 250 55 500 T35 1000" stroke="#fffdf7" stroke-width="32"/>
-   <path d="M75 0 Q45 250 95 500 T70 1000" stroke="#bca47c" stroke-width="15"/>
-   <path d="M125 0 Q95 250 145 500 T120 1000" stroke="#fffdf7" stroke-width="38"/>
-   <path d="M180 0 Q150 250 200 500 T175 1000" stroke="#b9a078" stroke-width="17"/>
-   <path d="M235 0 Q205 250 255 500 T230 1000" stroke="#fffdf7" stroke-width="42"/>
-   <path d="M295 0 Q265 250 315 500 T290 1000" stroke="#b9a078" stroke-width="18"/>
-   <path d="M355 0 Q325 250 375 500 T350 1000" stroke="#fffdf7" stroke-width="45"/>
-   <path d="M420 0 Q390 250 440 500 T415 1000" stroke="#b7a078" stroke-width="18"/>
-   <path d="M485 0 Q455 250 505 500 T480 1000" stroke="#fffdf7" stroke-width="45"/>
-   <path d="M550 0 Q520 250 570 500 T545 1000" stroke="#b9a27d" stroke-width="18"/>
-   <path d="M620 0 Q590 250 640 500 T615 1000" stroke="#fffdf7" stroke-width="42"/>
-  </g>
-  <!-- gold embroidered border -->
-  <path d="M0 0H700V55H0Z" fill="#b08a4b" opacity=".72"/>
-  <path d="M0 65H700" stroke="#f6e4bd" stroke-width="6"/>
-  <!-- oversized floral appliqué -->
-  <g fill="#efe0c9" stroke="#a88650" stroke-width="3" opacity=".96">
-   <g transform="translate(470 170)">
-    <circle cx="0" cy="0" r="28"/><ellipse rx="32" ry="62"/><ellipse rx="32" ry="62" transform="rotate(60)"/><ellipse rx="32" ry="62" transform="rotate(120)"/>
-   </g>
-   <g transform="translate(290 360) scale(.8)">
-    <circle r="28"/><ellipse rx="32" ry="62"/><ellipse rx="32" ry="62" transform="rotate(60)"/><ellipse rx="32" ry="62" transform="rotate(120)"/>
-   </g>
-   <g transform="translate(120 590) scale(1.15)">
-    <circle r="28"/><ellipse rx="32" ry="62"/><ellipse rx="32" ry="62" transform="rotate(60)"/><ellipse rx="32" ry="62" transform="rotate(120)"/>
-   </g>
-  </g>
-  <g fill="none" stroke="#a88650" stroke-width="3">
-   <path d="M650 120 C520 220 620 330 480 430 C360 520 500 640 320 760 C230 820 270 920 180 1000"/>
-   <path d="M560 160 q-70 30 -75 95 q70 -5 75 -95 M470 430 q-80 20 -85 90 q70 5 85 -90 M315 755 q-80 10 -90 80 q65 15 90 -80"/>
-  </g>
- </svg>
- </div>
+  <div class="flower-center"></div>
 
- <!-- Right couture curtain -->
- <div class="curtain right">
- <svg viewBox="0 0 700 1000" preserveAspectRatio="none" aria-hidden="true">
-  <defs><linearGradient id="fabricR" x1="0" x2="1"><stop offset="0" stop-color="#fdf6e8"/><stop offset=".18" stop-color="#d5bf9b"/><stop offset=".34" stop-color="#fffaf0"/><stop offset=".5" stop-color="#cdb68d"/><stop offset=".67" stop-color="#fffaf0"/><stop offset=".83" stop-color="#d8c29e"/><stop offset="1" stop-color="#fffaf0"/></linearGradient></defs>
-  <path d="M0 0H700V1000H0Z" fill="url(#fabricR)"/>
-  <g fill="none" stroke-linecap="round">
-   <path d="M35 0 Q10 250 55 500 T35 1000" stroke="#fffdf7" stroke-width="32"/>
-   <path d="M75 0 Q45 250 95 500 T70 1000" stroke="#bca47c" stroke-width="15"/>
-   <path d="M125 0 Q95 250 145 500 T120 1000" stroke="#fffdf7" stroke-width="38"/>
-   <path d="M180 0 Q150 250 200 500 T175 1000" stroke="#b9a078" stroke-width="17"/>
-   <path d="M235 0 Q205 250 255 500 T230 1000" stroke="#fffdf7" stroke-width="42"/>
-   <path d="M295 0 Q265 250 315 500 T290 1000" stroke="#b9a078" stroke-width="18"/>
-   <path d="M355 0 Q325 250 375 500 T350 1000" stroke="#fffdf7" stroke-width="45"/>
-   <path d="M420 0 Q390 250 440 500 T415 1000" stroke="#b7a078" stroke-width="18"/>
-   <path d="M485 0 Q455 250 505 500 T480 1000" stroke="#fffdf7" stroke-width="45"/>
-   <path d="M550 0 Q520 250 570 500 T545 1000" stroke="#b9a27d" stroke-width="18"/>
-   <path d="M620 0 Q590 250 640 500 T615 1000" stroke="#fffdf7" stroke-width="42"/>
-  </g>
-  <path d="M0 0H700V55H0Z" fill="#b08a4b" opacity=".72"/>
-  <path d="M0 65H700" stroke="#f6e4bd" stroke-width="6"/>
-  <g fill="#efe0c9" stroke="#a88650" stroke-width="3">
-   <g transform="translate(470 170)"><circle r="28"/><ellipse rx="32" ry="62"/><ellipse rx="32" ry="62" transform="rotate(60)"/><ellipse rx="32" ry="62" transform="rotate(120)"/></g>
-   <g transform="translate(290 360) scale(.8)"><circle r="28"/><ellipse rx="32" ry="62"/><ellipse rx="32" ry="62" transform="rotate(60)"/><ellipse rx="32" ry="62" transform="rotate(120)"/></g>
-   <g transform="translate(120 590) scale(1.15)"><circle r="28"/><ellipse rx="32" ry="62"/><ellipse rx="32" ry="62" transform="rotate(60)"/><ellipse rx="32" ry="62" transform="rotate(120)"/></g>
-  </g>
-  <g fill="none" stroke="#a88650" stroke-width="3">
-   <path d="M650 120 C520 220 620 330 480 430 C360 520 500 640 320 760 C230 820 270 920 180 1000"/>
-   <path d="M560 160 q-70 30 -75 95 q70 -5 75 -95 M470 430 q-80 20 -85 90 q70 5 85 -90 M315 755 q-80 10 -90 80 q65 15 90 -80"/>
-  </g>
- </svg>
- </div>
+  <div class="opening-note">
+    <span>THE WEDDING INVITATION</span>
+    <strong>اضغطي لفتح الدعوة</strong>
+    <small>✦</small>
+  </div>
 
- <div class="openButton" onclick="openInvitation()">اضغطوا لفتح الدعوة</div>
- <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div>
+  <div class="petals">
+
+    <!-- LEFT -->
+    <div class="petal left1"></div>
+    <div class="petal left2"></div>
+    <div class="petal left3"></div>
+    <div class="petal left4"></div>
+    <div class="petal left5"></div>
+
+    <!-- RIGHT -->
+    <div class="petal right1"></div>
+    <div class="petal right2"></div>
+    <div class="petal right3"></div>
+    <div class="petal right4"></div>
+    <div class="petal right5"></div>
+
+  </div>
 </div>
 
-<button id="musicBtn" aria-label="الموسيقى">♪</button>
+<!-- =========================
+     INVITATION
+========================= -->
 
 <main>
+
 <section class="hero">
- <div class="frame reveal">
-  <div class="frameInner">
-   <div class="orn">✦ ❦ ✦</div>
-   <div class="subtitle">بكل الحب والفرح</div>
-   <div class="namesLarge">عليا &amp; أحمد</div>
-   <div class="divider"></div>
-   <p class="intro">نتشرف بدعوتكم لمشاركتنا فرحتنا<br>في ليلة من أجمل ليالي العمر</p>
-   <div class="flowerRow"><span>❀</span><span>❧</span><span>❀</span></div>
-   <div class="subtitle">السبت، ١٢ ديسمبر ٢٠٢٦ · ٧:٣٠ مساءً</div>
+
+  <div class="botanical left"></div>
+  <div class="botanical right"></div>
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      WEDDING INVITATION
+    </div>
+
+    <div class="names">
+      عليا
+      <span>&amp;</span>
+      أحمد
+    </div>
+
+    <div class="gold-line"></div>
+
+    <div class="hero-date">
+      SATURDAY · 12 · DECEMBER · 2026
+    </div>
+
+    <div class="scroll">
+      SCROLL TO DISCOVER
+    </div>
+
   </div>
- </div>
- <div class="botanical one">❧</div><div class="botanical two">❧</div>
+
 </section>
 
-<section class="welcome">
- <div class="container">
-  <div class="sectionTitle reveal"><div class="small">WELCOME</div><h3>يا مرحباً وأهلاً وسهلاً بكم</h3></div>
-  <div class="frame reveal"><div class="frameInner" style="padding:45px 25px;text-align:center">
-   <p class="intro">بكم تكتمل فرحتنا وتزدان ليلتنا<br>وحضوركم هو أجمل ما نهديه لهذه الليلة</p>
-   <div class="orn">❦</div>
-  </div></div>
- </div>
+<section class="details">
+
+  <div class="botanical left"></div>
+  <div class="botanical right"></div>
+
+  <div>
+
+    <h2 class="section-title">
+      بكل حب ندعوكم
+    </h2>
+
+    <div class="section-subtitle">
+      TO CELEBRATE WITH US
+    </div>
+
+    <div class="info">
+
+      <div class="info-item">
+        <div class="info-label">DATE</div>
+        <div class="info-value">
+          السبت، 12 ديسمبر 2026
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">TIME</div>
+        <div class="info-value">
+          السابعة والنصف مساءً
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-label">VENUE</div>
+        <div class="info-value">
+          اسم القاعة
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
-<section class="timeline">
- <div class="container">
-  <div class="sectionTitle reveal"><div class="small">THE EVENING</div><h3>برنامج الليلة</h3></div>
-  <div class="cards">
-   <div class="card reveal"><div class="time">٧:٣٠ مساءً</div><strong>استقبال الضيوف</strong><span>Guest Arrival</span></div>
-   <div class="card reveal"><div class="time">٨:٠٠ مساءً</div><strong>دخول العروسين</strong><span>Grand Entrance</span></div>
-   <div class="card reveal"><div class="time">٨:٣٠ مساءً</div><strong>الزفة</strong><span>Zaffa</span></div>
-   <div class="card reveal"><div class="time">٨:٤٥ مساءً</div><strong>الرقصة الأولى</strong><span>First Dance</span></div>
-   <div class="card reveal"><div class="time">٩:٠٠ مساءً</div><strong>العشاء</strong><span>Dinner</span></div>
-   <div class="card reveal"><div class="time">١٠:٠٠ مساءً</div><strong>قطع الكيك</strong><span>Cake Cutting</span></div>
-   <div class="card reveal"><div class="time">١٠:٣٠ مساءً</div><strong>الاحتفال</strong><span>Celebration</span></div>
-  </div>
- </div>
-</section>
+<section class="countdown-section">
 
-<section class="venue">
- <div class="container">
-  <div class="sectionTitle reveal"><div class="small">THE VENUE</div><h3>المكان</h3></div>
-  <div class="venueBox reveal">
-   <div class="orn">✦</div>
-   <h3>قاعة الزفاف</h3>
-   <p class="intro">الدوحة، دولة قطر</p>
-   <a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Doha%2C%20Qatar" target="_blank">📍 عرض الموقع</a>
-  </div>
- </div>
-</section>
+  <div>
 
-<section class="countdown">
- <div class="container">
-  <div class="sectionTitle reveal"><div class="small">COUNTDOWN</div><h3>نعدّ الأيام حتى لقائكم</h3></div>
-  <div class="countGrid reveal">
-   <div class="countBox"><b id="days">0</b><span>يوم</span></div>
-   <div class="countBox"><b id="hours">0</b><span>ساعة</span></div>
-   <div class="countBox"><b id="mins">0</b><span>دقيقة</span></div>
-   <div class="countBox"><b id="secs">0</b><span>ثانية</span></div>
+    <div class="section-subtitle">
+      COUNTING DOWN TO OUR DAY
+    </div>
+
+    <h2 class="section-title">
+      موعدنا قريب
+    </h2>
+
+    <div class="countdown">
+
+      <div class="count">
+        <div class="number" id="days">0</div>
+        <div class="unit">DAYS</div>
+      </div>
+
+      <div class="count">
+        <div class="number" id="hours">0</div>
+        <div class="unit">HOURS</div>
+      </div>
+
+      <div class="count">
+        <div class="number" id="minutes">0</div>
+        <div class="unit">MINUTES</div>
+      </div>
+
+      <div class="count">
+        <div class="number" id="seconds">0</div>
+        <div class="unit">SECONDS</div>
+      </div>
+
+    </div>
+
   </div>
- </div>
+
 </section>
 
 <section class="rsvp">
- <div class="container">
-  <div class="rsvpBox reveal">
-   <div class="orn">❦ ✦ ❦</div>
-   <h3>يشرفنا حضوركم ومشاركتنا فرحتنا</h3>
-   <p class="intro">نرجو التكرم بتأكيد الحضور</p>
-   <a class="rsvpBtn" href="mailto:RSVP@example.com?subject=تأكيد الحضور">تأكيد الحضور</a>
+
+  <div>
+
+    <div class="section-subtitle">
+      KINDLY RESPOND
+    </div>
+
+    <h2 class="section-title">
+      تأكيد الحضور
+    </h2>
+
+    <p class="rsvp-text">
+      حضوركم يسعدنا ويكمل فرحتنا.
+      نرجو تأكيد حضوركم قبل موعد الاحتفال.
+    </p>
+
+    <!-- Replace the email address below with your real RSVP email -->
+    <a
+      class="rsvp-button"
+      href="mailto:YOUR-EMAIL@example.com?subject=تأكيد حضور حفل عليا وأحمد">
+      تأكيد الحضور
+    </a>
+
   </div>
- </div>
+
 </section>
 
-<footer>
- <div class="orn">✦ ❦ ✦</div>
- <div class="namesLarge">عليا &amp; أحمد</div>
- <p>نلتقيكم على الفرح 🤍</p>
-</footer>
+<section class="final">
+
+  <div>
+
+    <div class="section-subtitle">
+      WITH LOVE
+    </div>
+
+    <div class="final-names">
+      عليا &amp; أحمد
+    </div>
+
+    <div class="gold-line"></div>
+
+    <div class="final-date">
+      12 · 12 · 2026
+    </div>
+
+  </div>
+
+</section>
+
 </main>
 
 <script>
-function openInvitation(){
- const o=document.getElementById('opening');
- o.classList.add('openingNow');
- setTimeout(()=>o.classList.add('opened'),2450);
- document.body.style.overflow='auto';
-}
-document.getElementById('opening').addEventListener('click',e=>{
- if(e.target.id==='opening' || e.target.closest('.stage') || e.target.closest('.revealStage')) openInvitation();
+
+/* =========================
+   OPEN FLOWER
+========================= */
+
+const opening = document.getElementById("opening");
+
+opening.addEventListener("click", () => {
+  opening.classList.add("opened");
+
+  setTimeout(() => {
+    opening.style.display = "none";
+  }, 1800);
 });
 
-const target=new Date('2026-12-12T19:30:00+03:00').getTime();
-function countdown(){
- const d=Math.max(0,target-Date.now());
- document.getElementById('days').textContent=Math.floor(d/86400000);
- document.getElementById('hours').textContent=Math.floor(d%86400000/3600000);
- document.getElementById('mins').textContent=Math.floor(d%3600000/60000);
- document.getElementById('secs').textContent=Math.floor(d%60000/1000);
+/* =========================
+   COUNTDOWN
+========================= */
+
+const weddingDate = new Date("December 12, 2026 19:30:00").getTime();
+
+function updateCountdown(){
+
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  if(distance <= 0){
+    document.getElementById("days").textContent = "0";
+    document.getElementById("hours").textContent = "0";
+    document.getElementById("minutes").textContent = "0";
+    document.getElementById("seconds").textContent = "0";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) /
+    (1000 * 60 * 60)
+  );
+
+  const minutes = Math.floor(
+    (distance % (1000 * 60 * 60)) /
+    (1000 * 60)
+  );
+
+  const seconds = Math.floor(
+    (distance % (1000 * 60)) /
+    1000
+  );
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
 }
-countdown();setInterval(countdown,1000);
 
-const observer=new IntersectionObserver(entries=>{
- entries.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')});
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(x=>observer.observe(x));
+updateCountdown();
+setInterval(updateCountdown,1000);
 
-let audio=null,playing=false;
-document.getElementById('musicBtn').onclick=()=>{
- if(!audio){
-   audio=new Audio();
-   audio.loop=true;
-   alert('أضيفي رابط ملف الموسيقى هنا داخل الكود في السطر الخاص بـ audio.src');
-   return;
- }
- if(playing){audio.pause();playing=false}else{audio.play();playing=true}
-};
 </script>
-</body>
-</html>'''
 
-path=Path("/mnt/data/index.html")
-path.write_text(html, encoding="utf-8")
-print(f"Created: {path}")
-print(f"Size: {path.stat().st_size/1024:.1f} KB")
+</body>
+</html>
