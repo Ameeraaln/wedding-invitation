@@ -1,2230 +1,2572 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>عليا & أحمد</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --ivory:#fbf8f1;
-  --ivory2:#f2eadc;
-  --gold:#c9aa6c;
-  --gold-dark:#957039;
-  --gold-light:#e7d5aa;
-  --brown:#5b4930;
-  --white:#fffefa;
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  background:var(--ivory);
-  color:var(--brown);
-  font-family:"Amiri",serif;
-  overflow-x:hidden;
-}
-
-/* =========================================
-   GENERAL LUXURY TEXTURE
-========================================= */
-
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:9999;
-  opacity:.18;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 4px,
-      rgba(90,65,30,.025) 5px
-    );
-}
-
-.gold-line{
-  width:220px;
-  height:1px;
-  margin:25px auto;
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--gold),
-      var(--gold-light),
-      var(--gold),
-      transparent
-    );
-}
-
-.en{
-  direction:ltr;
-  font-family:"Cormorant Garamond",serif;
-  letter-spacing:4px;
-}
-
-/* =========================================
-   OPENING STAGE
-========================================= */
-
-.opening{
-  height:100vh;
-  min-height:680px;
-  position:relative;
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #fffefa 0%,
-      #f8f1e5 45%,
-      #dfd0b8 100%
-    );
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-/* giant decorative frame */
-
-.frame{
-  position:absolute;
-  inset:24px;
-  border:1px solid rgba(151,112,57,.65);
-  pointer-events:none;
-  z-index:2;
-}
-
-.frame:before{
-  content:"";
-  position:absolute;
-  inset:10px;
-  border:1px solid rgba(201,170,108,.45);
-}
-
-.frame:after{
-  content:"";
-  position:absolute;
-  inset:22px;
-  border:1px solid rgba(201,170,108,.25);
-}
-
-/* corner ornaments */
-
-.corner{
-  position:absolute;
-  width:110px;
-  height:110px;
-  z-index:3;
-  opacity:.8;
-}
-
-.corner:before,
-.corner:after{
-  content:"";
-  position:absolute;
-  border:1px solid var(--gold);
-}
-
-.corner:before{
-  width:75px;
-  height:75px;
-  transform:rotate(45deg);
-}
-
-.corner:after{
-  width:45px;
-  height:45px;
-  transform:rotate(45deg);
-  top:15px;
-  left:15px;
-}
-
-.corner.one{top:40px;right:40px}
-.corner.two{top:40px;left:40px}
-.corner.three{bottom:40px;right:40px}
-.corner.four{bottom:40px;left:40px}
-
-/* =========================================
-   CENTRAL CREST
-========================================= */
-
-.crest{
-  position:absolute;
-  top:7%;
-  left:50%;
-  transform:translateX(-50%);
-  width:180px;
-  height:80px;
-  z-index:4;
-}
-
-.crest-line{
-  position:absolute;
-  top:38px;
-  width:75px;
-  height:1px;
-  background:var(--gold);
-}
-
-.crest-line.left{left:0}
-.crest-line.right{right:0}
-
-.crest-diamond{
-  position:absolute;
-  left:50%;
-  top:25px;
-  width:28px;
-  height:28px;
-  border:1px solid var(--gold);
-  transform:translateX(-50%) rotate(45deg);
-}
-
-.crest-diamond:after{
-  content:"";
-  position:absolute;
-  inset:6px;
-  border:1px solid var(--gold);
-}
-
-/* =========================================
-   FLORAL SWANS
-========================================= */
-
-.swans{
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:min(900px,95vw);
-  height:510px;
-  transform:translate(-50%,-48%);
-  z-index:4;
-  pointer-events:none;
-}
-
-.swan{
-  position:absolute;
-  width:420px;
-  height:470px;
-  bottom:0;
-}
-
-.swan.left{
-  left:0;
-}
-
-.swan.right{
-  right:0;
-  transform:scaleX(-1);
-}
-
-.swan svg{
-  width:100%;
-  height:100%;
-  overflow:visible;
-}
-
-.swan-body{
-  fill:rgba(255,254,249,.92);
-  stroke:#b99555;
-  stroke-width:2;
-}
-
-.swan-line{
-  fill:none;
-  stroke:#b99555;
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.swan-detail{
-  fill:none;
-  stroke:#d1b47b;
-  stroke-width:1.3;
-}
-
-.flower-stroke{
-  fill:none;
-  stroke:#b99555;
-  stroke-width:1.8;
-}
-
-.flower-fill{
-  fill:rgba(255,253,247,.85);
-  stroke:#b99555;
-  stroke-width:1.6;
-}
-
-.leaf{
-  fill:rgba(201,170,108,.13);
-  stroke:#a9894e;
-  stroke-width:1.5;
-}
-
-/* =========================================
-   CENTER INVITATION
-========================================= */
-
-.invitation-center{
-  position:relative;
-  z-index:7;
-  width:min(650px,78vw);
-  text-align:center;
-  padding:30px;
-}
-
-.bismillah{
-  font-size:clamp(20px,3vw,30px);
-  color:var(--gold-dark);
-  margin-bottom:8px;
-}
-
-.opening-label{
-  font-size:13px;
-  color:#876d43;
-  letter-spacing:6px;
-}
-
-.names{
-  font-size:clamp(65px,11vw,125px);
-  font-weight:400;
-  color:#a17c42;
-  line-height:1.15;
-  margin:8px 0 5px;
-  text-shadow:
-    0 2px 0 white,
-    0 12px 30px rgba(120,80,20,.12);
-}
-
-.opening-date{
-  font-size:22px;
-  color:#665237;
-}
-
-.opening-date-en{
-  margin-top:5px;
-  font-size:17px;
-  color:#8c7655;
-}
-
-/* =========================================
-   OPEN BUTTON
-========================================= */
-
-.open-button{
-  margin-top:28px;
-  position:relative;
-  padding:16px 42px;
-  border-radius:50px;
-
-  border:1px solid var(--gold);
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.95),
-      rgba(245,235,217,.95)
-    );
-
-  color:#775b2e;
-  font-family:"Amiri",serif;
-  font-size:20px;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 10px 35px rgba(80,50,15,.15),
-    inset 0 0 0 4px rgba(255,255,255,.5);
-
-  transition:.4s;
-}
-
-.open-button:hover{
-  transform:translateY(-4px);
-  box-shadow:
-    0 18px 45px rgba(80,50,15,.2),
-    inset 0 0 0 4px rgba(255,255,255,.6);
-}
-
-/* =========================================
-   CURTAINS
-========================================= */
-
-.curtain{
-  position:absolute;
-  top:-3%;
-  bottom:-3%;
-  width:52%;
-  z-index:20;
-
-  transition:
-    transform 2.4s cubic-bezier(.76,0,.18,1);
-
-  background:
-    linear-gradient(
-      90deg,
-      #b9a27d 0%,
-      #e9dfcd 7%,
-      #c5b08b 14%,
-      #f4ecdf 23%,
-      #c0a77d 34%,
-      #f0e6d7 45%,
-      #bba176 57%,
-      #eee3d2 69%,
-      #c3a980 81%,
-      #e7dac5 91%,
-      #a78c62 100%
-    );
-
-  box-shadow:
-    0 0 55px rgba(58,39,18,.25);
-}
-
-.curtain.left{
-  left:0;
-  transform-origin:left center;
-  border-right:4px solid var(--gold);
-}
-
-.curtain.right{
-  right:0;
-  transform-origin:right center;
-  border-left:4px solid var(--gold);
-}
-
-.curtain:before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(90,60,25,.18) 0px,
-      transparent 18px,
-      rgba(255,255,255,.24) 34px,
-      transparent 52px
-    );
-}
-
-.curtain:after{
-  content:"";
-  position:absolute;
-  left:-5%;
-  right:-5%;
-  bottom:-5px;
-  height:18%;
-
-  background:
-    radial-gradient(
-      ellipse,
-      #f8f0e4 0 45%,
-      transparent 47%
-    );
-
-  background-size:55px 45px;
-  opacity:.9;
-}
-
-.curtain-top{
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:90px;
-  background:
-    linear-gradient(
-      180deg,
-      #c0aa83,
-      #eadfce,
-      #b99d70
-    );
-  border-bottom:2px solid var(--gold);
-}
-
-.tassel{
-  position:absolute;
-  top:47%;
-  width:72px;
-  height:72px;
-  border-radius:50%;
-  background:#f4ecde;
-  border:2px solid var(--gold);
-  box-shadow:0 5px 25px rgba(60,40,15,.2);
-}
-
-.left .tassel{right:-36px}
-.right .tassel{left:-36px}
-
-.tassel:before{
-  content:"";
-  position:absolute;
-  width:25px;
-  height:75px;
-  left:21px;
-  top:55px;
-  border-radius:0 0 18px 18px;
-  background:
-    linear-gradient(
-      90deg,
-      #98733b,
-      #d4b778,
-      #98733b
-    );
-}
-
-.opened .curtain.left{
-  transform:translateX(-108%);
-}
-
-.opened .curtain.right{
-  transform:translateX(108%);
-}
-
-/* =========================================
-   GOLD PARTICLES
-========================================= */
-
-.particles{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  pointer-events:none;
-  overflow:hidden;
-}
-
-.spark{
-  position:absolute;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:#d4b779;
-  box-shadow:0 0 10px #e8d5a6;
-  animation:floatSpark 5s infinite ease-in-out;
-}
-
-.spark:nth-child(1){left:15%;top:30%;animation-delay:-1s}
-.spark:nth-child(2){left:22%;top:65%;animation-delay:-3s}
-.spark:nth-child(3){left:35%;top:18%;animation-delay:-2s}
-.spark:nth-child(4){left:48%;top:75%;animation-delay:-4s}
-.spark:nth-child(5){left:59%;top:25%;animation-delay:-2.5s}
-.spark:nth-child(6){left:72%;top:65%;animation-delay:-1.5s}
-.spark:nth-child(7){left:84%;top:35%;animation-delay:-4s}
-.spark:nth-child(8){left:92%;top:72%;animation-delay:-3s}
-
-@keyframes floatSpark{
-  0%,100%{
-    transform:translateY(20px);
-    opacity:.2;
-  }
-  50%{
-    transform:translateY(-35px);
-    opacity:1;
-  }
-}
-
-/* =========================================
-   PETALS
-========================================= */
-
-.petal{
-  position:absolute;
-  width:12px;
-  height:18px;
-  border:1px solid #c8a96c;
-  border-radius:80% 20% 80% 20%;
-  opacity:.65;
-  animation:petalFall 10s linear infinite;
-}
-
-.petal:nth-child(1){left:8%;animation-delay:-2s}
-.petal:nth-child(2){left:20%;animation-delay:-7s}
-.petal:nth-child(3){left:32%;animation-delay:-4s}
-.petal:nth-child(4){left:45%;animation-delay:-8s}
-.petal:nth-child(5){left:60%;animation-delay:-1s}
-.petal:nth-child(6){left:74%;animation-delay:-5s}
-.petal:nth-child(7){left:87%;animation-delay:-3s}
-.petal:nth-child(8){left:95%;animation-delay:-9s}
-
-@keyframes petalFall{
-  from{
-    top:-30px;
-    transform:rotate(0deg) translateX(0);
-  }
-  to{
-    top:110%;
-    transform:rotate(500deg) translateX(100px);
-  }
-}
-
-/* =========================================
-   MAIN
-========================================= */
-
-.main{
-  opacity:0;
-  visibility:hidden;
-  transition:opacity 1.5s ease 1.5s;
-}
-
-.opened .main{
-  opacity:1;
-  visibility:visible;
-}
-
-/* =========================================
-   SECTIONS
-========================================= */
-
-.section{
-  position:relative;
-  min-height:100vh;
-  padding:120px 7vw;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #fffefa,
-      #f3eadc
-    );
-}
-
-.section:nth-child(even){
-  background:
-    radial-gradient(
-      ellipse at center,
-      #fdf9f1,
-      #e9ddca
-    );
-}
-
-.section-inner{
-  width:min(1050px,100%);
-  position:relative;
-  z-index:3;
-  text-align:center;
-}
-
-.section-label{
-  font-family:"Cormorant Garamond",serif;
-  direction:ltr;
-  letter-spacing:5px;
-  font-size:14px;
-  color:#96723c;
-}
-
-.section-title{
-  font-size:clamp(45px,7vw,80px);
-  font-weight:400;
-  color:#9c783f;
-  margin-top:10px;
-}
-
-.description{
-  max-width:720px;
-  margin:0 auto;
-  font-size:25px;
-  line-height:2.2;
-}
-
-/* =========================================
-   BOTANICAL DECORATION
-========================================= */
-
-.botanical{
-  position:absolute;
-  width:430px;
-  height:430px;
-  opacity:.45;
-  z-index:1;
-}
-
-.botanical.left{
-  left:-90px;
-  top:-40px;
-}
-
-.botanical.right{
-  right:-90px;
-  bottom:-50px;
-  transform:rotate(180deg);
-}
-
-.botanical path,
-.botanical ellipse{
-  fill:none;
-  stroke:#b89658;
-  stroke-width:1.6;
-}
-
-/* =========================================
-   WELCOME FLORALS
-========================================= */
-
-.flower-corner{
-  position:absolute;
-  width:250px;
-  height:250px;
-  opacity:.6;
-}
-
-.flower-corner.left{
-  left:-20px;
-  bottom:20px;
-}
-
-.flower-corner.right{
-  right:-20px;
-  top:20px;
-  transform:scaleX(-1);
-}
-
-.flower-corner svg{
-  width:100%;
-  height:100%;
-}
-
-/* =========================================
-   DATE CARD
-========================================= */
-
-.date-card{
-  max-width:850px;
-  margin:30px auto;
-  padding:65px 30px;
-
-  border:1px solid rgba(159,123,62,.55);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.8),
-      rgba(246,237,221,.7)
-    );
-
-  box-shadow:
-    inset 0 0 0 8px rgba(255,255,255,.45),
-    inset 0 0 0 10px rgba(201,170,108,.16),
-    0 30px 80px rgba(80,55,25,.09);
-
-  position:relative;
-}
-
-.date-card:before,
-.date-card:after{
-  content:"✦";
-  position:absolute;
-  color:var(--gold);
-  font-size:25px;
-}
-
-.date-card:before{
-  top:22px;
-  right:28px;
-}
-
-.date-card:after{
-  bottom:22px;
-  left:28px;
-}
-
-.day-number{
-  font-size:100px;
-  line-height:1;
-  color:#a27d43;
-}
-
-.month{
-  font-size:36px;
-  color:#6d5735;
-}
-
-.year{
-  font-family:"Cormorant Garamond",serif;
-  font-size:24px;
-  letter-spacing:4px;
-  color:#947343;
-  margin-top:10px;
-}
-
-/* =========================================
-   TIMELINE
-========================================= */
-
-.timeline{
-  max-width:850px;
-  margin:50px auto;
-  position:relative;
-}
-
-.timeline:before{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  right:50%;
-  width:1px;
-  background:
-    linear-gradient(
-      var(--gold),
-      transparent
-    );
-}
-
-.event{
-  position:relative;
-  width:50%;
-  padding:18px 45px;
-  margin:12px 0;
-}
-
-.event:nth-child(odd){
-  margin-right:50%;
-  text-align:right;
-}
-
-.event:nth-child(even){
-  text-align:left;
-  direction:ltr;
-}
-
-.event:before{
-  content:"";
-  position:absolute;
-  top:29px;
-
-  width:15px;
-  height:15px;
-
-  background:var(--ivory);
-  border:1px solid var(--gold);
-
-  transform:rotate(45deg);
-}
-
-.event:nth-child(odd):before{
-  right:-8px;
-}
-
-.event:nth-child(even):before{
-  left:-8px;
-}
-
-.time{
-  color:#99733c;
-  font-family:"Cormorant Garamond",serif;
-  font-size:25px;
-  letter-spacing:2px;
-}
-
-.event-ar{
-  font-size:28px;
-}
-
-.event-en{
-  font-family:"Cormorant Garamond",serif;
-  color:#887153;
-  font-size:18px;
-}
-
-/* =========================================
-   VENUE
-========================================= */
-
-.venue{
-  max-width:850px;
-  margin:auto;
-  padding:65px 30px;
-
-  border:1px solid rgba(159,123,62,.5);
-
-  background:
-    rgba(255,253,248,.65);
-
-  box-shadow:
-    0 30px 70px rgba(80,55,25,.08);
-}
-
-.arch{
-  width:280px;
-  height:200px;
-  margin:0 auto 30px;
-
-  border:2px solid var(--gold);
-  border-bottom:none;
-
-  border-radius:
-    150px 150px 0 0;
-
-  position:relative;
-}
-
-.arch:before{
-  content:"";
-  position:absolute;
-  inset:15px;
-
-  border:1px solid var(--gold);
-  border-bottom:none;
-
-  border-radius:
-    140px 140px 0 0;
-}
-
-.venue-name{
-  font-size:36px;
-}
-
-.venue-place{
-  margin-top:8px;
-  font-size:23px;
-}
-
-.map-button{
-  display:inline-block;
-  margin-top:30px;
-
-  padding:15px 38px;
-
-  border:1px solid var(--gold);
-  border-radius:50px;
-
-  text-decoration:none;
-  color:#75592d;
-
-  background:#fffdf8;
-
-  transition:.3s;
-}
-
-.map-button:hover{
-  transform:translateY(-3px);
-}
-
-/* =========================================
-   COUNTDOWN
-========================================= */
-
-.countdown{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  flex-wrap:wrap;
-  direction:ltr;
-  margin-top:40px;
-}
-
-.count-box{
-  min-width:140px;
-  padding:28px 20px;
-
-  border:1px solid rgba(159,123,62,.45);
-
-  background:rgba(255,253,248,.75);
-
-  box-shadow:
-    0 15px 35px rgba(80,55,25,.07);
-}
-
-.count-number{
-  font-family:"Cormorant Garamond",serif;
-  font-size:60px;
-  color:#9d773f;
-  line-height:1;
-}
-
-.count-label{
-  font-size:16px;
-  margin-top:10px;
-  color:#765e3c;
-}
-
-/* =========================================
-   RSVP
-========================================= */
-
-.rsvp-box{
-  max-width:800px;
-  margin:auto;
-  padding:70px 30px;
-
-  border:1px solid rgba(159,123,62,.5);
-
-  background:
-    radial-gradient(
-      ellipse,
-      #fffefa,
-      #eee2cf
-    );
-
-  box-shadow:
-    0 30px 80px rgba(80,55,25,.1);
-}
-
-.rsvp-button{
-  display:inline-block;
-  margin-top:30px;
-
-  padding:18px 60px;
-
-  border-radius:50px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #d5bb83,
-      #a37d42
-    );
-
-  color:white;
-  text-decoration:none;
-
-  font-size:21px;
-
-  box-shadow:
-    0 12px 35px rgba(100,70,25,.2);
-
-  transition:.35s;
-}
-
-.rsvp-button:hover{
-  transform:translateY(-4px);
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-
-.footer{
-  min-height:85vh;
-  position:relative;
-  overflow:hidden;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #fffefa,
-      #e4d6c0
-    );
-}
-
-.footer-content{
-  position:relative;
-  z-index:4;
-}
-
-.footer-names{
-  font-size:clamp(65px,11vw,130px);
-  color:#a17c42;
-  font-weight:400;
-}
-
-.footer-message{
-  font-size:26px;
-  margin-top:20px;
-}
-
-.footer-swan{
-  position:absolute;
-  width:380px;
-  bottom:-20px;
-  opacity:.5;
-}
-
-.footer-swan.left{
-  left:-30px;
-}
-
-.footer-swan.right{
-  right:-30px;
-  transform:scaleX(-1);
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media(max-width:700px){
-
-  .frame{
-    inset:12px;
-  }
-
-  .corner{
-    width:65px;
-    height:65px;
-  }
-
-  .corner.one,
-  .corner.two{
-    top:25px;
-  }
-
-  .corner.three,
-  .corner.four{
-    bottom:25px;
-  }
-
-  .corner.one,
-  .corner.three{
-    right:25px;
-  }
-
-  .corner.two,
-  .corner.four{
-    left:25px;
-  }
-
-  .swans{
-    width:600px;
-    height:400px;
-    top:55%;
-  }
-
-  .swan{
-    width:280px;
-    height:350px;
-  }
-
-  .invitation-center{
-    width:95vw;
-    padding:20px;
-  }
-
-  .names{
-    font-size:68px;
-  }
-
-  .opening-date{
-    font-size:18px;
-  }
-
-  .opening-label{
-    font-size:10px;
-  }
-
-  .section{
-    padding:100px 20px;
-  }
-
-  .description{
-    font-size:21px;
-  }
-
-  .timeline:before{
-    right:18px;
-  }
-
-  .event,
-  .event:nth-child(odd),
-  .event:nth-child(even){
-    width:100%;
-    margin:0;
-    padding:
-      18px
-      35px
-      18px
-      5px;
-    text-align:right;
-    direction:rtl;
-  }
-
-  .event:before,
-  .event:nth-child(odd):before,
-  .event:nth-child(even):before{
-    right:11px;
-    left:auto;
-  }
-
-  .count-box{
-    min-width:125px;
-  }
-
-  .count-number{
-    font-size:48px;
-  }
-
-  .flower-corner{
-    width:180px;
-    height:180px;
-  }
-
-  .footer-swan{
-    width:230px;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f8f4ed" />
+
+  <title>عليا & أحمد</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       LUXURY GULF WEDDING INVITATION
+       ========================================================= */
+
+    :root {
+      --ivory: #faf7f0;
+      --ivory-deep: #f1eadf;
+      --cream: #e9dfd0;
+      --gold: #b9975b;
+      --gold-light: #e3c98f;
+      --gold-pale: #f2dfb5;
+      --gold-dark: #806536;
+      --ink: #40382f;
+      --muted: #7e7468;
+      --white: #fffdf9;
+      --shadow: rgba(79, 61, 32, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--ivory);
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.95), transparent 42%),
+        linear-gradient(180deg, #fbf8f2 0%, #f4ede2 45%, #fbf8f2 100%);
+      color: var(--ink);
+      font-family: "Amiri", serif;
+      overflow-x: hidden;
+    }
+
+    body.locked {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    ::selection {
+      background: var(--gold-light);
+      color: #3d3327;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================================================
+       GLOBAL TEXT
+       ========================================================= */
+
+    .latin {
+      direction: ltr;
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: .08em;
+    }
+
+    .eyebrow {
+      color: var(--gold-dark);
+      font-size: .82rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.2;
+      font-weight: 400;
+      color: #4c4031;
+    }
+
+    .gold-line {
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 18px auto;
+    }
+
+    .ornament {
+      color: var(--gold);
+      font-size: 1.3rem;
+      letter-spacing: .5em;
+    }
+
+    /* =========================================================
+       OPENING STAGE
+       ========================================================= */
+
+    #opening {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.98), rgba(241,232,218,.98) 65%, #e6d8c4 100%);
+      overflow: hidden;
+      transition: visibility 1s ease, opacity 1s ease;
+    }
+
+    #opening.opened {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .stage-light {
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(ellipse at center,
+          rgba(255,255,255,.98) 0%,
+          rgba(255,255,255,.5) 23%,
+          rgba(214,183,125,.12) 50%,
+          transparent 72%);
+      animation: stageBreath 5s ease-in-out infinite;
+    }
+
+    @keyframes stageBreath {
+      0%,100% { transform: scale(1); opacity: .8; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .stage-frame {
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(185,151,91,.6);
+      box-shadow:
+        inset 0 0 0 8px rgba(255,255,255,.18),
+        inset 0 0 0 9px rgba(185,151,91,.15);
+      pointer-events: none;
+    }
+
+    .stage-frame::before,
+    .stage-frame::after {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border: 1px solid rgba(185,151,91,.2);
+    }
+
+    /* =========================================================
+       CENTER INVITATION BEHIND CURTAINS
+       ========================================================= */
+
+    .opening-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      padding: 30px;
+    }
+
+    .opening-card {
+      position: relative;
+      width: min(620px, 86vw);
+      min-height: min(720px, 82vh);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 55px 35px;
+      background:
+        linear-gradient(rgba(255,255,255,.55), rgba(247,239,226,.4)),
+        repeating-linear-gradient(
+          0deg,
+          rgba(145,112,65,.025) 0px,
+          rgba(145,112,65,.025) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+      border: 1px solid rgba(185,151,91,.7);
+      box-shadow:
+        0 25px 80px rgba(76,57,31,.18),
+        inset 0 0 45px rgba(185,151,91,.07);
+    }
+
+    .opening-card::before,
+    .opening-card::after {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border: 1px solid rgba(185,151,91,.25);
+      pointer-events: none;
+    }
+
+    .opening-card::after {
+      inset: 25px;
+      border-color: rgba(185,151,91,.13);
+    }
+
+    .crest {
+      position: relative;
+      width: min(360px, 70vw);
+      height: 270px;
+      margin-bottom: 15px;
+      animation: crestFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes crestFloat {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    .crest svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .crest-glow {
+      filter: drop-shadow(0 0 13px rgba(201,166,99,.45));
+    }
+
+    .opening-names {
+      position: relative;
+      z-index: 5;
+      font-size: clamp(2.8rem, 9vw, 5.7rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: #756039;
+      text-shadow: 0 2px 15px rgba(185,151,91,.15);
+    }
+
+    .opening-subtitle {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       BOTANICAL SVG
+       ========================================================= */
+
+    .botanical {
+      position: absolute;
+      pointer-events: none;
+      opacity: .72;
+    }
+
+    .botanical svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .botanical-left {
+      left: -15px;
+      top: 4%;
+      width: 310px;
+      height: 520px;
+      transform: rotate(-5deg);
+    }
+
+    .botanical-right {
+      right: -15px;
+      top: 4%;
+      width: 310px;
+      height: 520px;
+      transform: scaleX(-1) rotate(-5deg);
+    }
+
+    .botanical-bottom-left {
+      left: -20px;
+      bottom: -30px;
+      width: 360px;
+      height: 270px;
+      transform: rotate(4deg);
+    }
+
+    .botanical-bottom-right {
+      right: -20px;
+      bottom: -30px;
+      width: 360px;
+      height: 270px;
+      transform: scaleX(-1) rotate(4deg);
+    }
+
+    /* =========================================================
+       CURTAINS
+       ========================================================= */
+
+    .curtain {
+      position: absolute;
+      top: -3%;
+      width: 52%;
+      height: 106%;
+      z-index: 80;
+      transition:
+        transform 2.2s cubic-bezier(.77,0,.18,1),
+        filter 2.2s ease;
+      overflow: hidden;
+    }
+
+    .curtain-left {
+      left: -1%;
+      transform-origin: left center;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #f9f4eb 0px,
+          #eee4d5 24px,
+          #fffaf2 48px,
+          #e6d8c5 73px,
+          #f8f1e7 98px
+        );
+      box-shadow:
+        18px 0 50px rgba(60,44,25,.20),
+        inset -35px 0 55px rgba(94,67,31,.13);
+    }
+
+    .curtain-right {
+      right: -1%;
+      transform-origin: right center;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          #f9f4eb 0px,
+          #eee4d5 24px,
+          #fffaf2 48px,
+          #e6d8c5 73px,
+          #f8f1e7 98px
+        );
+      box-shadow:
+        -18px 0 50px rgba(60,44,25,.20),
+        inset 35px 0 55px rgba(94,67,31,.13);
+    }
+
+    .curtain::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.48),
+          transparent 12%,
+          rgba(116,83,43,.08) 20%,
+          transparent 30%,
+          rgba(255,255,255,.4) 42%,
+          transparent 55%,
+          rgba(116,83,43,.08) 66%,
+          transparent 78%,
+          rgba(255,255,255,.35)
+        );
+      opacity: .85;
+    }
+
+    .curtain::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          90deg,
+          transparent 75%,
+          rgba(88,61,30,.16) 100%
+        );
+    }
+
+    .curtain-right::after {
+      transform: scaleX(-1);
+    }
+
+    .curtain-top {
+      position: absolute;
+      top: -8px;
+      left: 4%;
+      right: 4%;
+      height: 80px;
+      z-index: 90;
+      background:
+        radial-gradient(ellipse at center,
+          #f5ead8 0%,
+          #d7bd8a 30%,
+          #a9854c 52%,
+          transparent 53%);
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .curtain-valance {
+      position: absolute;
+      top: 38px;
+      left: 0;
+      right: 0;
+      height: 105px;
+      z-index: 91;
+      background:
+        radial-gradient(ellipse at 50% 0%,
+          transparent 0 24%,
+          rgba(185,151,91,.6) 25%,
+          rgba(246,237,223,.96) 27%,
+          rgba(218,198,164,.9) 48%,
+          transparent 49%
+        );
+      opacity: .9;
+      pointer-events: none;
+    }
+
+    .curtain-tassel {
+      position: absolute;
+      top: 58%;
+      width: 85px;
+      height: 150px;
+      z-index: 120;
+      transition: transform 2s cubic-bezier(.77,0,.18,1), opacity 1s ease;
+      pointer-events: none;
+    }
+
+    .tassel-left {
+      left: 47%;
+    }
+
+    .tassel-right {
+      right: 47%;
+      transform: scaleX(-1);
+    }
+
+    .rope {
+      position: absolute;
+      top: 0;
+      width: 100px;
+      height: 95px;
+      border: 4px solid #b9975b;
+      border-top: 0;
+      border-radius: 0 0 70px 70px;
+      opacity: .9;
+    }
+
+    .tassel-body {
+      position: absolute;
+      top: 73px;
+      left: 26px;
+      width: 34px;
+      height: 64px;
+      border-radius: 45% 45% 35% 35%;
+      background:
+        linear-gradient(90deg, #806536, #e1c487 45%, #a27e40 70%, #d7b76d);
+      box-shadow: 0 8px 18px rgba(78,56,26,.25);
+    }
+
+    .tassel-fringe {
+      position: absolute;
+      top: 125px;
+      left: 15px;
+      width: 55px;
+      height: 28px;
+      border-bottom: 6px solid #a78447;
+      border-radius: 50%;
+    }
+
+    .tassel-fringe::before,
+    .tassel-fringe::after {
+      content: "";
+      position: absolute;
+      bottom: -9px;
+      width: 4px;
+      height: 24px;
+      background: #b9975b;
+      box-shadow:
+        10px 0 #b9975b,
+        20px 0 #b9975b,
+        30px 0 #b9975b,
+        40px 0 #b9975b;
+    }
+
+    .tassel-fringe::before {
+      left: 0;
+    }
+
+    .tassel-fringe::after {
+      right: 0;
+    }
+
+    #opening.opening-active .curtain-left {
+      transform: translateX(-105%);
+    }
+
+    #opening.opening-active .curtain-right {
+      transform: translateX(105%);
+    }
+
+    #opening.opening-active .tassel-left {
+      transform: translateX(-120px);
+      opacity: 0;
+    }
+
+    #opening.opening-active .tassel-right {
+      transform: scaleX(-1) translateX(-120px);
+      opacity: 0;
+    }
+
+    #opening.opening-active .opening-card {
+      animation: invitationReveal 1.6s ease forwards;
+    }
+
+    @keyframes invitationReveal {
+      from {
+        opacity: .4;
+        transform: scale(.97);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* =========================================================
+       OPEN BUTTON
+       ========================================================= */
+
+    .open-hint {
+      position: absolute;
+      bottom: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      color: #715b3c;
+      pointer-events: none;
+      animation: hintPulse 2.2s ease-in-out infinite;
+    }
+
+    .open-hint span:first-child {
+      font-size: 1.05rem;
+    }
+
+    .open-hint span:last-child {
+      font-family: "Cormorant Garamond", serif;
+      direction: ltr;
+      font-size: .72rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+    }
+
+    .tap-ring {
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      border: 1px solid rgba(185,151,91,.7);
+      border-radius: 50%;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 199;
+      animation: ringPulse 2s ease-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes hintPulse {
+      0%,100% { opacity: .7; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes ringPulse {
+      0% { transform: translateX(-50%) scale(.7); opacity: .8; }
+      100% { transform: translateX(-50%) scale(1.35); opacity: 0; }
+    }
+
+    /* =========================================================
+       PETALS / GOLD DUST
+       ========================================================= */
+
+    .petal-layer,
+    .dust-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 150;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -40px;
+      width: 12px;
+      height: 18px;
+      border-radius: 100% 0 100% 0;
+      background: linear-gradient(135deg, #f5e8d2, #c9a96c);
+      opacity: .7;
+      animation: fall linear infinite;
+    }
+
+    .petal:nth-child(1) { left: 7%; animation-duration: 9s; animation-delay: 1s; }
+    .petal:nth-child(2) { left: 19%; animation-duration: 12s; animation-delay: 3s; }
+    .petal:nth-child(3) { left: 31%; animation-duration: 10s; animation-delay: 5s; }
+    .petal:nth-child(4) { left: 48%; animation-duration: 13s; animation-delay: 2s; }
+    .petal:nth-child(5) { left: 62%; animation-duration: 11s; animation-delay: 6s; }
+    .petal:nth-child(6) { left: 77%; animation-duration: 9s; animation-delay: 4s; }
+    .petal:nth-child(7) { left: 91%; animation-duration: 14s; animation-delay: 1s; }
+
+    @keyframes fall {
+      0% {
+        transform: translate3d(0,-50px,0) rotate(0deg);
+      }
+      50% {
+        transform: translate3d(70px,55vh,0) rotate(180deg);
+      }
+      100% {
+        transform: translate3d(-40px,110vh,0) rotate(360deg);
+      }
+    }
+
+    .dust {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #d9bc7c;
+      box-shadow: 0 0 8px rgba(217,188,124,.7);
+      animation: sparkle 2.5s ease-in-out infinite;
+    }
+
+    .dust:nth-child(1) { left: 12%; top: 25%; }
+    .dust:nth-child(2) { left: 25%; top: 60%; animation-delay: .5s; }
+    .dust:nth-child(3) { left: 42%; top: 18%; animation-delay: 1s; }
+    .dust:nth-child(4) { left: 57%; top: 72%; animation-delay: 1.5s; }
+    .dust:nth-child(5) { left: 72%; top: 35%; animation-delay: .7s; }
+    .dust:nth-child(6) { left: 87%; top: 68%; animation-delay: 1.8s; }
+
+    @keyframes sparkle {
+      0%,100% { opacity: .15; transform: scale(.5); }
+      50% { opacity: 1; transform: scale(1.7); }
+    }
+
+    /* =========================================================
+       MAIN INVITATION
+       ========================================================= */
+
+    #invitation {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,.95), transparent 30%),
+        linear-gradient(180deg, #fbf8f2, #f0e7da 50%, #fbf8f2);
+    }
+
+    .page-texture {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .4;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(110,84,48,.018) 0px,
+          rgba(110,84,48,.018) 1px,
+          transparent 1px,
+          transparent 5px
+        );
+    }
+
+    .side-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(
+        transparent,
+        rgba(185,151,91,.45) 15%,
+        rgba(185,151,91,.2) 85%,
+        transparent
+      );
+      z-index: 2;
+    }
+
+    .side-line.left { left: 28px; }
+    .side-line.right { right: 28px; }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 25px;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(218,191,140,.25), transparent 65%);
+      filter: blur(10px);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 5;
+      width: min(1000px, 92vw);
+      min-height: 800px;
+      padding: 75px 25px;
+      border: 1px solid rgba(185,151,91,.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,252,246,.36);
+      box-shadow:
+        0 30px 100px rgba(91,69,37,.08),
+        inset 0 0 80px rgba(185,151,91,.045);
+    }
+
+    .hero-inner::before,
+    .hero-inner::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(185,151,91,.22);
+      pointer-events: none;
+    }
+
+    .hero-inner::after {
+      inset: 27px;
+      border-color: rgba(185,151,91,.1);
+    }
+
+    .hero-top {
+      font-size: 1.15rem;
+      color: #8b744d;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(3.6rem, 11vw, 8.5rem);
+      font-weight: 400;
+      line-height: .95;
+      color: #765f3b;
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero-amp {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--gold);
+      font-size: .75em;
+      margin: 0 10px;
+    }
+
+    .hero-date {
+      margin-top: 30px;
+      color: #655746;
+      font-size: clamp(1.2rem, 3vw, 1.65rem);
+    }
+
+    .hero-date .english-date {
+      display: block;
+      margin-top: 5px;
+      font-family: "Cormorant Garamond", serif;
+      direction: ltr;
+      letter-spacing: .12em;
+      font-size: .95rem;
+      color: #9a8052;
+    }
+
+    /* =========================================================
+       FLORAL SWANS
+       ========================================================= */
+
+    .swans-large {
+      width: min(720px, 92vw);
+      height: 360px;
+      margin: 25px 0 5px;
+      position: relative;
+      z-index: 4;
+    }
+
+    .swans-large svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .swan-stroke {
+      fill: none;
+      stroke: #a78a55;
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .swan-thin {
+      fill: none;
+      stroke: #c3a36a;
+      stroke-width: 1.1;
+      stroke-linecap: round;
+      opacity: .9;
+    }
+
+    .flower-stroke {
+      fill: #faf5eb;
+      stroke: #b4935c;
+      stroke-width: 1.8;
+    }
+
+    .leaf-stroke {
+      fill: #f4eadb;
+      stroke: #a88b5a;
+      stroke-width: 1.5;
+    }
+
+    .swan-glow {
+      filter: drop-shadow(0 4px 9px rgba(169,135,72,.18));
+    }
+
+    /* =========================================================
+       FLORAL ARCH
+       ========================================================= */
+
+    .floral-arch {
+      position: absolute;
+      top: 4%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 110vw);
+      height: 700px;
+      pointer-events: none;
+      opacity: .52;
+      z-index: 1;
+    }
+
+    .floral-arch svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* =========================================================
+       SECTIONS
+       ========================================================= */
+
+    .section {
+      position: relative;
+      min-height: 70vh;
+      padding: 130px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .section-inner {
+      position: relative;
+      z-index: 5;
+      width: min(1050px, 92vw);
+      text-align: center;
+    }
+
+    .ornamental-card {
+      position: relative;
+      padding: 75px 45px;
+      background: rgba(255,252,247,.68);
+      border: 1px solid rgba(185,151,91,.48);
+      box-shadow:
+        0 25px 75px rgba(91,69,37,.09),
+        inset 0 0 60px rgba(185,151,91,.04);
+    }
+
+    .ornamental-card::before,
+    .ornamental-card::after {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border: 1px solid rgba(185,151,91,.2);
+      pointer-events: none;
+    }
+
+    .ornamental-card::after {
+      inset: 25px;
+      border-color: rgba(185,151,91,.1);
+    }
+
+    /* =========================================================
+       WELCOME
+       ========================================================= */
+
+    .welcome-text {
+      max-width: 780px;
+      margin: 28px auto 0;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      line-height: 2.15;
+      color: #625647;
+    }
+
+    .welcome-arabic {
+      margin-top: 25px;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      color: #80683f;
+    }
+
+    /* =========================================================
+       DATE
+       ========================================================= */
+
+    .date-section {
+      min-height: 85vh;
+    }
+
+    .date-number {
+      font-size: clamp(5rem, 16vw, 11rem);
+      line-height: .8;
+      color: rgba(185,151,91,.25);
+      font-family: "Cormorant Garamond", serif;
+      direction: ltr;
+      margin-bottom: -25px;
+    }
+
+    .date-main {
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      color: #665238;
+    }
+
+    .date-day {
+      font-size: 1.3rem;
+      color: #98815b;
+      margin-top: 12px;
+    }
+
+    .date-divider {
+      width: 180px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 30px auto;
+    }
+
+    .time-display {
+      font-family: "Cormorant Garamond", serif;
+      direction: ltr;
+      font-size: 2rem;
+      color: #765f3b;
+      letter-spacing: .08em;
+    }
+
+    /* =========================================================
+       TIMELINE
+       ========================================================= */
+
+    .timeline {
+      position: relative;
+      max-width: 820px;
+      margin: 55px auto 0;
+      text-align: right;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 25px;
+      width: 1px;
+      background: linear-gradient(
+        transparent,
+        rgba(185,151,91,.65) 10%,
+        rgba(185,151,91,.65) 90%,
+        transparent
+      );
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 75px 55px 0;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      right: 16px;
+      top: 3px;
+      width: 19px;
+      height: 19px;
+      border: 1px solid var(--gold);
+      background: var(--ivory);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(185,151,91,.08);
+    }
+
+    .timeline-dot::after {
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      top: 6px;
+      left: 6px;
+    }
+
+    .timeline-time {
+      direction: ltr;
+      text-align: right;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.35rem;
+      color: var(--gold-dark);
+      letter-spacing: .08em;
+    }
+
+    .timeline-title {
+      font-size: 1.55rem;
+      color: #544536;
+      margin-top: 5px;
+    }
+
+    .timeline-english {
+      font-family: "Cormorant Garamond", serif;
+      direction: ltr;
+      font-size: .95rem;
+      color: #9a876c;
+      letter-spacing: .08em;
+    }
+
+    /* =========================================================
+       VENUE
+       ========================================================= */
+
+    .venue-icon {
+      width: 110px;
+      height: 110px;
+      margin: 20px auto 30px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-dark);
+      position: relative;
+    }
+
+    .venue-icon::before,
+    .venue-icon::after {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border: 1px solid rgba(185,151,91,.18);
+      border-radius: 50%;
+    }
+
+    .venue-icon::after {
+      width: 150px;
+      height: 150px;
+      border-color: rgba(185,151,91,.1);
+    }
+
+    .venue-icon svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .venue-name {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #665238;
+    }
+
+    .venue-location {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 1.15rem;
+    }
+
+    .map-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      padding: 13px 30px;
+      border: 1px solid var(--gold);
+      color: #735d3c;
+      text-decoration: none;
+      background: rgba(255,255,255,.5);
+      transition: all .35s ease;
+      letter-spacing: .04em;
+    }
+
+    .map-button:hover {
+      background: var(--gold);
+      color: white;
+      box-shadow: 0 10px 25px rgba(128,101,54,.18);
+    }
+
+    /* =========================================================
+       COUNTDOWN
+       ========================================================= */
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      max-width: 800px;
+      margin: 55px auto 0;
+      direction: ltr;
+    }
+
+    .count-box {
+      padding: 28px 15px;
+      border: 1px solid rgba(185,151,91,.35);
+      background: rgba(255,255,255,.4);
+    }
+
+    .count-number {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.7rem, 7vw, 4.5rem);
+      color: #80683f;
+      line-height: 1;
+    }
+
+    .count-label {
+      margin-top: 8px;
+      font-family: "Cormorant Garamond", serif;
+      color: #99866c;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .75rem;
+    }
+
+    /* =========================================================
+       RSVP
+       ========================================================= */
+
+    .rsvp-message {
+      max-width: 650px;
+      margin: 30px auto 0;
+      color: #6e6253;
+      font-size: 1.25rem;
+      line-height: 1.9;
+    }
+
+    .rsvp-button {
+      display: inline-flex;
+      margin-top: 35px;
+      padding: 15px 45px;
+      background: linear-gradient(135deg, #a8874d, #d5b777);
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(128,101,54,.18);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .rsvp-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 17px 35px rgba(128,101,54,.25);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .closing {
+      min-height: 90vh;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .closing-swan {
+      width: min(500px, 90vw);
+      margin: 0 auto 20px;
+    }
+
+    .closing-swan svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .closing-title {
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      color: #79613d;
+    }
+
+    .closing-text {
+      margin-top: 20px;
+      font-size: 1.35rem;
+      color: #746859;
+    }
+
+    .closing-small {
+      margin-top: 35px;
+      color: #a08d70;
+      font-size: .95rem;
+    }
+
+    /* =========================================================
+       FLORAL CORNERS
+       ========================================================= */
+
+    .corner {
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      pointer-events: none;
+      opacity: .55;
+    }
+
+    .corner svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .corner-tl {
+      top: -20px;
+      left: -20px;
+    }
+
+    .corner-tr {
+      top: -20px;
+      right: -20px;
+      transform: scaleX(-1);
+    }
+
+    .corner-bl {
+      bottom: -20px;
+      left: -20px;
+      transform: scaleY(-1);
+    }
+
+    .corner-br {
+      bottom: -20px;
+      right: -20px;
+      transform: scale(-1,-1);
+    }
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: .12s; }
+    .reveal-delay-2 { transition-delay: .24s; }
+    .reveal-delay-3 { transition-delay: .36s; }
+
+    /* =========================================================
+       MUSIC BUTTON
+       ========================================================= */
+
+    .music-button {
+      position: fixed;
+      left: 22px;
+      bottom: 22px;
+      z-index: 8000;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(185,151,91,.65);
+      background: rgba(255,250,241,.9);
+      color: #80683f;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(77,57,29,.12);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .music-button.visible {
+      display: flex;
+    }
+
+    .music-button.playing {
+      animation: musicPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes musicPulse {
+      0%,100% { box-shadow: 0 8px 25px rgba(77,57,29,.12); }
+      50% { box-shadow: 0 8px 35px rgba(185,151,91,.4); }
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 700px) {
+
+      .stage-frame {
+        inset: 9px;
+      }
+
+      .opening-card {
+        width: 88vw;
+        min-height: 68vh;
+        padding: 35px 18px;
+      }
+
+      .crest {
+        height: 205px;
+        width: 290px;
+      }
+
+      .opening-names {
+        font-size: 3.1rem;
+      }
+
+      .opening-subtitle {
+        font-size: .95rem;
+      }
+
+      .curtain {
+        width: 57%;
+      }
+
+      .curtain-tassel {
+        transform: scale(.72);
+        top: 54%;
+      }
+
+      .tassel-left {
+        left: 39%;
+      }
+
+      .tassel-right {
+        right: 39%;
+      }
+
+      .open-hint {
+        bottom: 28px;
+      }
+
+      .tap-ring {
+        bottom: 50px;
+      }
+
+      .hero {
+        min-height: 100svh;
+        padding: 55px 15px;
+      }
+
+      .hero-inner {
+        min-height: 700px;
+        padding: 45px 15px;
+      }
+
+      .hero-title {
+        font-size: 4rem;
+      }
+
+      .swans-large {
+        height: 245px;
+        width: 100%;
+      }
+
+      .floral-arch {
+        opacity: .3;
+      }
+
+      .section {
+        min-height: auto;
+        padding: 95px 16px;
+      }
+
+      .ornamental-card {
+        padding: 55px 20px;
+      }
+
+      .timeline::before {
+        right: 19px;
+      }
+
+      .timeline-item {
+        padding-right: 58px;
+      }
+
+      .timeline-dot {
+        right: 10px;
+      }
+
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .corner {
+        width: 180px;
+        height: 180px;
+      }
+
+      .side-line.left {
+        left: 12px;
+      }
+
+      .side-line.right {
+        right: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="locked">
 
-<!-- =========================================
-     OPENING
-========================================= -->
+  <!-- =======================================================
+       OPENING SCREEN
+       ======================================================= -->
 
-<section class="opening" id="opening">
+  <section id="opening">
 
-  <div class="frame"></div>
+    <div class="stage-light"></div>
+    <div class="stage-frame"></div>
 
-  <div class="corner one"></div>
-  <div class="corner two"></div>
-  <div class="corner three"></div>
-  <div class="corner four"></div>
-
-  <div class="crest">
-    <div class="crest-line left"></div>
-    <div class="crest-line right"></div>
-    <div class="crest-diamond"></div>
-  </div>
-
-  <!-- GOLD SPARKLES -->
-
-  <div class="particles">
-
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-    <span class="spark"></span>
-
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-    <span class="petal"></span>
-
-  </div>
-
-
-  <!-- =====================================
-       TWO GIANT FLORAL SWANS
-  ====================================== -->
-
-  <div class="swans">
-
-    <!-- LEFT SWAN -->
-
-    <div class="swan left">
-
-      <svg viewBox="0 0 420 470">
-
-        <!-- body -->
-
-        <path
-          class="swan-body"
-          d="
-          M55 405
-          C105 365 132 320 135 265
-          C138 210 122 125 173 67
-          C194 43 223 35 245 48
-          C218 51 199 70 201 93
-          C204 127 228 149 263 159
-          C228 166 196 153 173 128
-          C165 171 172 218 203 257
-          C235 297 279 328 348 352
-          C295 394 190 423 55 405Z
-          "
-        />
-
-        <!-- neck -->
-
-        <path
-          class="swan-line"
-          d="
-          M173 128
-          C153 177 156 229 188 270
-          "
-        />
-
-        <!-- wing -->
-
-        <path
-          class="swan-line"
-          d="
-          M151 260
-          C195 276 232 300 260 337
-          C218 326 182 306 151 279
-          "
-        />
-
-        <!-- feather lines -->
-
-        <path class="swan-detail" d="M174 280 C205 295 225 312 244 329"/>
-        <path class="swan-detail" d="M164 292 C195 307 212 322 228 340"/>
-        <path class="swan-detail" d="M155 305 C180 320 195 334 210 349"/>
-
-        <!-- eye -->
-
-        <circle cx="213" cy="78" r="3" fill="#9d783f"/>
-
-        <!-- beak -->
-
-        <path
-          class="swan-line"
-          d="M243 95 C258 91 270 95 279 103 C267 106 254 106 243 101"
-        />
-
-        <!-- flowers -->
-
-        <g class="flower-fill">
-
-          <circle cx="92" cy="355" r="13"/>
-          <ellipse cx="92" cy="332" rx="9" ry="22"/>
-          <ellipse cx="92" cy="378" rx="9" ry="22"/>
-          <ellipse cx="69" cy="355" rx="22" ry="9"/>
-          <ellipse cx="115" cy="355" rx="22" ry="9"/>
-
-          <circle cx="145" cy="390" r="11"/>
-          <ellipse cx="145" cy="371" rx="8" ry="18"/>
-          <ellipse cx="145" cy="409" rx="8" ry="18"/>
-          <ellipse cx="126" cy="390" rx="18" ry="8"/>
-          <ellipse cx="164" cy="390" rx="18" ry="8"/>
-
-          <circle cx="220" cy="360" r="10"/>
-          <ellipse cx="220" cy="342" rx="7" ry="17"/>
-          <ellipse cx="220" cy="378" rx="7" ry="17"/>
-          <ellipse cx="202" cy="360" rx="17" ry="7"/>
-          <ellipse cx="238" cy="360" rx="17" ry="7"/>
-
+    <!-- Botanical decorations behind curtains -->
+    <div class="botanical botanical-left">
+      <svg viewBox="0 0 300 520">
+        <g fill="none" stroke="#b9975b" stroke-width="1.6" stroke-linecap="round">
+          <path d="M30 510 C70 420 80 330 120 245 C145 190 165 110 155 20"/>
+          <path d="M65 420 C35 370 28 320 42 265"/>
+          <path d="M90 345 C135 315 160 280 174 225"/>
+          <path d="M120 245 C75 225 50 185 48 140"/>
+          <path d="M148 155 C205 135 235 98 240 48"/>
         </g>
 
-        <!-- leaves -->
-
-        <g class="leaf">
-
-          <ellipse
-            cx="65"
-            cy="390"
-            rx="11"
-            ry="25"
-            transform="rotate(-45 65 390)"
-          />
-
-          <ellipse
-            cx="115"
-            cy="320"
-            rx="11"
-            ry="25"
-            transform="rotate(45 115 320)"
-          />
-
-          <ellipse
-            cx="170"
-            cy="350"
-            rx="11"
-            ry="25"
-            transform="rotate(-55 170 350)"
-          />
-
-          <ellipse
-            cx="245"
-            cy="395"
-            rx="11"
-            ry="25"
-            transform="rotate(50 245 395)"
-          />
-
+        <g fill="#f7eee1" stroke="#b9975b" stroke-width="1.4">
+          <ellipse cx="43" cy="265" rx="12" ry="30" transform="rotate(-38 43 265)"/>
+          <ellipse cx="58" cy="300" rx="12" ry="31" transform="rotate(42 58 300)"/>
+          <ellipse cx="91" cy="345" rx="12" ry="32" transform="rotate(-45 91 345)"/>
+          <ellipse cx="124" cy="310" rx="12" ry="32" transform="rotate(45 124 310)"/>
+          <ellipse cx="49" cy="140" rx="12" ry="31" transform="rotate(-25 49 140)"/>
+          <ellipse cx="86" cy="180" rx="12" ry="31" transform="rotate(48 86 180)"/>
+          <ellipse cx="174" cy="225" rx="12" ry="32" transform="rotate(-50 174 225)"/>
+          <ellipse cx="205" cy="135" rx="12" ry="31" transform="rotate(48 205 135)"/>
         </g>
 
-        <!-- vine -->
+        <g fill="#fbf6ee" stroke="#b9975b" stroke-width="1.6">
+          <circle cx="155" cy="22" r="30"/>
+          <circle cx="137" cy="17" r="22"/>
+          <circle cx="173" cy="17" r="22"/>
+          <circle cx="155" cy="38" r="22"/>
+          <circle cx="155" cy="22" r="8"/>
+        </g>
 
-        <path
-          class="swan-detail"
-          d="
-          M62 410
-          C120 365 150 380 195 410
-          C240 440 292 422 340 380
-          "
-        />
-
+        <g fill="#fbf6ee" stroke="#b9975b" stroke-width="1.5">
+          <circle cx="115" cy="245" r="25"/>
+          <circle cx="98" cy="240" r="17"/>
+          <circle cx="132" cy="240" r="17"/>
+          <circle cx="115" cy="260" r="17"/>
+          <circle cx="115" cy="245" r="7"/>
+        </g>
       </svg>
-
     </div>
 
-
-    <!-- RIGHT SWAN -->
-
-    <div class="swan right">
-
-      <svg viewBox="0 0 420 470">
-
-        <path
-          class="swan-body"
-          d="
-          M55 405
-          C105 365 132 320 135 265
-          C138 210 122 125 173 67
-          C194 43 223 35 245 48
-          C218 51 199 70 201 93
-          C204 127 228 149 263 159
-          C228 166 196 153 173 128
-          C165 171 172 218 203 257
-          C235 297 279 328 348 352
-          C295 394 190 423 55 405Z
-          "
-        />
-
-        <path
-          class="swan-line"
-          d="
-          M173 128
-          C153 177 156 229 188 270
-          "
-        />
-
-        <path
-          class="swan-line"
-          d="
-          M151 260
-          C195 276 232 300 260 337
-          C218 326 182 306 151 279
-          "
-        />
-
-        <path class="swan-detail" d="M174 280 C205 295 225 312 244 329"/>
-        <path class="swan-detail" d="M164 292 C195 307 212 322 228 340"/>
-        <path class="swan-detail" d="M155 305 C180 320 195 334 210 349"/>
-
-        <circle cx="213" cy="78" r="3" fill="#9d783f"/>
-
-        <path
-          class="swan-line"
-          d="M243 95 C258 91 270 95 279 103 C267 106 254 106 243 101"
-        />
-
-        <g class="flower-fill">
-
-          <circle cx="92" cy="355" r="13"/>
-          <ellipse cx="92" cy="332" rx="9" ry="22"/>
-          <ellipse cx="92" cy="378" rx="9" ry="22"/>
-          <ellipse cx="69" cy="355" rx="22" ry="9"/>
-          <ellipse cx="115" cy="355" rx="22" ry="9"/>
-
-          <circle cx="145" cy="390" r="11"/>
-          <ellipse cx="145" cy="371" rx="8" ry="18"/>
-          <ellipse cx="145" cy="409" rx="8" ry="18"/>
-          <ellipse cx="126" cy="390" rx="18" ry="8"/>
-          <ellipse cx="164" cy="390" rx="18" ry="8"/>
-
-          <circle cx="220" cy="360" r="10"/>
-          <ellipse cx="220" cy="342" rx="7" ry="17"/>
-          <ellipse cx="220" cy="378" rx="7" ry="17"/>
-          <ellipse cx="202" cy="360" rx="17" ry="7"/>
-          <ellipse cx="238" cy="360" rx="17" ry="7"/>
-
+    <div class="botanical botanical-right">
+      <svg viewBox="0 0 300 520">
+        <g fill="none" stroke="#b9975b" stroke-width="1.6" stroke-linecap="round">
+          <path d="M30 510 C70 420 80 330 120 245 C145 190 165 110 155 20"/>
+          <path d="M65 420 C35 370 28 320 42 265"/>
+          <path d="M90 345 C135 315 160 280 174 225"/>
+          <path d="M120 245 C75 225 50 185 48 140"/>
+          <path d="M148 155 C205 135 235 98 240 48"/>
         </g>
 
-        <g class="leaf">
-
-          <ellipse
-            cx="65"
-            cy="390"
-            rx="11"
-            ry="25"
-            transform="rotate(-45 65 390)"
-          />
-
-          <ellipse
-            cx="115"
-            cy="320"
-            rx="11"
-            ry="25"
-            transform="rotate(45 115 320)"
-          />
-
-          <ellipse
-            cx="170"
-            cy="350"
-            rx="11"
-            ry="25"
-            transform="rotate(-55 170 350)"
-          />
-
-          <ellipse
-            cx="245"
-            cy="395"
-            rx="11"
-            ry="25"
-            transform="rotate(50 245 395)"
-          />
-
+        <g fill="#f7eee1" stroke="#b9975b" stroke-width="1.4">
+          <ellipse cx="43" cy="265" rx="12" ry="30" transform="rotate(-38 43 265)"/>
+          <ellipse cx="58" cy="300" rx="12" ry="31" transform="rotate(42 58 300)"/>
+          <ellipse cx="91" cy="345" rx="12" ry="32" transform="rotate(-45 91 345)"/>
+          <ellipse cx="124" cy="310" rx="12" ry="32" transform="rotate(45 124 310)"/>
+          <ellipse cx="49" cy="140" rx="12" ry="31" transform="rotate(-25 49 140)"/>
+          <ellipse cx="86" cy="180" rx="12" ry="31" transform="rotate(48 86 180)"/>
+          <ellipse cx="174" cy="225" rx="12" ry="32" transform="rotate(-50 174 225)"/>
+          <ellipse cx="205" cy="135" rx="12" ry="31" transform="rotate(48 205 135)"/>
         </g>
 
-        <path
-          class="swan-detail"
-          d="
-          M62 410
-          C120 365 150 380 195 410
-          C240 440 292 422 340 380
-          "
-        />
-
+        <g fill="#fbf6ee" stroke="#b9975b" stroke-width="1.6">
+          <circle cx="155" cy="22" r="30"/>
+          <circle cx="137" cy="17" r="22"/>
+          <circle cx="173" cy="17" r="22"/>
+          <circle cx="155" cy="38" r="22"/>
+          <circle cx="155" cy="22" r="8"/>
+        </g>
       </svg>
-
     </div>
 
-  </div>
+    <!-- Main center artwork -->
+    <div class="opening-center">
+      <div class="opening-card">
 
+        <div class="eyebrow">دعوة زفاف</div>
 
-  <!-- CENTRAL INVITATION -->
+        <div class="crest">
+          <svg viewBox="0 0 500 350" class="crest-glow">
 
-  <div class="invitation-center">
+            <!-- arch -->
+            <path
+              d="M95 260 C95 105 170 45 250 45 C330 45 405 105 405 260"
+              fill="none"
+              stroke="#c1a267"
+              stroke-width="1.5"
+              opacity=".55"
+            />
 
-    <div class="bismillah">
-      بسم الله الرحمن الرحيم
+            <!-- left swan -->
+            <path
+              d="M238 245
+                 C190 248 144 229 122 192
+                 C104 162 108 128 133 112
+                 C150 101 166 107 173 122
+                 C180 137 171 150 158 151
+                 C145 151 138 142 137 132
+                 C122 147 127 172 144 189
+                 C163 208 194 216 224 213
+                 C246 210 258 195 263 177"
+              class="swan-stroke"
+            />
+
+            <!-- right swan -->
+            <path
+              d="M262 177
+                 C267 195 279 210 301 213
+                 C331 216 362 208 381 189
+                 C398 172 403 147 388 132
+                 C387 142 380 151 367 151
+                 C354 150 345 137 352 122
+                 C359 107 375 101 392 112
+                 C417 128 421 162 403 192
+                 C381 229 335 248 262 245"
+              class="swan-stroke"
+            />
+
+            <!-- neck heart -->
+            <path
+              d="M263 177
+                 C253 156 237 143 222 151
+                 C208 158 212 178 230 192
+                 C242 201 250 210 250 224
+                 C250 210 258 201 270 192
+                 C288 178 292 158 278 151
+                 C263 143 247 156 237 177"
+              fill="none"
+              stroke="#b9975b"
+              stroke-width="2"
+              opacity=".8"
+            />
+
+            <!-- feathers -->
+            <g class="swan-thin">
+              <path d="M145 184 C165 173 186 174 202 184"/>
+              <path d="M154 196 C174 185 194 187 210 196"/>
+              <path d="M355 184 C335 173 314 174 298 184"/>
+              <path d="M346 196 C326 185 306 187 290 196"/>
+            </g>
+
+            <!-- floral vines -->
+            <g fill="none" stroke="#a98a53" stroke-width="1.5">
+              <path d="M115 214 C150 250 181 265 225 258"/>
+              <path d="M385 214 C350 250 319 265 275 258"/>
+              <path d="M120 216 C100 244 91 265 92 288"/>
+              <path d="M380 216 C400 244 409 265 408 288"/>
+            </g>
+
+            <!-- leaves -->
+            <g fill="#f7eee1" stroke="#a98a53" stroke-width="1.3">
+              <ellipse cx="144" cy="242" rx="8" ry="18" transform="rotate(-48 144 242)"/>
+              <ellipse cx="171" cy="253" rx="8" ry="18" transform="rotate(52 171 253)"/>
+              <ellipse cx="356" cy="242" rx="8" ry="18" transform="rotate(48 356 242)"/>
+              <ellipse cx="329" cy="253" rx="8" ry="18" transform="rotate(-52 329 253)"/>
+              <ellipse cx="104" cy="257" rx="7" ry="16" transform="rotate(-35 104 257)"/>
+              <ellipse cx="396" cy="257" rx="7" ry="16" transform="rotate(35 396 257)"/>
+            </g>
+
+            <!-- flowers -->
+            <g fill="#fbf6ee" stroke="#b9975b" stroke-width="1.5">
+              <circle cx="105" cy="285" r="18"/>
+              <circle cx="95" cy="278" r="13"/>
+              <circle cx="115" cy="278" r="13"/>
+              <circle cx="105" cy="292" r="13"/>
+              <circle cx="105" cy="285" r="5"/>
+
+              <circle cx="395" cy="285" r="18"/>
+              <circle cx="385" cy="278" r="13"/>
+              <circle cx="405" cy="278" r="13"/>
+              <circle cx="395" cy="292" r="13"/>
+              <circle cx="395" cy="285" r="5"/>
+            </g>
+
+            <!-- small crown -->
+            <path
+              d="M215 75 L228 55 L250 72 L272 55 L285 75
+                 L278 88 L222 88 Z"
+              fill="none"
+              stroke="#b9975b"
+              stroke-width="1.4"
+            />
+
+            <!-- little stars -->
+            <g fill="#c5a66d">
+              <circle cx="190" cy="92" r="2"/>
+              <circle cx="310" cy="92" r="2"/>
+              <circle cx="250" cy="28" r="2.5"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="opening-names">عليا & أحمد</div>
+
+        <div class="opening-subtitle">
+          بكل الحب ندعوكم لمشاركتنا فرحتنا
+        </div>
+
+      </div>
     </div>
 
-    <div class="opening-label en">
-      THE WEDDING CELEBRATION
+    <!-- Petals -->
+    <div class="petal-layer">
+      <i class="petal"></i>
+      <i class="petal"></i>
+      <i class="petal"></i>
+      <i class="petal"></i>
+      <i class="petal"></i>
+      <i class="petal"></i>
+      <i class="petal"></i>
     </div>
 
-    <h1 class="names">
-      عليا & أحمد
-    </h1>
-
-    <div class="opening-date">
-      السبت، ١٢ ديسمبر ٢٠٢٦
+    <!-- Gold dust -->
+    <div class="dust-layer">
+      <i class="dust"></i>
+      <i class="dust"></i>
+      <i class="dust"></i>
+      <i class="dust"></i>
+      <i class="dust"></i>
+      <i class="dust"></i>
     </div>
 
-    <div class="opening-date-en en">
-      SATURDAY · 12 DECEMBER 2026
-    </div>
-
-    <button
-      class="open-button"
-      onclick="openInvitation()"
-    >
-      اضغطوا لفتح الدعوة
-    </button>
-
-  </div>
-
-
-  <!-- CURTAINS -->
-
-  <div class="curtain left">
+    <!-- Curtains -->
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
 
     <div class="curtain-top"></div>
+    <div class="curtain-valance"></div>
 
-    <div class="tassel"></div>
-
-  </div>
-
-  <div class="curtain right">
-
-    <div class="curtain-top"></div>
-
-    <div class="tassel"></div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     MAIN INVITATION
-========================================= -->
-
-<main class="main">
-
-
-<!-- =========================================
-     WELCOME
-========================================= -->
-
-<section class="section">
-
-  <svg class="botanical left" viewBox="0 0 430 430">
-
-    <path d="M20 410 C100 300 180 190 410 20"/>
-
-    <path d="M95 315 C60 270 65 220 120 200"/>
-    <path d="M150 260 C140 210 165 170 215 155"/>
-    <path d="M220 195 C225 140 270 100 330 85"/>
-
-    <ellipse cx="95" cy="270" rx="13" ry="34" transform="rotate(-40 95 270)"/>
-    <ellipse cx="155" cy="220" rx="13" ry="34" transform="rotate(45 155 220)"/>
-    <ellipse cx="250" cy="145" rx="13" ry="34" transform="rotate(-40 250 145)"/>
-    <ellipse cx="330" cy="90" rx="13" ry="34" transform="rotate(50 330 90)"/>
-
-  </svg>
-
-
-  <div class="flower-corner left">
-
-    <svg viewBox="0 0 250 250">
-
-      <path
-        d="M10 240 C70 190 100 120 235 30"
-        fill="none"
-        stroke="#b89658"
-        stroke-width="2"
-      />
-
-      <circle cx="70" cy="190" r="18" fill="none" stroke="#b89658"/>
-      <ellipse cx="70" cy="160" rx="12" ry="28" fill="none" stroke="#b89658"/>
-      <ellipse cx="70" cy="220" rx="12" ry="28" fill="none" stroke="#b89658"/>
-      <ellipse cx="40" cy="190" rx="28" ry="12" fill="none" stroke="#b89658"/>
-      <ellipse cx="100" cy="190" rx="28" ry="12" fill="none" stroke="#b89658"/>
-
-      <ellipse cx="150" cy="110" rx="12" ry="27" transform="rotate(-40 150 110)" fill="none" stroke="#b89658"/>
-      <ellipse cx="190" cy="80" rx="12" ry="27" transform="rotate(40 190 80)" fill="none" stroke="#b89658"/>
-
-    </svg>
-
-  </div>
-
-
-  <div class="section-inner">
-
-    <div class="section-label">
-      WELCOME
+    <!-- Left gold tieback -->
+    <div class="curtain-tassel tassel-left">
+      <div class="rope"></div>
+      <div class="tassel-body"></div>
+      <div class="tassel-fringe"></div>
     </div>
 
-    <h2 class="section-title">
-      يا مرحباً وأهلاً وسهلاً بكم
-    </h2>
-
-    <div class="gold-line"></div>
-
-    <p class="description">
-      بسم الله الرحمن الرحيم
-      <br><br>
-      يا مرحباً وأهلاً وسهلاً بكم في ليلتنا
-      <br>
-      بكم تكتمل فرحتنا وتزدان ليلتنا
-      <br><br>
-      ونسعد بمشاركتكم لنا أجمل لحظات العمر.
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     DATE
-========================================= -->
-
-<section class="section">
-
-  <div class="section-inner">
-
-    <div class="section-label">
-      THE DATE
+    <!-- Right gold tieback -->
+    <div class="curtain-tassel tassel-right">
+      <div class="rope"></div>
+      <div class="tassel-body"></div>
+      <div class="tassel-fringe"></div>
     </div>
 
-    <h2 class="section-title">
-      التاريخ
-    </h2>
+    <div class="tap-ring"></div>
 
-    <div class="gold-line"></div>
-
-    <div class="date-card">
-
-      <div class="day-number">
-        ١٢
-      </div>
-
-      <div class="month">
-        ديسمبر
-      </div>
-
-      <div class="year">
-        ٢٠٢٦
-      </div>
-
-      <div style="margin-top:25px;font-size:25px">
-        السبت
-      </div>
-
-      <div class="en" style="margin-top:15px;font-size:19px">
-        SATURDAY · 12 DECEMBER 2026
-      </div>
-
-      <div style="margin-top:30px;font-size:22px">
-        استقبال الضيوف · ٧:٣٠ مساءً
-      </div>
-
-      <div class="en" style="font-size:17px;color:#887153">
-        GUEST ARRIVAL · 7:30 PM
-      </div>
-
+    <div class="open-hint">
+      <span>اضغطي لفتح الدعوة</span>
+      <span>Tap to open</span>
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================================
-     TIMELINE
-========================================= -->
+  <!-- =======================================================
+       MAIN INVITATION
+       ======================================================= -->
 
-<section class="section">
+  <main id="invitation">
 
-  <div class="section-inner">
-
-    <div class="section-label">
-      WEDDING TIMELINE
-    </div>
-
-    <h2 class="section-title">
-      برنامج الحفل
-    </h2>
-
-    <div class="gold-line"></div>
+    <div class="page-texture"></div>
+    <div class="side-line left"></div>
+    <div class="side-line right"></div>
 
 
-    <div class="timeline">
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="floral-arch">
+        <svg viewBox="0 0 1100 700">
+          <path
+            d="M120 650
+               C115 280 280 75 550 75
+               C820 75 985 280 980 650"
+            fill="none"
+            stroke="#b9975b"
+            stroke-width="1.2"
+            opacity=".35"
+          />
+
+          <path
+            d="M155 650
+               C150 315 300 115 550 115
+               C800 115 950 315 945 650"
+            fill="none"
+            stroke="#b9975b"
+            stroke-width="1"
+            opacity=".22"
+          />
+
+          <g fill="#f7eee1" stroke="#b9975b" stroke-width="1.2">
+
+            <circle cx="260" cy="210" r="30"/>
+            <circle cx="240" cy="205" r="22"/>
+            <circle cx="280" cy="205" r="22"/>
+            <circle cx="260" cy="230" r="22"/>
+            <circle cx="260" cy="210" r="8"/>
+
+            <circle cx="840" cy="210" r="30"/>
+            <circle cx="820" cy="205" r="22"/>
+            <circle cx="860" cy="205" r="22"/>
+            <circle cx="840" cy="230" r="22"/>
+            <circle cx="840" cy="210" r="8"/>
+
+            <circle cx="390" cy="115" r="24"/>
+            <circle cx="375" cy="110" r="17"/>
+            <circle cx="405" cy="110" r="17"/>
+            <circle cx="390" cy="130" r="17"/>
+            <circle cx="390" cy="115" r="6"/>
+
+            <circle cx="710" cy="115" r="24"/>
+            <circle cx="695" cy="110" r="17"/>
+            <circle cx="725" cy="110" r="17"/>
+            <circle cx="710" cy="130" r="17"/>
+            <circle cx="710" cy="115" r="6"/>
+          </g>
+
+          <g fill="none" stroke="#b9975b" stroke-width="1.3">
+            <path d="M120 650 C190 570 180 460 235 375"/>
+            <path d="M980 650 C910 570 920 460 865 375"/>
+            <path d="M235 375 C270 325 300 290 330 250"/>
+            <path d="M865 375 C830 325 800 290 770 250"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="hero-inner reveal">
+
+        <div class="hero-top">
+          بسم الله الرحمن الرحيم
+        </div>
+
+        <div class="eyebrow">
+          ليلة من العمر
+        </div>
+
+        <div class="swans-large">
+          <svg viewBox="0 0 800 390" class="swan-glow">
+
+            <!-- decorative top arch -->
+            <path
+              d="M180 285 C190 125 300 65 400 65 C500 65 610 125 620 285"
+              fill="none"
+              stroke="#b9975b"
+              stroke-width="1.2"
+              opacity=".4"
+            />
+
+            <!-- left swan -->
+            <path
+              d="M395 292
+                 C322 302 239 292 191 250
+                 C147 211 140 156 174 125
+                 C195 106 220 112 232 132
+                 C244 151 236 172 216 174
+                 C195 176 183 159 186 142
+                 C165 161 171 195 200 220
+                 C241 255 301 255 348 242
+                 C380 233 393 212 401 181"
+              class="swan-stroke"
+            />
+
+            <!-- right swan -->
+            <path
+              d="M405 181
+                 C413 212 420 233 452 242
+                 C499 255 559 255 600 220
+                 C629 195 635 161 614 142
+                 C617 159 605 176 584 174
+                 C564 172 556 151 568 132
+                 C580 112 605 106 626 125
+                 C660 156 653 211 609 250
+                 C561 292 478 302 405 292"
+              class="swan-stroke"
+            />
+
+            <!-- Heart -->
+            <path
+              d="M405 181
+                 C387 150 365 130 343 141
+                 C322 151 327 178 351 199
+                 C375 219 395 232 400 255
+                 C405 232 425 219 449 199
+                 C473 178 478 151 457 141
+                 C435 130 413 150 395 181"
+              fill="none"
+              stroke="#b9975b"
+              stroke-width="2.3"
+            />
+
+            <!-- swan feathers -->
+            <g class="swan-thin">
+              <path d="M206 221 C245 202 282 204 315 221"/>
+              <path d="M219 240 C258 222 292 226 327 239"/>
+              <path d="M594 221 C555 202 518 204 485 221"/>
+              <path d="M581 240 C542 222 508 226 473 239"/>
+              <path d="M230 260 C270 247 305 250 335 261"/>
+              <path d="M570 260 C530 247 495 250 465 261"/>
+            </g>
+
+            <!-- left botanical -->
+            <g fill="none" stroke="#aa8c58" stroke-width="1.5">
+              <path d="M165 258 C135 295 120 330 125 360"/>
+              <path d="M205 280 C185 318 180 342 185 370"/>
+              <path d="M275 287 C260 320 255 344 260 370"/>
+            </g>
+
+            <!-- right botanical -->
+            <g fill="none" stroke="#aa8c58" stroke-width="1.5">
+              <path d="M635 258 C665 295 680 330 675 360"/>
+              <path d="M595 280 C615 318 620 342 615 370"/>
+              <path d="M525 287 C540 320 545 344 540 370"/>
+            </g>
+
+            <!-- leaves -->
+            <g class="leaf-stroke">
+              <ellipse cx="135" cy="318" rx="9" ry="23" transform="rotate(-42 135 318)"/>
+              <ellipse cx="160" cy="337" rx="9" ry="23" transform="rotate(46 160 337)"/>
+              <ellipse cx="186" cy="321" rx="9" ry="23" transform="rotate(-42 186 321)"/>
+              <ellipse cx="255" cy="332" rx="9" ry="23" transform="rotate(48 255 332)"/>
+
+              <ellipse cx="665" cy="318" rx="9" ry="23" transform="rotate(42 665 318)"/>
+              <ellipse cx="640" cy="337" rx="9" ry="23" transform="rotate(-46 640 337)"/>
+              <ellipse cx="614" cy="321" rx="9" ry="23" transform="rotate(42 614 321)"/>
+              <ellipse cx="545" cy="332" rx="9" ry="23" transform="rotate(-48 545 332)"/>
+            </g>
+
+            <!-- flowers -->
+            <g class="flower-stroke">
+
+              <g>
+                <circle cx="125" cy="360" r="23"/>
+                <circle cx="108" cy="353" r="16"/>
+                <circle cx="142" cy="353" r="16"/>
+                <circle cx="125" cy="375" r="16"/>
+                <circle cx="125" cy="360" r="7"/>
+              </g>
+
+              <g>
+                <circle cx="185" cy="370" r="19"/>
+                <circle cx="171" cy="365" r="13"/>
+                <circle cx="199" cy="365" r="13"/>
+                <circle cx="185" cy="379" r="13"/>
+                <circle cx="185" cy="370" r="6"/>
+              </g>
+
+              <g>
+                <circle cx="675" cy="360" r="23"/>
+                <circle cx="658" cy="353" r="16"/>
+                <circle cx="692" cy="353" r="16"/>
+                <circle cx="675" cy="375" r="16"/>
+                <circle cx="675" cy="360" r="7"/>
+              </g>
+
+              <g>
+                <circle cx="615" cy="370" r="19"/>
+                <circle cx="601" cy="365" r="13"/>
+                <circle cx="629" cy="365" r="13"/>
+                <circle cx="615" cy="379" r="13"/>
+                <circle cx="615" cy="370" r="6"/>
+              </g>
+
+            </g>
+
+            <!-- little gold stars -->
+            <g fill="#b9975b">
+              <circle cx="320" cy="88" r="3"/>
+              <circle cx="480" cy="88" r="3"/>
+              <circle cx="400" cy="45" r="4"/>
+              <circle cx="280" cy="145" r="2.5"/>
+              <circle cx="520" cy="145" r="2.5"/>
+            </g>
+
+          </svg>
+        </div>
+
+        <h1 class="hero-title">
+          عليا <span class="hero-amp">&</span> أحمد
+        </h1>
+
+        <div class="gold-line"></div>
+
+        <div class="hero-date">
+          السبت، ١٢ ديسمبر ٢٠٢٦
+          <span class="english-date">SATURDAY · 12 DECEMBER 2026</span>
+        </div>
+
+      </div>
+    </section>
 
 
-      <div class="event">
+    <!-- =====================================================
+         WELCOME
+         ===================================================== -->
 
-        <div class="time">
+    <section class="section">
+
+      <div class="corner corner-tl">
+        <svg viewBox="0 0 270 270">
+          <path d="M0 240 C65 210 80 145 150 110 C195 87 230 45 260 0"
+                fill="none" stroke="#b9975b" stroke-width="1.5"/>
+          <g fill="#f7eee1" stroke="#b9975b" stroke-width="1.3">
+            <circle cx="155" cy="110" r="25"/>
+            <circle cx="139" cy="105" r="17"/>
+            <circle cx="171" cy="105" r="17"/>
+            <circle cx="155" cy="128" r="17"/>
+            <circle cx="155" cy="110" r="6"/>
+            <ellipse cx="105" cy="150" rx="9" ry="23" transform="rotate(-40 105 150)"/>
+            <ellipse cx="85" cy="181" rx="9" ry="23" transform="rotate(45 85 181)"/>
+            <ellipse cx="54" cy="206" rx="9" ry="23" transform="rotate(-45 54 206)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="corner corner-tr">
+        <svg viewBox="0 0 270 270">
+          <path d="M0 240 C65 210 80 145 150 110 C195 87 230 45 260 0"
+                fill="none" stroke="#b9975b" stroke-width="1.5"/>
+          <g fill="#f7eee1" stroke="#b9975b" stroke-width="1.3">
+            <circle cx="155" cy="110" r="25"/>
+            <circle cx="139" cy="105" r="17"/>
+            <circle cx="171" cy="105" r="17"/>
+            <circle cx="155" cy="128" r="17"/>
+            <circle cx="155" cy="110" r="6"/>
+            <ellipse cx="105" cy="150" rx="9" ry="23" transform="rotate(-40 105 150)"/>
+            <ellipse cx="85" cy="181" rx="9" ry="23" transform="rotate(45 85 181)"/>
+            <ellipse cx="54" cy="206" rx="9" ry="23" transform="rotate(-45 54 206)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="section-inner ornamental-card reveal">
+
+        <div class="eyebrow">أهلاً وسهلاً</div>
+
+        <div class="ornament">✦</div>
+
+        <h2 class="section-title">
+          يا مرحباً وأهلاً وسهلاً بكم في ليلتنا
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <p class="welcome-text">
+          بكم تكتمل فرحتنا وتزدان ليلتنا،
+          ويسعدنا أن نشارككم أجمل لحظات العمر
+          في ليلة تجمعنا بالمحبة والفرح.
+        </p>
+
+        <p class="welcome-arabic">
+          حضوركم هو أجمل هدية لنا
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         DATE
+         ===================================================== -->
+
+    <section class="section date-section">
+
+      <div class="section-inner ornamental-card reveal">
+
+        <div class="eyebrow">موعدنا</div>
+
+        <div class="date-number">12</div>
+
+        <div class="date-main">
+          ديسمبر ٢٠٢٦
+        </div>
+
+        <div class="date-day">
+          السبت
+        </div>
+
+        <div class="date-divider"></div>
+
+        <div class="time-display">
           7:30 PM
         </div>
 
-        <div class="event-ar">
-          استقبال الضيوف
+        <div style="margin-top:8px;color:#8e7a5b;">
+          ٧:٣٠ مساءً
         </div>
 
-        <div class="event-en">
-          Guest Arrival
-        </div>
+        <div class="gold-line"></div>
 
-      </div>
-
-
-      <div class="event">
-
-        <div class="time">
-          8:00 PM
-        </div>
-
-        <div class="event-ar">
-          دخول العروسين
-        </div>
-
-        <div class="event-en">
-          Bride & Groom Entrance
+        <div class="latin" style="color:#9b886d;">
+          GUEST ARRIVAL
         </div>
 
       </div>
+    </section>
 
 
-      <div class="event">
+    <!-- =====================================================
+         TIMELINE
+         ===================================================== -->
 
-        <div class="time">
-          8:30 PM
-        </div>
+    <section class="section">
 
-        <div class="event-ar">
-          الزفة
-        </div>
+      <div class="section-inner ornamental-card reveal">
 
-        <div class="event-en">
-          Zaffa
-        </div>
+        <div class="eyebrow">برنامج الليلة</div>
 
-      </div>
+        <h2 class="section-title">
+          تفاصيل الأمسية
+        </h2>
 
+        <div class="gold-line"></div>
 
-      <div class="event">
+        <div class="timeline">
 
-        <div class="time">
-          8:45 PM
-        </div>
+          <div class="timeline-item reveal reveal-delay-1">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">7:30 PM · ٧:٣٠ مساءً</div>
+            <div class="timeline-title">استقبال الضيوف</div>
+            <div class="timeline-english">GUEST ARRIVAL</div>
+          </div>
 
-        <div class="event-ar">
-          الرقصة الأولى
-        </div>
+          <div class="timeline-item reveal reveal-delay-1">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">8:00 PM · ٨:٠٠ مساءً</div>
+            <div class="timeline-title">دخول العروسين</div>
+            <div class="timeline-english">BRIDE & GROOM ENTRANCE</div>
+          </div>
 
-        <div class="event-en">
-          First Dance
-        </div>
+          <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">8:30 PM · ٨:٣٠ مساءً</div>
+            <div class="timeline-title">الزفة</div>
+            <div class="timeline-english">ZAFFA</div>
+          </div>
 
-      </div>
+          <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">8:45 PM · ٨:٤٥ مساءً</div>
+            <div class="timeline-title">الرقصة الأولى</div>
+            <div class="timeline-english">FIRST DANCE</div>
+          </div>
 
+          <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">9:00 PM · ٩:٠٠ مساءً</div>
+            <div class="timeline-title">العشاء</div>
+            <div class="timeline-english">DINNER</div>
+          </div>
 
-      <div class="event">
+          <div class="timeline-item reveal reveal-delay-3">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">10:00 PM · ١٠:٠٠ مساءً</div>
+            <div class="timeline-title">قطع الكيك</div>
+            <div class="timeline-english">CAKE CUTTING</div>
+          </div>
 
-        <div class="time">
-          9:00 PM
-        </div>
+          <div class="timeline-item reveal reveal-delay-3">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">10:30 PM · ١٠:٣٠ مساءً</div>
+            <div class="timeline-title">الاحتفال</div>
+            <div class="timeline-english">CELEBRATION</div>
+          </div>
 
-        <div class="event-ar">
-          العشاء
-        </div>
-
-        <div class="event-en">
-          Dinner
-        </div>
-
-      </div>
-
-
-      <div class="event">
-
-        <div class="time">
-          10:00 PM
-        </div>
-
-        <div class="event-ar">
-          قطع الكيك
-        </div>
-
-        <div class="event-en">
-          Cake Cutting
-        </div>
-
-      </div>
-
-
-      <div class="event">
-
-        <div class="time">
-          10:30 PM
-        </div>
-
-        <div class="event-ar">
-          الاحتفال
-        </div>
-
-        <div class="event-en">
-          Celebration
         </div>
 
       </div>
+    </section>
 
 
-    </div>
+    <!-- =====================================================
+         VENUE
+         ===================================================== -->
 
-  </div>
+    <section class="section">
 
-</section>
+      <div class="section-inner ornamental-card reveal">
 
+        <div class="eyebrow">المكان</div>
 
-<!-- =========================================
-     VENUE
-========================================= -->
+        <div class="venue-icon">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 57h40"/>
+            <path d="M17 57V30h30v27"/>
+            <path d="M12 30l20-18 20 18"/>
+            <path d="M23 57V43h18v14"/>
+            <path d="M27 30v8M37 30v8"/>
+            <path d="M21 22h18"/>
+          </svg>
+        </div>
 
-<section class="section">
+        <h2 class="venue-name">
+          قاعة الزفاف
+        </h2>
 
-  <div class="section-inner">
+        <p class="venue-location">
+          الدوحة، دولة قطر
+        </p>
 
-    <div class="section-label">
-      VENUE
-    </div>
-
-    <h2 class="section-title">
-      المكان
-    </h2>
-
-    <div class="gold-line"></div>
-
-    <div class="venue">
-
-      <div class="arch"></div>
-
-      <div class="venue-name">
-        قاعة الزفاف
-      </div>
-
-      <div class="venue-place">
-        الدوحة، دولة قطر
-      </div>
-
-      <a
-        class="map-button"
-        href="https://www.google.com/maps/search/?api=1&query=Doha%2C%20Qatar"
-        target="_blank"
-      >
-        عرض الموقع · View Location
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================
-     COUNTDOWN
-========================================= -->
-
-<section class="section">
-
-  <div class="section-inner">
-
-    <div class="section-label">
-      COUNTDOWN
-    </div>
-
-    <h2 class="section-title">
-      العد التنازلي
-    </h2>
-
-    <div class="gold-line"></div>
-
-    <div class="countdown">
-
-      <div class="count-box">
-
-        <div
-          class="count-number"
-          id="days"
+        <a
+          class="map-button"
+          href="https://www.google.com/maps/search/?api=1&query=Doha%20Qatar"
+          target="_blank"
+          rel="noopener"
         >
-          00
-        </div>
+          عرض الموقع على الخريطة
+        </a>
 
-        <div class="count-label">
-          Days · يوم
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         COUNTDOWN
+         ===================================================== -->
+
+    <section class="section">
+
+      <div class="section-inner ornamental-card reveal">
+
+        <div class="eyebrow">نعدّ الأيام</div>
+
+        <h2 class="section-title">
+          حتى نلتقي
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <div class="countdown">
+
+          <div class="count-box">
+            <div class="count-number" id="days">000</div>
+            <div class="count-label">Days</div>
+          </div>
+
+          <div class="count-box">
+            <div class="count-number" id="hours">00</div>
+            <div class="count-label">Hours</div>
+          </div>
+
+          <div class="count-box">
+            <div class="count-number" id="minutes">00</div>
+            <div class="count-label">Minutes</div>
+          </div>
+
+          <div class="count-box">
+            <div class="count-number" id="seconds">00</div>
+            <div class="count-label">Seconds</div>
+          </div>
+
         </div>
 
       </div>
+    </section>
 
 
-      <div class="count-box">
+    <!-- =====================================================
+         RSVP
+         ===================================================== -->
 
-        <div
-          class="count-number"
-          id="hours"
+    <section class="section">
+
+      <div class="section-inner ornamental-card reveal">
+
+        <div class="eyebrow">تأكيد الحضور</div>
+
+        <h2 class="section-title">
+          يسعدنا حضوركم
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <p class="rsvp-message">
+          نرجو التكرم بتأكيد حضوركم،
+          فوجودكم معنا يضيف إلى ليلتنا فرحة لا تكتمل بدونكم.
+        </p>
+
+        <!--
+          عندما يكون لديك رابط RSVP حقيقي،
+          استبدلي الرابط الموجود هنا.
+        -->
+        <a
+          class="rsvp-button"
+          href="mailto:RSVP@example.com?subject=تأكيد حضور - عليا وأحمد"
         >
-          00
+          تأكيد الحضور
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         CLOSING
+         ===================================================== -->
+
+    <section class="section closing">
+
+      <div class="section-inner reveal">
+
+        <div class="closing-swan">
+
+          <svg viewBox="0 0 700 360">
+
+            <!-- swans -->
+            <path
+              d="M350 255
+                 C292 268 221 260 181 226
+                 C142 193 138 149 166 124
+                 C184 108 207 111 218 129
+                 C229 146 222 164 204 166
+                 C187 168 175 155 178 140
+                 C160 158 166 185 191 207
+                 C226 237 279 239 316 228
+                 C337 222 347 206 353 184"
+              class="swan-stroke"
+            />
+
+            <path
+              d="M350 184
+                 C356 206 366 222 387 228
+                 C424 239 477 237 512 207
+                 C537 185 543 158 525 140
+                 C528 155 516 168 499 166
+                 C481 164 474 146 485 129
+                 C496 111 519 108 537 124
+                 C565 149 561 193 522 226
+                 C482 260 411 268 350 255"
+              class="swan-stroke"
+            />
+
+            <path
+              d="M350 184
+                 C337 159 319 143 301 151
+                 C284 159 288 181 308 198
+                 C328 215 344 227 350 246
+                 C356 227 372 215 392 198
+                 C412 181 416 159 399 151
+                 C381 143 363 159 350 184"
+              fill="none"
+              stroke="#b9975b"
+              stroke-width="2"
+            />
+
+            <!-- vines -->
+            <path
+              d="M155 235 C125 268 114 298 120 330"
+              fill="none"
+              stroke="#b9975b"
+              stroke-width="1.4"
+            />
+
+            <path
+              d="M545 235 C575 268 586 298 580 330"
+              fill="none"
+              stroke="#b9975b"
+              stroke-width="1.4"
+            />
+
+            <!-- flowers -->
+            <g class="flower-stroke">
+              <circle cx="120" cy="330" r="21"/>
+              <circle cx="104" cy="324" r="14"/>
+              <circle cx="136" cy="324" r="14"/>
+              <circle cx="120" cy="343" r="14"/>
+              <circle cx="120" cy="330" r="6"/>
+
+              <circle cx="580" cy="330" r="21"/>
+              <circle cx="564" cy="324" r="14"/>
+              <circle cx="596" cy="324" r="14"/>
+              <circle cx="580" cy="343" r="14"/>
+              <circle cx="580" cy="330" r="6"/>
+            </g>
+
+          </svg>
+
         </div>
 
-        <div class="count-label">
-          Hours · ساعة
-        </div>
+        <div class="eyebrow">مع خالص محبتنا</div>
+
+        <h2 class="closing-title">
+          عليا & أحمد
+        </h2>
+
+        <div class="gold-line"></div>
+
+        <p class="closing-text">
+          شكراً لمشاركتكم أجمل لحظاتنا
+        </p>
+
+        <p class="closing-small">
+          ١٢ ديسمبر ٢٠٢٦ · الدوحة
+        </p>
 
       </div>
 
+    </section>
 
-      <div class="count-box">
+  </main>
 
-        <div
-          class="count-number"
-          id="minutes"
-        >
-          00
-        </div>
 
-        <div class="count-label">
-          Minutes · دقيقة
-        </div>
+  <!-- =======================================================
+       MUSIC BUTTON
+       ======================================================= -->
 
-      </div>
+  <button class="music-button" id="musicButton" aria-label="Music">
+    ♪
+  </button>
 
+  <!--
+    OPTIONAL MUSIC:
+    When you have an MP3, upload it to the same GitHub repository
+    and name it exactly:
 
-      <div class="count-box">
+    wedding-music.mp3
 
-        <div
-          class="count-number"
-          id="seconds"
-        >
-          00
-        </div>
+    Then remove the comments around this audio element.
 
-        <div class="count-label">
-          Seconds · ثانية
-        </div>
+    <audio id="weddingMusic" loop>
+      <source src="wedding-music.mp3" type="audio/mpeg">
+    </audio>
+  -->
 
-      </div>
 
-    </div>
+  <script>
 
-  </div>
+    /* =========================================================
+       OPEN THE INVITATION
+       ========================================================= */
 
-</section>
+    const opening = document.getElementById("opening");
 
+    let invitationOpened = false;
 
-<!-- =========================================
-     RSVP
-========================================= -->
+    function openInvitation() {
 
-<section class="section">
+      if (invitationOpened) return;
 
-  <div class="section-inner">
+      invitationOpened = true;
 
-    <div class="section-label">
-      RSVP
-    </div>
+      opening.classList.add("opening-active");
 
-    <div class="rsvp-box">
+      setTimeout(() => {
+        opening.classList.add("opened");
+        document.body.classList.remove("locked");
+        window.scrollTo(0, 0);
+      }, 2100);
 
-      <h2 class="section-title">
-        تأكيد الحضور
-      </h2>
+      // Optional music:
+      // const music = document.getElementById("weddingMusic");
+      // if (music) {
+      //   music.play().catch(() => {});
+      // }
 
-      <div class="gold-line"></div>
+      document.getElementById("musicButton").classList.add("visible");
+    }
 
-      <p class="description">
-        يسعدنا حضوركم ومشاركتكم فرحتنا
-        <br>
-        في هذه الليلة المميزة.
-      </p>
+    /*
+      IMPORTANT:
+      The entire opening screen is clickable.
+      This means the guest does NOT have to find a tiny button.
+    */
 
-      <a
-        class="rsvp-button"
-        href="mailto:your@email.com"
-      >
-        تأكيد الحضور · RSVP
-      </a>
+    opening.addEventListener("click", openInvitation);
 
-    </div>
+    opening.addEventListener("touchstart", openInvitation, {
+      passive: true
+    });
 
-  </div>
 
-</section>
+    /* =========================================================
+       COUNTDOWN
+       ========================================================= */
 
+    const weddingDate = new Date("2026-12-12T19:30:00+03:00");
 
-<!-- =========================================
-     FINAL SCENE
-========================================= -->
+    function updateCountdown() {
 
-<footer class="footer">
+      const now = new Date();
+      const difference = weddingDate.getTime() - now.getTime();
 
-  <!-- decorative swan -->
+      const days = document.getElementById("days");
+      const hours = document.getElementById("hours");
+      const minutes = document.getElementById("minutes");
+      const seconds = document.getElementById("seconds");
 
-  <svg
-    class="footer-swan left"
-    viewBox="0 0 420 470"
-  >
+      if (difference <= 0) {
 
-    <path
-      class="swan-body"
-      d="
-      M55 405
-      C105 365 132 320 135 265
-      C138 210 122 125 173 67
-      C194 43 223 35 245 48
-      C218 51 199 70 201 93
-      C204 127 228 149 263 159
-      C228 166 196 153 173 128
-      C165 171 172 218 203 257
-      C235 297 279 328 348 352
-      C295 394 190 423 55 405Z"
-    />
+        days.textContent = "000";
+        hours.textContent = "00";
+        minutes.textContent = "00";
+        seconds.textContent = "00";
 
-    <path
-      class="swan-line"
-      d="M173 128 C153 177 156 229 188 270"
-    />
+        return;
+      }
 
-  </svg>
+      const totalSeconds = Math.floor(difference / 1000);
 
+      const d = Math.floor(totalSeconds / 86400);
+      const h = Math.floor((totalSeconds % 86400) / 3600);
+      const m = Math.floor((totalSeconds % 3600) / 60);
+      const s = totalSeconds % 60;
 
-  <svg
-    class="footer-swan right"
-    viewBox="0 0 420 470"
-  >
+      days.textContent = String(d).padStart(3, "0");
+      hours.textContent = String(h).padStart(2, "0");
+      minutes.textContent = String(m).padStart(2, "0");
+      seconds.textContent = String(s).padStart(2, "0");
+    }
 
-    <path
-      class="swan-body"
-      d="
-      M55 405
-      C105 365 132 320 135 265
-      C138 210 122 125 173 67
-      C194 43 223 35 245 48
-      C218 51 199 70 201 93
-      C204 127 228 149 263 159
-      C228 166 196 153 173 128
-      C165 171 172 218 203 257
-      C235 297 279 328 348 352
-      C295 394 190 423 55 405Z"
-    />
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
-    <path
-      class="swan-line"
-      d="M173 128 C153 177 156 229 188 270"
-    />
 
-  </svg>
+    /* =========================================================
+       SCROLL REVEALS
+       ========================================================= */
 
+    const revealElements = document.querySelectorAll(".reveal");
 
-  <div class="footer-content">
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
 
-    <div class="section-label">
-      WITH LOVE
-    </div>
+        entries.forEach((entry) => {
 
-    <div class="footer-names">
-      عليا & أحمد
-    </div>
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
 
-    <div class="gold-line"></div>
+        });
 
-    <div class="footer-message">
-      بكم تكتمل فرحتنا وتزدان ليلتنا
-    </div>
-
-    <div
-      class="en"
-      style="
-        margin-top:20px;
-        font-size:15px;
-        color:#90754c;
-      "
-    >
-      WITH LOVE & GRATITUDE
-    </div>
-
-  </div>
-
-</footer>
-
-
-</main>
-
-
-<script>
-
-/* =========================================
-   OPEN THE CURTAINS
-========================================= */
-
-function openInvitation(){
-
-  document.body.classList.add("opened");
-
-  const opening =
-    document.getElementById("opening");
-
-  setTimeout(function(){
-
-    opening.style.opacity="0";
-    opening.style.pointerEvents="none";
-
-  },2200);
-
-}
-
-
-/* =========================================
-   COUNTDOWN
-========================================= */
-
-const weddingDate =
-  new Date(
-    "December 12, 2026 19:30:00"
-  ).getTime();
-
-
-function updateCountdown(){
-
-  const now =
-    new Date().getTime();
-
-  const distance =
-    weddingDate - now;
-
-
-  if(distance <= 0){
-
-    document.getElementById("days").innerText="00";
-    document.getElementById("hours").innerText="00";
-    document.getElementById("minutes").innerText="00";
-    document.getElementById("seconds").innerText="00";
-
-    return;
-  }
-
-
-  const days =
-    Math.floor(
-      distance /
-      (1000 * 60 * 60 * 24)
+      },
+      {
+        threshold: 0.12
+      }
     );
 
-
-  const hours =
-    Math.floor(
-      (distance %
-      (1000 * 60 * 60 * 24)) /
-      (1000 * 60 * 60)
-    );
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
 
 
-  const minutes =
-    Math.floor(
-      (distance %
-      (1000 * 60 * 60)) /
-      (1000 * 60)
-    );
+    /* =========================================================
+       OPTIONAL MUSIC BUTTON
+       ========================================================= */
+
+    const musicButton = document.getElementById("musicButton");
+
+    musicButton.addEventListener("click", () => {
+
+      const music = document.getElementById("weddingMusic");
+
+      if (!music) {
+        return;
+      }
+
+      if (music.paused) {
+        music.play().then(() => {
+          musicButton.classList.add("playing");
+          musicButton.textContent = "Ⅱ";
+        }).catch(() => {});
+      } else {
+        music.pause();
+        musicButton.classList.remove("playing");
+        musicButton.textContent = "♪";
+      }
+
+    });
 
 
-  const seconds =
-    Math.floor(
-      (distance %
-      (1000 * 60)) /
-      1000
-    );
+    /* =========================================================
+       SMALL PARALLAX EFFECT
+       ========================================================= */
+
+    let ticking = false;
+
+    window.addEventListener("scroll", () => {
+
+      if (ticking) return;
+
+      window.requestAnimationFrame(() => {
+
+        const scrollPosition = window.scrollY;
+
+        const glow = document.querySelector(".hero-glow");
+
+        if (glow && scrollPosition < window.innerHeight * 1.5) {
+          glow.style.transform =
+            `translateY(${scrollPosition * 0.08}px)`;
+        }
+
+        ticking = false;
+
+      });
+
+      ticking = true;
+
+    });
 
 
-  document.getElementById("days").innerText =
-    String(days).padStart(2,"0");
+    /* =========================================================
+       PREVENT ACCIDENTAL OLD LOCK STATE
+       ========================================================= */
 
+    window.addEventListener("pageshow", () => {
 
-  document.getElementById("hours").innerText =
-    String(hours).padStart(2,"0");
+      if (!invitationOpened) {
+        document.body.classList.add("locked");
+      }
 
+    });
 
-  document.getElementById("minutes").innerText =
-    String(minutes).padStart(2,"0");
-
-
-  document.getElementById("seconds").innerText =
-    String(seconds).padStart(2,"0");
-
-}
-
-
-updateCountdown();
-
-setInterval(
-  updateCountdown,
-  1000
-);
-
-</script>
+  </script>
 
 </body>
 </html>
