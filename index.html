@@ -1,216 +1,971 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alya & Ahmad</title>
+<title>عليا & أحمد | دعوة زفاف</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
+:root{
+  --black:#080807;
+  --deep:#11100d;
+  --cream:#f4ead6;
+  --gold:#c9a86a;
+  --gold2:#ead39b;
+  --muted:#b9aa8e;
 }
 
-body {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  background: #0d0b08;
-  color: #f5ead2;
-  text-align: center;
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
 }
 
-.opening {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--cream);
+  font-family:"Cairo",sans-serif;
+  overflow-x:hidden;
+}
+
+body.opened{
+  overflow-x:hidden;
+}
+
+button,a{
+  font-family:inherit;
+}
+
+/* ---------- OPENING ---------- */
+
+#opening{
+  position:fixed;
+  inset:0;
+  z-index:1000;
   background:
-    radial-gradient(circle at center, #3a2c19 0%, #17120c 45%, #080706 100%);
+    radial-gradient(circle at 50% 42%,#332715 0%,#17130d 30%,#080807 70%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity 1.2s ease,visibility 1.2s;
 }
 
-.ornament {
-  font-size: 45px;
-  margin-bottom: 25px;
+#opening.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
-.welcome {
-  font-size: 22px;
-  margin-bottom: 25px;
+.opening-inner{
+  width:100%;
+  max-width:650px;
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  text-align:center;
+  position:relative;
 }
 
-.names {
-  font-size: 55px;
-  font-weight: normal;
-  letter-spacing: 3px;
-  margin: 10px 0;
+.frame{
+  position:absolute;
+  inset:22px;
+  border:1px solid rgba(201,168,106,.45);
+  pointer-events:none;
 }
 
-.date {
-  font-size: 18px;
-  margin: 20px 0 35px;
+.frame:before,
+.frame:after{
+  content:"✦";
+  position:absolute;
+  color:var(--gold);
+  font-size:20px;
 }
 
-.open-button {
-  border: 1px solid #d6b77a;
-  background: transparent;
-  color: #f5ead2;
-  padding: 15px 45px;
-  border-radius: 3px;
-  font-size: 17px;
-  cursor: pointer;
-  transition: 0.3s;
+.frame:before{top:12px;right:15px}
+.frame:after{bottom:12px;left:15px}
+
+.bismillah{
+  font-family:"Amiri",serif;
+  font-size:26px;
+  color:var(--gold2);
+  margin-bottom:18px;
+  opacity:0;
+  animation:fadeUp 1.4s .3s forwards;
 }
 
-.open-button:hover {
-  background: #d6b77a;
-  color: #0d0b08;
+.welcome{
+  font-family:"Amiri",serif;
+  font-size:20px;
+  color:#ddd0b7;
+  opacity:0;
+  animation:fadeUp 1.4s .7s forwards;
 }
 
-.invitation {
-  display: none;
-  min-height: 100vh;
-  padding: 70px 25px;
+.little-line{
+  width:80px;
+  height:1px;
+  background:linear-gradient(to left,transparent,var(--gold),transparent);
+  margin:20px 0;
+  opacity:0;
+  animation:fadeIn 1.2s 1s forwards;
+}
+
+/* ---------- ENVELOPE ---------- */
+
+.envelope-wrap{
+  position:relative;
+  width:min(390px,82vw);
+  height:270px;
+  margin:22px 0 30px;
+  cursor:pointer;
+  opacity:0;
+  animation:fadeUp 1.5s 1.1s forwards;
+  perspective:1000px;
+}
+
+.envelope{
+  position:absolute;
+  inset:0;
+  filter:drop-shadow(0 25px 35px rgba(0,0,0,.6));
+}
+
+.env-back{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(145deg,#3a2d1d,#1e1810);
+  border:1px solid #806b46;
+  border-radius:5px;
+}
+
+.env-front{
+  position:absolute;
+  inset:0;
   background:
-    linear-gradient(rgba(13,11,8,.88), rgba(13,11,8,.95)),
-    radial-gradient(circle, #4a3820, #0d0b08);
+    linear-gradient(135deg,transparent 49%,rgba(201,168,106,.18) 50%,transparent 51%),
+    linear-gradient(225deg,transparent 49%,rgba(201,168,106,.18) 50%,transparent 51%),
+    #292015;
+  clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);
+  border-radius:5px;
 }
 
-.invitation h2 {
-  font-size: 20px;
-  font-weight: normal;
-  margin-bottom: 30px;
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:62%;
+  background:linear-gradient(145deg,#49371f,#261d12);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top center;
+  transition:transform 1.5s cubic-bezier(.22,.61,.36,1);
+  z-index:5;
+  border-top:1px solid #8e7448;
 }
 
-.invitation h1 {
-  font-size: 52px;
-  font-weight: normal;
-  margin: 15px 0;
+.seal{
+  position:absolute;
+  left:50%;
+  top:48%;
+  transform:translate(-50%,-50%);
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:radial-gradient(circle,#d7bb7d,#9b7940);
+  border:3px solid #e3cc99;
+  color:#21170b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"Amiri",serif;
+  font-size:25px;
+  z-index:8;
+  box-shadow:0 5px 20px rgba(0,0,0,.4);
+  transition:opacity .5s,transform .7s;
 }
 
-.line {
-  width: 100px;
-  height: 1px;
-  background: #d6b77a;
-  margin: 30px auto;
+.envelope.open .flap{
+  transform:rotateX(180deg);
 }
 
-.details {
-  max-width: 600px;
-  margin: 45px auto;
-  border-top: 1px solid #8d754e;
-  border-bottom: 1px solid #8d754e;
-  padding: 30px 10px;
+.envelope.open .seal{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.5);
 }
 
-.details p {
-  font-size: 18px;
-  line-height: 2;
+.card{
+  position:absolute;
+  width:86%;
+  height:88%;
+  left:7%;
+  top:7%;
+  background:linear-gradient(145deg,#f5ead4,#d9c7a7);
+  color:#241b10;
+  z-index:2;
+  border-radius:2px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  transition:transform 1.6s cubic-bezier(.22,.61,.36,1);
+  box-shadow:0 8px 30px rgba(0,0,0,.35);
 }
 
-.button {
-  display: inline-block;
-  margin: 10px;
-  padding: 13px 28px;
-  border: 1px solid #d6b77a;
-  color: #f5ead2;
-  text-decoration: none;
+.envelope.open .card{
+  transform:translateY(-145px);
 }
 
-.button:hover {
-  background: #d6b77a;
-  color: #0d0b08;
+.card-small{
+  font-family:"Amiri",serif;
+  font-size:17px;
 }
 
-.footer {
-  margin-top: 70px;
-  font-size: 16px;
+.card-names{
+  font-family:"Amiri",serif;
+  font-size:39px;
+  margin:8px 0;
+}
+
+.card-date{
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.tap{
+  font-size:13px;
+  color:var(--gold2);
+  opacity:0;
+  animation:fadeIn 1s 2.1s forwards;
+}
+
+/* ---------- MAIN ---------- */
+
+main{
+  opacity:0;
+  transition:opacity 1.5s ease;
+}
+
+main.visible{
+  opacity:1;
+}
+
+section{
+  position:relative;
+  padding:110px 24px;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at center,#332717 0%,#11100d 45%,#080807 100%);
+  overflow:hidden;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:25px;
+  border:1px solid rgba(201,168,106,.25);
+}
+
+.hero-content{
+  max-width:700px;
+  position:relative;
+  z-index:2;
+}
+
+.gold-small{
+  color:var(--gold2);
+  font-size:14px;
+  letter-spacing:3px;
+}
+
+.hero h1{
+  font-family:"Amiri",serif;
+  font-size:clamp(60px,14vw,115px);
+  font-weight:400;
+  line-height:1;
+  margin:25px 0;
+  background:linear-gradient(120deg,#fff1c9,#c29b58,#fff0c7);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  font-family:"Amiri",serif;
+  font-size:24px;
+  line-height:2;
+  color:#ded1ba;
+}
+
+.scroll{
+  margin-top:60px;
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:2px;
+  animation:bounce 2s infinite;
+}
+
+/* ---------- ORNAMENT ---------- */
+
+.ornament{
+  text-align:center;
+  color:var(--gold);
+  font-size:25px;
+  margin-bottom:25px;
+}
+
+.section-title{
+  text-align:center;
+  font-family:"Amiri",serif;
+  font-size:42px;
+  font-weight:400;
+  margin:0 0 18px;
+}
+
+.section-sub{
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:50px;
+}
+
+/* ---------- DETAILS ---------- */
+
+.details{
+  background:linear-gradient(180deg,#0d0c09,#15110b);
+}
+
+.detail-grid{
+  max-width:900px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(201,168,106,.25);
+}
+
+.detail{
+  background:#100f0c;
+  padding:45px 20px;
+  text-align:center;
+}
+
+.detail-icon{
+  font-size:24px;
+  color:var(--gold);
+  margin-bottom:15px;
+}
+
+.detail h3{
+  font-family:"Amiri",serif;
+  font-size:25px;
+  font-weight:400;
+  margin:8px;
+}
+
+.detail p{
+  color:#c7bba5;
+  line-height:1.9;
+  margin:0;
+}
+
+/* ---------- TIMELINE ---------- */
+
+.timeline{
+  max-width:650px;
+  margin:auto;
+  position:relative;
+}
+
+.timeline:before{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:50%;
+  width:1px;
+  background:linear-gradient(var(--gold),transparent);
+}
+
+.event{
+  position:relative;
+  width:50%;
+  padding:25px 35px;
+}
+
+.event:nth-child(odd){
+  margin-right:50%;
+  text-align:right;
+}
+
+.event:nth-child(even){
+  text-align:left;
+}
+
+.event:after{
+  content:"";
+  position:absolute;
+  top:32px;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 15px rgba(201,168,106,.5);
+}
+
+.event:nth-child(odd):after{right:-5px}
+.event:nth-child(even):after{left:-5px}
+
+.event-time{
+  color:var(--gold2);
+  font-size:14px;
+}
+
+.event-title{
+  font-family:"Amiri",serif;
+  font-size:25px;
+  margin:5px 0;
+}
+
+/* ---------- VENUE ---------- */
+
+.venue{
+  background:
+    radial-gradient(circle at 50% 0,#302517,#080807 65%);
+  text-align:center;
+}
+
+.venue-box{
+  max-width:700px;
+  margin:auto;
+  padding:55px 25px;
+  border:1px solid rgba(201,168,106,.35);
+  background:rgba(10,9,7,.45);
+}
+
+.venue-name{
+  font-family:"Amiri",serif;
+  font-size:37px;
+  margin:15px 0;
+}
+
+.venue-address{
+  color:#c7bba5;
+  line-height:2;
+}
+
+.gold-button{
+  display:inline-block;
+  margin-top:30px;
+  padding:14px 35px;
+  border:1px solid var(--gold);
+  color:var(--cream);
+  text-decoration:none;
+  transition:.3s;
+}
+
+.gold-button:hover{
+  background:var(--gold);
+  color:#100d08;
+}
+
+/* ---------- RSVP ---------- */
+
+.rsvp{
+  text-align:center;
+  background:#0b0a08;
+}
+
+.rsvp p{
+  max-width:500px;
+  margin:0 auto;
+  color:#c7bba5;
+  line-height:2;
+}
+
+.rsvp-button{
+  display:inline-block;
+  margin-top:35px;
+  padding:16px 50px;
+  background:linear-gradient(120deg,#b18a4c,#ead39b,#b18a4c);
+  color:#171109;
+  text-decoration:none;
+  font-weight:500;
+  transition:.3s;
+}
+
+.rsvp-button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(201,168,106,.2);
+}
+
+/* ---------- CLOSING ---------- */
+
+.closing{
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    radial-gradient(circle,#302517,#080807 65%);
+}
+
+.closing h2{
+  font-family:"Amiri",serif;
+  font-size:48px;
+  font-weight:400;
+}
+
+.closing p{
+  color:#c7bba5;
+  font-family:"Amiri",serif;
+  font-size:23px;
+  line-height:2;
+}
+
+.footer{
+  margin-top:50px;
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:3px;
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+.reveal{
+  opacity:0;
+  transform:translateY(45px);
+  transition:opacity 1s ease,transform 1s ease;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:none}
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(8px)}
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:650px){
+
+  .frame{inset:13px}
+
+  .welcome{font-size:17px}
+
+  .envelope-wrap{
+    width:84vw;
+    height:220px;
+  }
+
+  .envelope.open .card{
+    transform:translateY(-120px);
+  }
+
+  .card-names{font-size:31px}
+
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .detail{
+    padding:35px 20px;
+  }
+
+  .timeline:before{
+    right:20px;
+  }
+
+  .event,
+  .event:nth-child(odd),
+  .event:nth-child(even){
+    width:100%;
+    margin:0;
+    padding:25px 55px 25px 20px;
+    text-align:right;
+  }
+
+  .event:after,
+  .event:nth-child(odd):after,
+  .event:nth-child(even):after{
+    right:16px;
+    left:auto;
+  }
+
+  .hero h1{
+    font-size:70px;
+  }
+
+  .section-title{
+    font-size:36px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<section class="opening" id="opening">
+<!-- ================= OPENING ================= -->
 
-  <div class="ornament">✦</div>
+<div id="opening">
 
-  <div class="welcome">
-    يا مرحباً وأهلاً وسهلاً بكم في ليلتنا
-  </div>
+  <div class="opening-inner">
 
-  <div class="names">
-    عليا & أحمد
-  </div>
+    <div class="frame"></div>
 
-  <div class="date">
-    12 ديسمبر 2026
-  </div>
+    <div class="bismillah">
+      بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
+    </div>
 
-  <button class="open-button" onclick="openInvitation()">
-    اضغط للفتح
-  </button>
+    <div class="welcome">
+      يا مرحباً وأهلاً وسهلاً بكم في ليلتنا
+    </div>
 
-</section>
+    <div class="little-line"></div>
 
+    <div class="envelope-wrap" onclick="openEnvelope()">
 
-<section class="invitation" id="invitation">
+      <div class="envelope" id="envelope">
 
-  <h2>بسم الله الرحمن الرحيم</h2>
+        <div class="env-back"></div>
 
-  <div class="line"></div>
+        <div class="card">
+          <div class="card-small">دعوة زفاف</div>
+          <div class="card-names">عليا & أحمد</div>
+          <div class="card-date">12 · 12 · 2026</div>
+        </div>
 
-  <h1>عليا & أحمد</h1>
+        <div class="env-front"></div>
 
-  <p>
-    بكم تكتمل فرحتنا<br>
-    وتزدان ليلتنا
-  </p>
+        <div class="flap"></div>
 
-  <div class="line"></div>
+        <div class="seal">ع</div>
 
-  <div class="details">
+      </div>
 
-    <p>
-      <strong>السبت</strong><br>
-      12 ديسمبر 2026
-    </p>
+    </div>
 
-    <p>
-      الساعة 7:30 مساءً
-    </p>
-
-    <p>
-      <strong>قاعة الزفاف</strong><br>
-      الدوحة، قطر
-    </p>
+    <div class="tap">
+      اضغط على الظرف لفتح الدعوة
+    </div>
 
   </div>
 
-  <a class="button"
-     href="https://www.google.com/maps/search/?api=1&query=Doha%20Qatar"
-     target="_blank">
-    الموقع
-  </a>
+</div>
 
-  <a class="button"
-     href="https://forms.google.com"
-     target="_blank">
-    تأكيد الحضور
-  </a>
 
-  <div class="footer">
-    نتشرف بحضوركم ومشاركتنا فرحتنا 🤍
-  </div>
+<!-- ================= WEBSITE ================= -->
 
-</section>
+<main id="main">
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content reveal">
+
+      <div class="gold-small">
+        بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
+      </div>
+
+      <div class="ornament">✦</div>
+
+      <h1>عليا & أحمد</h1>
+
+      <p>
+        بكل الحب والفرح<br>
+        ندعوكم لمشاركتنا أجمل لحظاتنا
+      </p>
+
+      <div class="little-line"></div>
+
+      <div class="gold-small">
+        السبت · 12 ديسمبر · 2026
+      </div>
+
+      <div class="scroll">
+        مرّر للأسفل
+        <br>
+        ↓
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DETAILS -->
+
+  <section class="details">
+
+    <div class="reveal">
+
+      <div class="ornament">✦</div>
+
+      <h2 class="section-title">تفاصيل الليلة</h2>
+
+      <p class="section-sub">
+        يسعدنا حضوركم ومشاركتنا فرحتنا
+      </p>
+
+    </div>
+
+    <div class="detail-grid reveal">
+
+      <div class="detail">
+        <div class="detail-icon">◈</div>
+        <h3>التاريخ</h3>
+        <p>
+          السبت<br>
+          12 ديسمبر 2026
+        </p>
+      </div>
+
+      <div class="detail">
+        <div class="detail-icon">◷</div>
+        <h3>الوقت</h3>
+        <p>
+          استقبال الضيوف<br>
+          7:30 مساءً
+        </p>
+      </div>
+
+      <div class="detail">
+        <div class="detail-icon">⌖</div>
+        <h3>المكان</h3>
+        <p>
+          الدوحة<br>
+          دولة قطر
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TIMELINE -->
+
+  <section>
+
+    <div class="reveal">
+
+      <div class="ornament">✦</div>
+
+      <h2 class="section-title">برنامج الأمسية</h2>
+
+      <p class="section-sub">
+        ننتظركم لنحتفل معاً
+      </p>
+
+    </div>
+
+    <div class="timeline reveal">
+
+      <div class="event">
+        <div class="event-time">7:30 مساءً</div>
+        <div class="event-title">استقبال الضيوف</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">8:00 مساءً</div>
+        <div class="event-title">دخول العروسين</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">8:30 مساءً</div>
+        <div class="event-title">الزفة</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">8:45 مساءً</div>
+        <div class="event-title">الرقصة الأولى</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">9:00 مساءً</div>
+        <div class="event-title">العشاء</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">10:00 مساءً</div>
+        <div class="event-title">قطع الكيك</div>
+      </div>
+
+      <div class="event">
+        <div class="event-time">10:30 مساءً</div>
+        <div class="event-title">الاحتفال</div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- VENUE -->
+
+  <section class="venue">
+
+    <div class="venue-box reveal">
+
+      <div class="ornament">✦</div>
+
+      <h2 class="section-title">الموقع</h2>
+
+      <div class="venue-name">
+        قاعة الزفاف
+      </div>
+
+      <div class="venue-address">
+        الدوحة، دولة قطر<br>
+        يسعدنا تشريفكم ومشاركتنا هذه الليلة
+      </div>
+
+      <a
+        class="gold-button"
+        href="https://www.google.com/maps/search/?api=1&query=Doha%20Qatar"
+        target="_blank">
+        عرض الموقع
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- RSVP -->
+
+  <section class="rsvp">
+
+    <div class="reveal">
+
+      <div class="ornament">✦</div>
+
+      <h2 class="section-title">
+        تأكيد الحضور
+      </h2>
+
+      <p>
+        حضوركم يسعدنا ويزيد ليلتنا جمالاً.
+        نرجو تأكيد حضوركم من خلال الرابط أدناه.
+      </p>
+
+      <a
+        class="rsvp-button"
+        href="https://forms.google.com"
+        target="_blank">
+        تأكيد الحضور
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- CLOSING -->
+
+  <section class="closing">
+
+    <div class="reveal">
+
+      <div class="ornament">✦</div>
+
+      <h2>
+        بكم تكتمل فرحتنا
+      </h2>
+
+      <p>
+        ونزداد بوجودكم بهجةً وسروراً
+      </p>
+
+      <div class="footer">
+        عليا & أحمد
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
 
 
 <script>
-function openInvitation() {
-  document.getElementById("opening").style.display = "none";
-  document.getElementById("invitation").style.display = "block";
+
+function openEnvelope(){
+
+  const envelope = document.getElementById("envelope");
+  const opening = document.getElementById("opening");
+  const main = document.getElementById("main");
+
+  envelope.classList.add("open");
+
+  setTimeout(function(){
+
+    opening.classList.add("hide");
+
+    main.classList.add("visible");
+
+    document.body.classList.add("opened");
+
+  },1500);
+
 }
+
+
+/* Scroll reveal */
+
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+
+  entries => {
+
+    entries.forEach(entry => {
+
+      if(entry.isIntersecting){
+
+        entry.target.classList.add("show");
+
+      }
+
+    });
+
+  },
+
+  {
+    threshold:0.15
+  }
+
+);
+
+reveals.forEach(el => observer.observe(el));
+
 </script>
 
 </body>
