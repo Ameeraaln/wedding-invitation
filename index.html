@@ -1,10 +1,217 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar" dir="rtl">
 <head>
-  <title>Alya & Ahmad</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alya & Ahmad</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #0d0b08;
+  color: #f5ead2;
+  text-align: center;
+}
+
+.opening {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background:
+    radial-gradient(circle at center, #3a2c19 0%, #17120c 45%, #080706 100%);
+}
+
+.ornament {
+  font-size: 45px;
+  margin-bottom: 25px;
+}
+
+.welcome {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.names {
+  font-size: 55px;
+  font-weight: normal;
+  letter-spacing: 3px;
+  margin: 10px 0;
+}
+
+.date {
+  font-size: 18px;
+  margin: 20px 0 35px;
+}
+
+.open-button {
+  border: 1px solid #d6b77a;
+  background: transparent;
+  color: #f5ead2;
+  padding: 15px 45px;
+  border-radius: 3px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.open-button:hover {
+  background: #d6b77a;
+  color: #0d0b08;
+}
+
+.invitation {
+  display: none;
+  min-height: 100vh;
+  padding: 70px 25px;
+  background:
+    linear-gradient(rgba(13,11,8,.88), rgba(13,11,8,.95)),
+    radial-gradient(circle, #4a3820, #0d0b08);
+}
+
+.invitation h2 {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+.invitation h1 {
+  font-size: 52px;
+  font-weight: normal;
+  margin: 15px 0;
+}
+
+.line {
+  width: 100px;
+  height: 1px;
+  background: #d6b77a;
+  margin: 30px auto;
+}
+
+.details {
+  max-width: 600px;
+  margin: 45px auto;
+  border-top: 1px solid #8d754e;
+  border-bottom: 1px solid #8d754e;
+  padding: 30px 10px;
+}
+
+.details p {
+  font-size: 18px;
+  line-height: 2;
+}
+
+.button {
+  display: inline-block;
+  margin: 10px;
+  padding: 13px 28px;
+  border: 1px solid #d6b77a;
+  color: #f5ead2;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #d6b77a;
+  color: #0d0b08;
+}
+
+.footer {
+  margin-top: 70px;
+  font-size: 16px;
+}
+</style>
 </head>
+
 <body>
-  <h1>Alya & Ahmad</h1>
-  <p>Wedding Invitation</p>
+
+<section class="opening" id="opening">
+
+  <div class="ornament">✦</div>
+
+  <div class="welcome">
+    يا مرحباً وأهلاً وسهلاً بكم في ليلتنا
+  </div>
+
+  <div class="names">
+    عليا & أحمد
+  </div>
+
+  <div class="date">
+    12 ديسمبر 2026
+  </div>
+
+  <button class="open-button" onclick="openInvitation()">
+    اضغط للفتح
+  </button>
+
+</section>
+
+
+<section class="invitation" id="invitation">
+
+  <h2>بسم الله الرحمن الرحيم</h2>
+
+  <div class="line"></div>
+
+  <h1>عليا & أحمد</h1>
+
+  <p>
+    بكم تكتمل فرحتنا<br>
+    وتزدان ليلتنا
+  </p>
+
+  <div class="line"></div>
+
+  <div class="details">
+
+    <p>
+      <strong>السبت</strong><br>
+      12 ديسمبر 2026
+    </p>
+
+    <p>
+      الساعة 7:30 مساءً
+    </p>
+
+    <p>
+      <strong>قاعة الزفاف</strong><br>
+      الدوحة، قطر
+    </p>
+
+  </div>
+
+  <a class="button"
+     href="https://www.google.com/maps/search/?api=1&query=Doha%20Qatar"
+     target="_blank">
+    الموقع
+  </a>
+
+  <a class="button"
+     href="https://forms.google.com"
+     target="_blank">
+    تأكيد الحضور
+  </a>
+
+  <div class="footer">
+    نتشرف بحضوركم ومشاركتنا فرحتنا 🤍
+  </div>
+
+</section>
+
+
+<script>
+function openInvitation() {
+  document.getElementById("opening").style.display = "none";
+  document.getElementById("invitation").style.display = "block";
+}
+</script>
+
 </body>
 </html>
