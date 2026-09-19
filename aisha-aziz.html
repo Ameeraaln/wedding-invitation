@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>خطوبة عائشة وعزيز</title>
+<title>عائشة & عزيز — خطوبة</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --plum:#332037;
-  --deep:#211523;
-  --rose:#b97891;
-  --dusty:#d6a8b8;
-  --lavender:#a98cb9;
-  --champagne:#d9bd79;
-  --cream:#f8f1e8;
-  --ink:#3d293b;
-}
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
@@ -32,8 +28,8 @@ html{
 
 body{
   margin:0;
-  background:var(--cream);
-  color:var(--ink);
+  background:#171019;
+  color:#382936;
   font-family:"Amiri",serif;
   overflow:hidden;
 }
@@ -44,44 +40,118 @@ body.ready{
 
 
 /* =========================================================
-   OPENING
+   VARIABLES
+========================================================= */
+
+:root{
+  --black:#171019;
+  --plum:#291b2c;
+  --wine:#542d46;
+  --rose:#a66b83;
+  --lilac:#8d739b;
+  --champagne:#d7bc82;
+  --ivory:#f8f0e7;
+  --paper:#f4ede4;
+}
+
+
+/* =========================================================
+   OPENING WORLD
 ========================================================= */
 
 #opening{
+
   position:fixed;
   inset:0;
-  z-index:1000;
-  overflow:hidden;
-  background:
-    radial-gradient(
-      ellipse at 50% 45%,
-      #72506f 0%,
-      #38253b 45%,
-      #171018 100%
-    );
-  perspective:2200px;
-}
+  z-index:9999;
 
-#opening::before{
-  content:"";
-  position:absolute;
-  inset:0;
+  overflow:hidden;
+
   background:
+
     radial-gradient(
-      ellipse at 50% 50%,
-      rgba(239,207,165,.16),
-      transparent 42%
-    );
-  pointer-events:none;
+      ellipse at 50% 48%,
+      rgba(126,82,112,.42) 0%,
+      transparent 34%
+    ),
+
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(207,161,178,.10),
+      transparent 45%
+    ),
+
+    #171019;
+
+  perspective:2400px;
+
+  transition:
+    opacity 1.4s ease,
+    visibility 1.4s ease;
 }
 
 #opening.hidden{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
-  transition:
-    opacity 1.2s ease,
-    visibility 1.2s ease;
+}
+
+
+/* subtle light behind doors */
+
+#opening .ambient-light{
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:65vmin;
+  height:65vmin;
+
+  transform:translate(-50%,-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(230,198,151,.18),
+      rgba(174,120,155,.08) 35%,
+      transparent 70%
+    );
+
+  filter:blur(25px);
+
+}
+
+
+/* =========================================================
+   DOOR FRAME
+========================================================= */
+
+.door-frame{
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:min(94vw,1050px);
+  height:96vh;
+
+  transform:
+    translate(-50%,-50%);
+
+  border:
+    1px solid
+    rgba(218,188,132,.42);
+
+  box-shadow:
+    0 0 0 8px rgba(218,188,132,.035),
+    0 30px 100px rgba(0,0,0,.65);
+
+  pointer-events:none;
+
+  z-index:40;
 }
 
 
@@ -89,234 +159,303 @@ body.ready{
    DOORS
 ========================================================= */
 
-.scale-door{
+.door{
+
   position:absolute;
-  top:-2%;
-  width:51%;
-  height:104%;
+
+  top:0;
+
+  width:50%;
+  height:100%;
+
   overflow:hidden;
 
   background:
+
     linear-gradient(
-      105deg,
-      #211923 0%,
-      #4b3048 18%,
-      #89566f 38%,
-      #b98399 53%,
-      #68445f 70%,
-      #2a1c2c 100%
+      115deg,
+      #211522 0%,
+      #3a2033 17%,
+      #714158 40%,
+      #9d6179 55%,
+      #542f4a 74%,
+      #211622 100%
     );
 
-  box-shadow:
-    inset 0 0 100px rgba(0,0,0,.65),
-    inset 0 0 25px rgba(255,255,255,.15),
-    0 0 40px rgba(0,0,0,.35);
-
   transition:
-    transform 2s cubic-bezier(.77,0,.17,1);
+    transform 2.25s
+    cubic-bezier(.78,0,.14,1);
+
 }
 
 
-/*
-   THE SCALE TEXTURE
+/* left/right geometry */
 
-   These are deliberately NOT circles.
-   Each repeated shape is built from:
-   - curved lower edge
-   - dark overlap
-   - bright upper rim
-   - internal reflection
+.door-left{
+  left:0;
+  transform-origin:left center;
+
+  border-right:
+    1px solid
+    rgba(235,211,171,.28);
+}
+
+.door-right{
+  right:0;
+  transform-origin:right center;
+
+  border-left:
+    1px solid
+    rgba(235,211,171,.28);
+}
+
+
+/* =========================================================
+   INDIVIDUAL SCALE EFFECT
+========================================================= */
+
+/*
+   The important difference:
+
+   No circles.
+   No bubbles.
+   No obvious repeated dots.
+
+   Each scale is a layered scallop:
+   dark lower overlap + pearlescent body +
+   narrow reflected rim.
 */
 
-.scale-door::before{
+.door::before{
+
   content:"";
+
   position:absolute;
-  inset:-35px;
+
+  inset:-50px;
 
   background:
 
-    /* champagne highlight */
-    linear-gradient(
-      135deg,
-      transparent 18%,
-      rgba(255,232,187,.20) 27%,
-      transparent 35%
-    ),
-
-    /* scale bodies */
+    /* pearl body */
     radial-gradient(
-      ellipse 48px 35px at 50% 0%,
-      rgba(245,210,223,.72) 0 22%,
-      rgba(189,127,157,.85) 23% 53%,
-      rgba(73,45,69,.98) 54% 60%,
-      transparent 61%
+      ellipse 43px 54px at 50% 18%,
+      rgba(250,226,231,.92) 0%,
+      rgba(207,154,176,.88) 31%,
+      rgba(132,77,111,.90) 58%,
+      rgba(55,29,52,.95) 62%,
+      transparent 64%
     );
 
   background-size:
-    100% 100%,
-    96px 70px;
+    86px 64px;
 
   background-position:
-    0 0,
     0 0;
 
-  opacity:.92;
-
   filter:
-    contrast(1.05)
-    saturate(.95);
+    drop-shadow(
+      0 4px 3px
+      rgba(18,8,20,.5)
+    );
+
+  opacity:.9;
 }
 
 
-/* alternating rows = overlapping scales */
+/* offset second layer */
 
-.scale-door::after{
+.door::after{
+
   content:"";
+
   position:absolute;
-  inset:-35px;
+
+  inset:-50px;
 
   background:
+
     radial-gradient(
-      ellipse 48px 35px at 50% 0%,
+      ellipse 43px 54px at 50% 18%,
       transparent 0 48%,
-      rgba(255,236,219,.38) 49% 52%,
-      rgba(69,39,66,.82) 53% 59%,
+      rgba(255,244,227,.58) 49% 51%,
+      rgba(49,25,46,.92) 52% 59%,
       transparent 60%
     );
 
-  background-size:96px 70px;
-  background-position:48px 35px;
+  background-size:
+    86px 64px;
 
-  opacity:.95;
+  background-position:
+    43px 32px;
+
+  opacity:.8;
 
   mix-blend-mode:screen;
 }
 
 
-/* LEFT */
+/* =========================================================
+   IRIDESCENT LIGHT ON DOORS
+========================================================= */
 
-.left-door{
-  left:-1%;
-  transform-origin:left center;
+.door-shine{
 
-  box-shadow:
-    inset -35px 0 60px rgba(16,9,18,.5),
-    inset 0 0 100px rgba(0,0,0,.65);
+  position:absolute;
+  inset:0;
+
+  pointer-events:none;
+
+  background:
+
+    linear-gradient(
+      108deg,
+      transparent 0%,
+      rgba(255,213,231,.04) 25%,
+      rgba(255,240,208,.18) 46%,
+      rgba(210,179,232,.16) 57%,
+      transparent 76%
+    );
+
+  z-index:5;
+
+  animation:
+    shimmer 7s ease-in-out infinite;
 }
 
+@keyframes shimmer{
 
-/* RIGHT */
+  0%,100%{
+    transform:translateX(-8%);
+    opacity:.5;
+  }
 
-.right-door{
-  right:-1%;
-  transform-origin:right center;
+  50%{
+    transform:translateX(8%);
+    opacity:.95;
+  }
 
-  box-shadow:
-    inset 35px 0 60px rgba(16,9,18,.5),
-    inset 0 0 100px rgba(0,0,0,.65);
-}
-
-
-/* OPEN */
-
-#opening.open .left-door{
-  transform:rotateY(-108deg);
-}
-
-#opening.open .right-door{
-  transform:rotateY(108deg);
 }
 
 
 /* =========================================================
-   DOOR CENTER SEAM
+   CENTRAL GOLD LINE
 ========================================================= */
 
-#opening::after{
-  content:"";
+.center-line{
+
   position:absolute;
-  top:0;
+
   left:50%;
-  width:2px;
-  height:100%;
+  top:2%;
+
+  width:1px;
+  height:96%;
+
+  transform:translateX(-50%);
+
+  z-index:50;
 
   background:
     linear-gradient(
       transparent,
-      rgba(246,220,176,.7) 30%,
-      rgba(255,244,215,.95) 50%,
-      rgba(246,220,176,.7) 70%,
+      rgba(226,195,136,.7) 25%,
+      rgba(255,239,202,.95) 50%,
+      rgba(226,195,136,.7) 75%,
       transparent
     );
 
   box-shadow:
-    0 0 20px rgba(239,207,165,.55);
+    0 0 18px rgba(224,194,135,.35);
 
-  z-index:10;
-  transition:opacity .4s ease;
+  transition:
+    opacity .4s ease;
 }
 
-#opening.open::after{
+#opening.open .center-line{
   opacity:0;
 }
 
 
 /* =========================================================
-   OPENING TYPOGRAPHY
+   OPENING COPY
 ========================================================= */
 
-.opening-content{
+.opening-copy{
+
   position:absolute;
-  z-index:30;
 
-  top:50%;
+  z-index:100;
+
   left:50%;
-  transform:translate(-50%,-50%);
+  top:50%;
 
-  width:min(90%,520px);
+  transform:
+    translate(-50%,-50%);
+
+  width:min(90%,600px);
 
   text-align:center;
-  color:#f8eee5;
+
+  color:#f7eee5;
 
   transition:
-    opacity .65s ease,
-    transform .9s cubic-bezier(.7,0,.2,1);
+    opacity .7s ease,
+    transform 1s ease;
 }
 
-#opening.open .opening-content{
+#opening.open .opening-copy{
+
   opacity:0;
-  transform:translate(-50%,-50%) scale(.86);
+
+  transform:
+    translate(-50%,-50%)
+    scale(.82);
 }
 
-.opening-eyebrow{
+
+.opening-overline{
+
   font-family:"Cormorant Garamond",serif;
-  font-size:14px;
-  letter-spacing:7px;
+
+  font-size:13px;
+
+  letter-spacing:8px;
+
+  color:#ddc48d;
+
+  margin-bottom:22px;
+
   text-transform:uppercase;
-  color:#e5c994;
-  margin-bottom:18px;
 }
 
-.opening-content h1{
+
+.opening-title{
+
   margin:0;
+
   font-weight:400;
-  font-size:clamp(52px,14vw,100px);
+
+  font-size:
+    clamp(54px,13vw,105px);
+
   line-height:.95;
 
-  color:#f9eee6;
-
-  text-shadow:
-    0 3px 30px rgba(0,0,0,.45);
+  letter-spacing:-1px;
 }
 
+
 .opening-names{
-  margin-top:20px;
+
+  margin-top:24px;
 
   font-family:"Cormorant Garamond",serif;
-  font-size:clamp(28px,7vw,48px);
 
-  color:#dfc188;
+  font-size:
+    clamp(27px,6vw,45px);
+
   letter-spacing:2px;
+
+  color:#dfc18b;
 }
 
 
@@ -325,257 +464,366 @@ body.ready{
 ========================================================= */
 
 .open-button{
+
   position:relative;
 
-  width:82px;
-  height:82px;
+  margin-top:45px;
 
-  margin-top:42px;
+  width:76px;
+  height:76px;
 
   border-radius:50%;
 
-  border:1px solid rgba(236,211,170,.75);
+  border:
+    1px solid
+    rgba(223,194,139,.72);
 
   background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.14),
-      rgba(255,255,255,.03)
-    );
+    rgba(255,255,255,.035);
 
-  color:#e8c98e;
+  color:#e1c38b;
 
   font-family:"Cormorant Garamond",serif;
-  font-size:29px;
+
+  font-size:28px;
 
   cursor:pointer;
 
   box-shadow:
-    0 0 0 8px rgba(224,194,135,.06),
-    0 0 45px rgba(224,194,135,.18);
+    0 0 0 7px rgba(218,188,132,.035),
+    0 0 40px rgba(218,188,132,.12);
 
   transition:
-    transform .35s ease,
-    background .35s ease;
+    transform .4s ease,
+    background .4s ease;
 }
 
 .open-button:hover{
-  transform:scale(1.06);
-  background:rgba(255,255,255,.09);
+
+  transform:scale(1.08);
+
+  background:
+    rgba(255,255,255,.08);
 }
 
 .open-button::before{
+
   content:"";
+
   position:absolute;
+
   inset:7px;
-  border:1px solid rgba(255,255,255,.18);
+
+  border:
+    1px solid
+    rgba(255,255,255,.13);
+
   border-radius:50%;
 }
 
 
 /* =========================================================
-   MAIN PAGE
+   OPEN ANIMATION
 ========================================================= */
 
-.invitation{
-  position:relative;
-  min-height:100vh;
-
-  padding:80px 18px 100px;
-
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  background:
-    radial-gradient(
-      ellipse at 10% 10%,
-      rgba(214,168,184,.45),
-      transparent 32%
-    ),
-    radial-gradient(
-      ellipse at 90% 85%,
-      rgba(169,140,185,.38),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #ead6dc,
-      #d9c8db 48%,
-      #eee1c8
-    );
+#opening.open .door-left{
+  transform:rotateY(-105deg);
 }
 
-
-/* subtle luxury texture */
-
-.invitation::before{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:
-    linear-gradient(
-      115deg,
-      transparent 30%,
-      rgba(255,255,255,.23) 50%,
-      transparent 70%
-    );
-
-  opacity:.7;
+#opening.open .door-right{
+  transform:rotateY(105deg);
 }
 
 
 /* =========================================================
-   CARD
+   MAIN INVITATION
+========================================================= */
+
+.invitation{
+
+  min-height:100vh;
+
+  position:relative;
+
+  padding:
+    90px 18px
+    110px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+
+    radial-gradient(
+      ellipse at 10% 0%,
+      rgba(171,119,143,.35),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      ellipse at 90% 100%,
+      rgba(144,115,159,.35),
+      transparent 35%
+    ),
+
+    linear-gradient(
+      135deg,
+      #e7d5dc,
+      #ddd0df 45%,
+      #eee3d2
+    );
+}
+
+
+/* =========================================================
+   PAPER CARD
 ========================================================= */
 
 .card{
+
   position:relative;
-  z-index:5;
 
   width:min(94%,760px);
 
   padding:
-    78px 34px
-    72px;
+    85px 35px
+    80px;
 
   text-align:center;
 
   background:
     linear-gradient(
-      145deg,
-      rgba(255,252,246,.97),
-      rgba(249,240,231,.96)
+      135deg,
+      #fbf6ef,
+      #f2e9df
     );
 
   box-shadow:
-    0 40px 110px rgba(43,28,46,.25),
-    0 8px 30px rgba(43,28,46,.12);
+    0 45px 110px rgba(41,25,42,.27),
+    0 12px 30px rgba(41,25,42,.12);
 
   animation:
-    cardAppear 1.3s ease both;
+    revealCard 1.4s ease both;
 }
 
-@keyframes cardAppear{
+@keyframes revealCard{
+
   from{
     opacity:0;
-    transform:translateY(35px);
+    transform:
+      translateY(45px)
+      scale(.98);
   }
 
   to{
     opacity:1;
-    transform:translateY(0);
+    transform:
+      translateY(0)
+      scale(1);
   }
-}
 
-
-/* double fine border */
-
-.card::before{
-  content:"";
-  position:absolute;
-  inset:17px;
-
-  border:
-    1px solid rgba(170,133,93,.48);
-}
-
-.card::after{
-  content:"";
-  position:absolute;
-  inset:23px;
-
-  border:
-    1px solid rgba(166,119,148,.25);
 }
 
 
 /* =========================================================
-   CARD CONTENT
+   CARD FRAME
+========================================================= */
+
+.card::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:17px;
+
+  border:
+    1px solid
+    rgba(170,137,91,.48);
+}
+
+.card::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:24px;
+
+  border:
+    1px solid
+    rgba(153,111,132,.23);
+}
+
+
+/* =========================================================
+   TOP MARK
+========================================================= */
+
+.top-mark{
+
+  position:relative;
+
+  z-index:2;
+
+  font-family:"Cormorant Garamond",serif;
+
+  font-size:12px;
+
+  letter-spacing:6px;
+
+  color:#a37b88;
+
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   ARABIC
 ========================================================= */
 
 .bismillah{
+
   position:relative;
   z-index:2;
+
+  margin-top:27px;
 
   font-size:18px;
-  color:#72546e;
-  margin-bottom:26px;
+
+  color:#72596b;
 }
 
-.invite-line{
+
+.intro{
+
   position:relative;
   z-index:2;
 
-  font-size:17px;
-  color:#9a6b82;
-  letter-spacing:2px;
+  margin-top:32px;
+
+  font-size:18px;
+
+  color:#956b7e;
 }
 
-.card h1{
+
+.names{
+
   position:relative;
   z-index:2;
 
-  margin:25px 0 5px;
+  margin-top:26px;
+}
 
-  font-size:clamp(60px,13vw,105px);
+
+.name{
+
+  margin:0;
+
+  font-size:
+    clamp(62px,14vw,108px);
+
   font-weight:400;
 
-  line-height:.85;
+  line-height:.9;
 
   background:
     linear-gradient(
       90deg,
-      #a35f7d,
-      #75506e 45%,
-      #b39454
+      #9d5e79,
+      #6f4c6c,
+      #b29358
     );
 
   -webkit-background-clip:text;
   background-clip:text;
+
   color:transparent;
 }
 
-.and{
-  position:relative;
-  z-index:2;
 
-  margin:12px 0;
+.connector{
+
+  margin:
+    17px 0;
 
   font-family:"Cormorant Garamond",serif;
-  font-size:32px;
-  color:#b39454;
+
+  font-size:31px;
+
+  color:#b29358;
 }
 
-.engagement{
+
+.subtitle{
+
   position:relative;
   z-index:2;
 
-  font-size:32px;
-  color:#65475f;
-  margin:20px 0 25px;
+  margin-top:25px;
+
+  font-size:31px;
+
+  color:#60465b;
+
+  font-weight:400;
 }
 
-.divider{
+
+/* =========================================================
+   ORNAMENT
+========================================================= */
+
+.ornament{
+
   position:relative;
+
   z-index:2;
 
-  width:130px;
+  width:150px;
+
   height:1px;
 
-  margin:28px auto;
+  margin:34px auto;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      #b79a62,
+      #b99b63 25%,
+      #b99b63 75%,
       transparent
     );
 }
 
+.ornament::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  width:6px;
+  height:6px;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(45deg);
+
+  background:#b99b63;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
 .message{
+
   position:relative;
   z-index:2;
 
@@ -584,13 +832,16 @@ body.ready{
   margin:auto;
 
   font-size:20px;
-  line-height:2.15;
 
-  color:#5f4c59;
+  line-height:2.2;
+
+  color:#594754;
 }
 
 .message strong{
-  color:#8c5872;
+
+  color:#8b5870;
+
   font-size:25px;
 }
 
@@ -600,46 +851,62 @@ body.ready{
 ========================================================= */
 
 .details{
+
   position:relative;
   z-index:2;
 
+  max-width:590px;
+
+  margin:
+    52px auto 0;
+
   display:grid;
-  grid-template-columns:repeat(2,1fr);
 
-  gap:1px;
+  grid-template-columns:
+    repeat(2,1fr);
 
-  max-width:580px;
-
-  margin:48px auto 0;
-
-  background:rgba(166,130,104,.28);
-
-  border:1px solid rgba(166,130,104,.25);
+  border:
+    1px solid
+    rgba(169,137,98,.28);
 }
+
 
 .detail{
+
+  padding:23px 15px;
+
   min-height:105px;
 
-  padding:20px 14px;
+  border:
+    .5px solid
+    rgba(169,137,98,.20);
 
   background:
-    rgba(255,250,243,.9);
+    rgba(255,250,244,.45);
 }
 
-.detail-title{
+
+.detail-label{
+
   font-family:"Cormorant Garamond",serif;
 
   font-size:13px;
+
   letter-spacing:3px;
 
-  color:#9b7182;
+  color:#a07584;
 
-  margin-bottom:8px;
+  margin-bottom:9px;
 }
 
+
 .detail-value{
+
   font-size:18px;
-  color:#4e3b49;
+
+  color:#493746;
+
+  line-height:1.6;
 }
 
 
@@ -647,56 +914,69 @@ body.ready{
    COUNTDOWN
 ========================================================= */
 
-.countdown-title{
+.countdown-heading{
+
   position:relative;
   z-index:2;
 
-  margin-top:52px;
+  margin-top:55px;
 
   font-size:19px;
-  color:#79566d;
+
+  color:#76566a;
 }
 
+
 .countdown{
+
   position:relative;
   z-index:2;
 
+  max-width:530px;
+
+  margin:
+    22px auto 0;
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
 
   gap:8px;
-
-  max-width:520px;
-
-  margin:22px auto 0;
 }
 
-.time-box{
-  padding:18px 8px;
 
-  background:
-    rgba(255,250,243,.78);
+.time{
+
+  padding:
+    18px 7px;
 
   border:
-    1px solid rgba(181,148,103,.35);
+    1px solid
+    rgba(174,142,101,.3);
 
-  box-shadow:
-    0 5px 15px rgba(70,43,65,.06);
+  background:
+    rgba(255,250,244,.7);
 }
 
+
 .time-number{
+
   display:block;
 
   font-family:"Cormorant Garamond",serif;
 
-  font-size:38px;
+  font-size:39px;
 
-  color:#76516e;
+  color:#72536d;
 }
 
+
 .time-label{
+
   font-size:11px;
-  color:#9d7585;
+
+  color:#9b7483;
 }
 
 
@@ -705,29 +985,45 @@ body.ready{
 ========================================================= */
 
 .rsvp{
+
   position:relative;
   z-index:2;
 
   max-width:500px;
 
-  margin:45px auto 0;
+  margin:
+    48px auto 0;
 
-  padding:23px;
+  padding:
+    22px 15px;
 
-  border-top:1px solid rgba(177,145,98,.35);
-  border-bottom:1px solid rgba(177,145,98,.35);
+  border-top:
+    1px solid
+    rgba(170,137,91,.35);
+
+  border-bottom:
+    1px solid
+    rgba(170,137,91,.35);
 }
+
 
 .rsvp-title{
+
   font-size:20px;
-  color:#77536c;
-  margin-bottom:7px;
+
+  color:#765269;
 }
 
+
 .rsvp-text{
+
+  margin-top:6px;
+
   font-size:16px;
+
   line-height:1.9;
-  color:#685563;
+
+  color:#675562;
 }
 
 
@@ -736,6 +1032,7 @@ body.ready{
 ========================================================= */
 
 .footer{
+
   position:relative;
   z-index:2;
 
@@ -745,7 +1042,7 @@ body.ready{
 
   font-size:19px;
 
-  color:#9a7483;
+  color:#9b7382;
 }
 
 
@@ -755,35 +1052,40 @@ body.ready{
 
 @media(max-width:600px){
 
-  .opening-eyebrow{
-    font-size:12px;
+  .door-frame{
+    width:94vw;
+    height:93vh;
+  }
+
+  .opening-overline{
+    font-size:11px;
     letter-spacing:5px;
   }
 
-  .opening-content h1{
-    font-size:58px;
+  .opening-title{
+    font-size:59px;
   }
 
   .opening-names{
-    font-size:30px;
+    font-size:29px;
   }
 
   .open-button{
-    width:76px;
-    height:76px;
+    width:70px;
+    height:70px;
   }
 
   .invitation{
     padding:
-      45px 10px
+      45px 8px
       70px;
   }
 
   .card{
-    width:96%;
+    width:97%;
     padding:
-      65px 18px
-      60px;
+      68px 18px
+      65px;
   }
 
   .card::before{
@@ -806,8 +1108,9 @@ body.ready{
     gap:5px;
   }
 
-  .time-box{
-    padding:14px 5px;
+  .time{
+    padding:
+      14px 4px;
   }
 
   .time-number{
@@ -822,11 +1125,15 @@ body.ready{
     font-size:18px;
   }
 
+  .subtitle{
+    font-size:27px;
+  }
+
 }
 
 
 /* =========================================================
-   REDUCED MOTION
+   ACCESSIBILITY
 ========================================================= */
 
 @media(prefers-reduced-motion:reduce){
@@ -839,6 +1146,7 @@ body.ready{
   }
 
 }
+
 </style>
 </head>
 
@@ -852,21 +1160,33 @@ body.ready{
 
 <section id="opening">
 
-  <div class="scale-door left-door"></div>
-  <div class="scale-door right-door"></div>
+  <div class="ambient-light"></div>
 
-  <div class="opening-content">
+  <div class="door-frame"></div>
 
-    <div class="opening-eyebrow">
+  <div class="door door-left">
+    <div class="door-shine"></div>
+  </div>
+
+  <div class="door door-right">
+    <div class="door-shine"></div>
+  </div>
+
+  <div class="center-line"></div>
+
+
+  <div class="opening-copy">
+
+    <div class="opening-overline">
       A PRIVATE CELEBRATION
     </div>
 
-    <h1>
+    <h1 class="opening-title">
       خطوبة
     </h1>
 
     <div class="opening-names">
-      عائشة وعزيز
+      عائشة &amp; عزيز
     </div>
 
     <button
@@ -890,35 +1210,47 @@ body.ready{
 
 <main class="invitation">
 
-  <div class="card">
+  <article class="card">
+
+    <div class="top-mark">
+      Aisha &amp; Aziz
+    </div>
+
 
     <div class="bismillah">
       بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
     </div>
 
-    <div class="divider"></div>
 
-    <div class="invite-line">
+    <div class="intro">
       بكل الحب والفرح
     </div>
 
-    <h1>
-      عائشة
-    </h1>
 
-    <div class="and">
-      و
+    <div class="names">
+
+      <h1 class="name">
+        عائشة
+      </h1>
+
+      <div class="connector">
+        و
+      </div>
+
+      <h1 class="name">
+        عزيز
+      </h1>
+
     </div>
 
-    <h1>
-      عزيز
-    </h1>
 
-    <div class="engagement">
+    <div class="subtitle">
       بمناسبة خطوبتهما
     </div>
 
-    <div class="divider"></div>
+
+    <div class="ornament"></div>
+
 
     <p class="message">
 
@@ -939,19 +1271,20 @@ body.ready{
 
       <br><br>
 
-      في ليلة مليئة بالحب،
-      والفرح، واللحظات الجميلة.
+      في ليلة تجمع الأحبة،
+      والفرح، وأجمل الذكريات.
 
     </p>
 
 
-    <!-- DETAILS -->
+    <!-- EVENT DETAILS -->
 
-    <div class="details">
+    <section class="details">
+
 
       <div class="detail">
 
-        <div class="detail-title">
+        <div class="detail-label">
           التاريخ
         </div>
 
@@ -966,7 +1299,7 @@ body.ready{
 
       <div class="detail">
 
-        <div class="detail-title">
+        <div class="detail-label">
           الوقت
         </div>
 
@@ -979,8 +1312,8 @@ body.ready{
 
       <div class="detail">
 
-        <div class="detail-title">
-          المكان
+        <div class="detail-label">
+          VENUE
         </div>
 
         <div class="detail-value">
@@ -992,8 +1325,8 @@ body.ready{
 
       <div class="detail">
 
-        <div class="detail-title">
-          الموقع
+        <div class="detail-label">
+          LOCATION
         </div>
 
         <div class="detail-value">
@@ -1007,8 +1340,8 @@ body.ready{
 
       <div class="detail">
 
-        <div class="detail-title">
-          الزي
+        <div class="detail-label">
+          DRESS CODE
         </div>
 
         <div class="detail-value">
@@ -1020,8 +1353,8 @@ body.ready{
 
       <div class="detail">
 
-        <div class="detail-title">
-          الأمسية
+        <div class="detail-label">
+          THE EVENING
         </div>
 
         <div class="detail-value">
@@ -1030,43 +1363,84 @@ body.ready{
 
       </div>
 
-    </div>
+
+    </section>
 
 
     <!-- COUNTDOWN -->
 
-    <div class="countdown-title">
+    <div class="countdown-heading">
       لم يتبقَ على فرحتنا سوى
     </div>
 
-    <div class="countdown">
 
-      <div class="time-box">
-        <span class="time-number" id="days">00</span>
-        <span class="time-label">يوم</span>
+    <section class="countdown">
+
+      <div class="time">
+
+        <span
+          class="time-number"
+          id="days">
+          00
+        </span>
+
+        <span class="time-label">
+          يوم
+        </span>
+
       </div>
 
-      <div class="time-box">
-        <span class="time-number" id="hours">00</span>
-        <span class="time-label">ساعة</span>
+
+      <div class="time">
+
+        <span
+          class="time-number"
+          id="hours">
+          00
+        </span>
+
+        <span class="time-label">
+          ساعة
+        </span>
+
       </div>
 
-      <div class="time-box">
-        <span class="time-number" id="minutes">00</span>
-        <span class="time-label">دقيقة</span>
+
+      <div class="time">
+
+        <span
+          class="time-number"
+          id="minutes">
+          00
+        </span>
+
+        <span class="time-label">
+          دقيقة
+        </span>
+
       </div>
 
-      <div class="time-box">
-        <span class="time-number" id="seconds">00</span>
-        <span class="time-label">ثانية</span>
+
+      <div class="time">
+
+        <span
+          class="time-number"
+          id="seconds">
+          00
+        </span>
+
+        <span class="time-label">
+          ثانية
+        </span>
+
       </div>
 
-    </div>
+    </section>
 
 
     <!-- RSVP -->
 
-    <div class="rsvp">
+    <section class="rsvp">
 
       <div class="rsvp-title">
         تأكيد الحضور
@@ -1074,8 +1448,8 @@ body.ready{
 
       <div class="rsvp-text">
 
-        نتمنى تأكيد حضوركم
-        قبل 1 ديسمبر 2026
+        نتمنى تأكيد حضوركم قبل
+        1 ديسمبر 2026
 
         <br>
 
@@ -1083,14 +1457,14 @@ body.ready{
 
       </div>
 
-    </div>
+    </section>
 
 
     <div class="footer">
       بانتظاركم لنحتفل معاً
     </div>
 
-  </div>
+  </article>
 
 </main>
 
@@ -1099,7 +1473,7 @@ body.ready{
 <script>
 
 /* =========================================================
-   OPEN INVITATION
+   OPENING
 ========================================================= */
 
 function openInvitation(){
@@ -1115,7 +1489,7 @@ function openInvitation(){
 
     document.body.classList.add("ready");
 
-  },1700);
+  },1800);
 
 }
 
@@ -1125,7 +1499,9 @@ function openInvitation(){
 ========================================================= */
 
 const eventDate =
-  new Date("2026-12-12T20:00:00+03:00");
+  new Date(
+    "2026-12-12T20:00:00+03:00"
+  );
 
 
 function updateCountdown(){
@@ -1139,10 +1515,17 @@ function updateCountdown(){
 
   if(difference <= 0){
 
-    document.getElementById("days").textContent = "00";
-    document.getElementById("hours").textContent = "00";
-    document.getElementById("minutes").textContent = "00";
-    document.getElementById("seconds").textContent = "00";
+    document.getElementById("days")
+      .textContent = "00";
+
+    document.getElementById("hours")
+      .textContent = "00";
+
+    document.getElementById("minutes")
+      .textContent = "00";
+
+    document.getElementById("seconds")
+      .textContent = "00";
 
     return;
   }
@@ -1157,22 +1540,28 @@ function updateCountdown(){
 
   const hours =
     Math.floor(
-      (difference /
-      (1000 * 60 * 60)) % 24
+      (
+        difference /
+        (1000 * 60 * 60)
+      ) % 24
     );
 
 
   const minutes =
     Math.floor(
-      (difference /
-      (1000 * 60)) % 60
+      (
+        difference /
+        (1000 * 60)
+      ) % 60
     );
 
 
   const seconds =
     Math.floor(
-      (difference /
-      1000) % 60
+      (
+        difference /
+        1000
+      ) % 60
     );
 
 
