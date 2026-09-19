@@ -1,1598 +1,1392 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>عائشة & عزيز — خطوبة</title>
+<meta name="theme-color" content="#3a1934">
+<title>عائشة & عزيز | خطوبتهما</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
+:root{
+  --plum:#35172f;
+  --plum2:#512342;
+  --rose:#c9899d;
+  --rose-light:#efd1d8;
+  --lilac:#a88bb7;
+  --yellow:#e8d99b;
+  --cream:#fbf4ea;
+  --gold:#c8a86b;
+  --ink:#271522;
+  --white:#fffaf6;
+}
 
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
   scroll-behavior:smooth;
+  scroll-snap-type:y proximity;
 }
 
 body{
-  margin:0;
-  background:#171019;
-  color:#382936;
-  font-family:"Amiri",serif;
+  background:var(--cream);
+  color:var(--ink);
+  overflow-x:hidden;
+  font-family:"Noto Kufi Arabic",sans-serif;
+}
+
+section{
+  position:relative;
+  min-height:100svh;
+  scroll-snap-align:start;
   overflow:hidden;
 }
 
-body.ready{
-  overflow:auto;
-}
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-:root{
-  --black:#171019;
-  --plum:#291b2c;
-  --wine:#542d46;
-  --rose:#a66b83;
-  --lilac:#8d739b;
-  --champagne:#d7bc82;
-  --ivory:#f8f0e7;
-  --paper:#f4ede4;
-}
-
-
-/* =========================================================
-   OPENING WORLD
-========================================================= */
+/* =========================
+   OPENING
+========================= */
 
 #opening{
-
   position:fixed;
   inset:0;
-  z-index:9999;
-
-  overflow:hidden;
-
+  z-index:1000;
   background:
-
-    radial-gradient(
-      ellipse at 50% 48%,
-      rgba(126,82,112,.42) 0%,
-      transparent 34%
-    ),
-
-    radial-gradient(
-      ellipse at 50% 100%,
-      rgba(207,161,178,.10),
-      transparent 45%
-    ),
-
-    #171019;
-
-  perspective:2400px;
-
-  transition:
-    opacity 1.4s ease,
-    visibility 1.4s ease;
+    radial-gradient(circle at 50% 45%,rgba(220,166,190,.22),transparent 28%),
+    linear-gradient(145deg,#281126,#512342 48%,#241022);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity 1.2s ease,visibility 1.2s ease;
 }
 
-#opening.hidden{
+#opening.closed .mermaid-panel{
+  transform:none;
+}
+
+#opening.opened{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
 }
 
-
-/* subtle light behind doors */
-
-#opening .ambient-light{
-
+.opening-glow{
   position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:65vmin;
-  height:65vmin;
-
-  transform:translate(-50%,-50%);
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(230,198,151,.18),
-      rgba(174,120,155,.08) 35%,
-      transparent 70%
-    );
-
-  filter:blur(25px);
-
+  width:70vw;
+  height:70vw;
+  max-width:700px;
+  max-height:700px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(233,211,150,.13),transparent 68%);
+  filter:blur(20px);
 }
 
-
-/* =========================================================
-   DOOR FRAME
-========================================================= */
-
-.door-frame{
-
+.mermaid-door{
   position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:min(94vw,1050px);
-  height:96vh;
-
-  transform:
-    translate(-50%,-50%);
-
-  border:
-    1px solid
-    rgba(218,188,132,.42);
-
-  box-shadow:
-    0 0 0 8px rgba(218,188,132,.035),
-    0 30px 100px rgba(0,0,0,.65);
-
-  pointer-events:none;
-
-  z-index:40;
-}
-
-
-/* =========================================================
-   DOORS
-========================================================= */
-
-.door{
-
-  position:absolute;
-
   top:0;
-
-  width:50%;
-  height:100%;
-
+  bottom:0;
+  width:50.5%;
+  z-index:2;
   overflow:hidden;
-
   background:
-
-    linear-gradient(
-      115deg,
-      #211522 0%,
-      #3a2033 17%,
-      #714158 40%,
-      #9d6179 55%,
-      #542f4a 74%,
-      #211622 100%
-    );
-
-  transition:
-    transform 2.25s
-    cubic-bezier(.78,0,.14,1);
-
+    linear-gradient(135deg,rgba(255,255,255,.08),transparent 35%),
+    linear-gradient(160deg,#6d395c,#35172f 55%,#211020);
+  transition:transform 1.8s cubic-bezier(.77,0,.18,1);
 }
 
-
-/* left/right geometry */
-
-.door-left{
-  left:0;
-  transform-origin:left center;
-
-  border-right:
-    1px solid
-    rgba(235,211,171,.28);
-}
-
-.door-right{
-  right:0;
+.mermaid-door.left{
+  right:50%;
   transform-origin:right center;
-
-  border-left:
-    1px solid
-    rgba(235,211,171,.28);
+  border-left:1px solid rgba(232,217,155,.3);
 }
 
-
-/* =========================================================
-   INDIVIDUAL SCALE EFFECT
-========================================================= */
-
-/*
-   The important difference:
-
-   No circles.
-   No bubbles.
-   No obvious repeated dots.
-
-   Each scale is a layered scallop:
-   dark lower overlap + pearlescent body +
-   narrow reflected rim.
-*/
-
-.door::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:-50px;
-
-  background:
-
-    /* pearl body */
-    radial-gradient(
-      ellipse 43px 54px at 50% 18%,
-      rgba(250,226,231,.92) 0%,
-      rgba(207,154,176,.88) 31%,
-      rgba(132,77,111,.90) 58%,
-      rgba(55,29,52,.95) 62%,
-      transparent 64%
-    );
-
-  background-size:
-    86px 64px;
-
-  background-position:
-    0 0;
-
-  filter:
-    drop-shadow(
-      0 4px 3px
-      rgba(18,8,20,.5)
-    );
-
-  opacity:.9;
+.mermaid-door.right{
+  left:50%;
+  transform-origin:left center;
+  border-right:1px solid rgba(232,217,155,.3);
 }
 
-
-/* offset second layer */
-
-.door::after{
-
-  content:"";
-
+/* Actual layered scale effect */
+.scales{
   position:absolute;
-
-  inset:-50px;
-
+  inset:-5%;
+  opacity:.82;
   background:
-
     radial-gradient(
-      ellipse 43px 54px at 50% 18%,
-      transparent 0 48%,
-      rgba(255,244,227,.58) 49% 51%,
-      rgba(49,25,46,.92) 52% 59%,
-      transparent 60%
+      ellipse 38px 27px at 50% 0,
+      rgba(239,209,216,.45) 0 36%,
+      rgba(200,168,107,.28) 38% 41%,
+      transparent 43%
     );
+  background-size:76px 54px;
+  filter:drop-shadow(0 3px 2px rgba(0,0,0,.22));
+  transform:scale(1.15);
+}
 
-  background-size:
-    86px 64px;
-
-  background-position:
-    43px 32px;
-
-  opacity:.8;
-
+.scales:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(115deg,transparent 20%,rgba(255,255,255,.12),transparent 42%),
+    linear-gradient(245deg,transparent 50%,rgba(183,135,178,.16),transparent 75%);
   mix-blend-mode:screen;
 }
 
-
-/* =========================================================
-   IRIDESCENT LIGHT ON DOORS
-========================================================= */
-
-.door-shine{
-
+.flower{
   position:absolute;
-  inset:0;
-
-  pointer-events:none;
-
-  background:
-
-    linear-gradient(
-      108deg,
-      transparent 0%,
-      rgba(255,213,231,.04) 25%,
-      rgba(255,240,208,.18) 46%,
-      rgba(210,179,232,.16) 57%,
-      transparent 76%
-    );
-
-  z-index:5;
-
-  animation:
-    shimmer 7s ease-in-out infinite;
+  z-index:4;
+  color:var(--rose-light);
+  opacity:.75;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));
 }
 
-@keyframes shimmer{
-
-  0%,100%{
-    transform:translateX(-8%);
-    opacity:.5;
-  }
-
-  50%{
-    transform:translateX(8%);
-    opacity:.95;
-  }
-
+.flower.one{
+  top:7%;
+  right:9%;
+  font-size:110px;
+  transform:rotate(-18deg);
 }
 
-
-/* =========================================================
-   CENTRAL GOLD LINE
-========================================================= */
-
-.center-line{
-
-  position:absolute;
-
-  left:50%;
-  top:2%;
-
-  width:1px;
-  height:96%;
-
-  transform:translateX(-50%);
-
-  z-index:50;
-
-  background:
-    linear-gradient(
-      transparent,
-      rgba(226,195,136,.7) 25%,
-      rgba(255,239,202,.95) 50%,
-      rgba(226,195,136,.7) 75%,
-      transparent
-    );
-
-  box-shadow:
-    0 0 18px rgba(224,194,135,.35);
-
-  transition:
-    opacity .4s ease;
+.flower.two{
+  bottom:10%;
+  left:7%;
+  font-size:125px;
+  transform:rotate(22deg);
 }
 
-#opening.open .center-line{
-  opacity:0;
-}
-
-
-/* =========================================================
-   OPENING COPY
-========================================================= */
-
-.opening-copy{
-
-  position:absolute;
-
-  z-index:100;
-
-  left:50%;
-  top:50%;
-
-  transform:
-    translate(-50%,-50%);
-
-  width:min(90%,600px);
-
+.opening-content{
+  position:relative;
+  z-index:10;
   text-align:center;
-
-  color:#f7eee5;
-
-  transition:
-    opacity .7s ease,
-    transform 1s ease;
+  color:white;
+  transition:opacity .6s ease;
 }
 
-#opening.open .opening-copy{
-
-  opacity:0;
-
-  transform:
-    translate(-50%,-50%)
-    scale(.82);
+.opening-small{
+  font-size:10px;
+  letter-spacing:5px;
+  color:var(--yellow);
+  margin-bottom:20px;
 }
-
-
-.opening-overline{
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:13px;
-
-  letter-spacing:8px;
-
-  color:#ddc48d;
-
-  margin-bottom:22px;
-
-  text-transform:uppercase;
-}
-
-
-.opening-title{
-
-  margin:0;
-
-  font-weight:400;
-
-  font-size:
-    clamp(54px,13vw,105px);
-
-  line-height:.95;
-
-  letter-spacing:-1px;
-}
-
 
 .opening-names{
-
-  margin-top:24px;
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:
-    clamp(27px,6vw,45px);
-
-  letter-spacing:2px;
-
-  color:#dfc18b;
+  font-family:"Amiri",serif;
+  font-size:clamp(54px,15vw,115px);
+  line-height:.95;
+  font-weight:400;
 }
 
-
-/* =========================================================
-   OPEN BUTTON
-========================================================= */
+.opening-amp{
+  font-family:"Cormorant Garamond",serif;
+  font-size:35px;
+  color:var(--yellow);
+  margin:10px 0;
+}
 
 .open-button{
-
-  position:relative;
-
   margin-top:45px;
-
-  width:76px;
-  height:76px;
-
-  border-radius:50%;
-
-  border:
-    1px solid
-    rgba(223,194,139,.72);
-
-  background:
-    rgba(255,255,255,.035);
-
-  color:#e1c38b;
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:28px;
-
+  background:none;
+  border:0;
+  color:white;
   cursor:pointer;
-
-  box-shadow:
-    0 0 0 7px rgba(218,188,132,.035),
-    0 0 40px rgba(218,188,132,.12);
-
-  transition:
-    transform .4s ease,
-    background .4s ease;
+  font-family:"Noto Kufi Arabic",sans-serif;
+  font-size:11px;
+  letter-spacing:1px;
 }
 
-.open-button:hover{
+.open-button span{
+  display:block;
+  width:90px;
+  height:1px;
+  background:var(--gold);
+  margin:12px auto 0;
+  transition:.4s;
+}
 
-  transform:scale(1.08);
+.open-button:hover span{
+  width:130px;
+}
 
+/* Opening animation */
+#opening.opened .mermaid-door.left{
+  transform:translateX(100%);
+}
+
+#opening.opened .mermaid-door.right{
+  transform:translateX(-100%);
+}
+
+#opening.opened .opening-content{
+  opacity:0;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
   background:
-    rgba(255,255,255,.08);
-}
-
-.open-button::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:7px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.13);
-
-  border-radius:50%;
-}
-
-
-/* =========================================================
-   OPEN ANIMATION
-========================================================= */
-
-#opening.open .door-left{
-  transform:rotateY(-105deg);
-}
-
-#opening.open .door-right{
-  transform:rotateY(105deg);
-}
-
-
-/* =========================================================
-   MAIN INVITATION
-========================================================= */
-
-.invitation{
-
-  min-height:100vh;
-
-  position:relative;
-
-  padding:
-    90px 18px
-    110px;
-
+    radial-gradient(circle at 20% 30%,rgba(201,137,157,.28),transparent 30%),
+    radial-gradient(circle at 80% 70%,rgba(168,139,183,.28),transparent 28%),
+    var(--cream);
   display:flex;
   align-items:center;
   justify-content:center;
-
-  background:
-
-    radial-gradient(
-      ellipse at 10% 0%,
-      rgba(171,119,143,.35),
-      transparent 30%
-    ),
-
-    radial-gradient(
-      ellipse at 90% 100%,
-      rgba(144,115,159,.35),
-      transparent 35%
-    ),
-
-    linear-gradient(
-      135deg,
-      #e7d5dc,
-      #ddd0df 45%,
-      #eee3d2
-    );
-}
-
-
-/* =========================================================
-   PAPER CARD
-========================================================= */
-
-.card{
-
-  position:relative;
-
-  width:min(94%,760px);
-
-  padding:
-    85px 35px
-    80px;
-
   text-align:center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fbf6ef,
-      #f2e9df
-    );
-
-  box-shadow:
-    0 45px 110px rgba(41,25,42,.27),
-    0 12px 30px rgba(41,25,42,.12);
-
-  animation:
-    revealCard 1.4s ease both;
 }
 
-@keyframes revealCard{
-
-  from{
-    opacity:0;
-    transform:
-      translateY(45px)
-      scale(.98);
-  }
-
-  to{
-    opacity:1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-}
-
-
-/* =========================================================
-   CARD FRAME
-========================================================= */
-
-.card::before{
-
+.hero:before{
   content:"";
-
   position:absolute;
-
-  inset:17px;
-
-  border:
-    1px solid
-    rgba(170,137,91,.48);
+  inset:20px;
+  border:1px solid rgba(53,23,47,.2);
+  pointer-events:none;
 }
 
-.card::after{
-
-  content:"";
-
+.hero-floral{
   position:absolute;
-
-  inset:24px;
-
-  border:
-    1px solid
-    rgba(153,111,132,.23);
+  font-size:clamp(90px,20vw,220px);
+  color:rgba(201,137,157,.18);
+  line-height:1;
 }
 
+.hero-floral.a{
+  top:-25px;
+  right:-20px;
+  transform:rotate(20deg);
+}
 
-/* =========================================================
-   TOP MARK
-========================================================= */
+.hero-floral.b{
+  bottom:-30px;
+  left:-20px;
+  transform:rotate(-25deg);
+}
 
-.top-mark{
-
+.hero-inner{
   position:relative;
-
   z-index:2;
+  width:min(900px,90%);
+}
 
+.eyebrow{
+  font-size:10px;
+  letter-spacing:5px;
+  color:#886278;
+  margin-bottom:30px;
+}
+
+.hero-title{
+  font-family:"Amiri",serif;
+  font-size:clamp(70px,17vw,155px);
+  font-weight:400;
+  line-height:.85;
+  color:var(--plum);
+}
+
+.hero-title span{
+  display:block;
+}
+
+.hero-symbol{
   font-family:"Cormorant Garamond",serif;
-
-  font-size:12px;
-
-  letter-spacing:6px;
-
-  color:#a37b88;
-
-  text-transform:uppercase;
+  font-size:42px;
+  color:var(--gold);
+  margin:24px 0;
 }
 
-
-/* =========================================================
-   ARABIC
-========================================================= */
-
-.bismillah{
-
-  position:relative;
-  z-index:2;
-
-  margin-top:27px;
-
-  font-size:18px;
-
-  color:#72596b;
+.hero-sub{
+  font-family:"Amiri",serif;
+  font-size:23px;
+  color:#664255;
 }
 
+.scroll-note{
+  position:absolute;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:9px;
+  letter-spacing:3px;
+  color:#806474;
+}
+
+/* =========================
+   INTRO
+========================= */
 
 .intro{
-
-  position:relative;
-  z-index:2;
-
-  margin-top:32px;
-
-  font-size:18px;
-
-  color:#956b7e;
-}
-
-
-.names{
-
-  position:relative;
-  z-index:2;
-
-  margin-top:26px;
-}
-
-
-.name{
-
-  margin:0;
-
-  font-size:
-    clamp(62px,14vw,108px);
-
-  font-weight:400;
-
-  line-height:.9;
-
-  background:
-    linear-gradient(
-      90deg,
-      #9d5e79,
-      #6f4c6c,
-      #b29358
-    );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-
-  color:transparent;
-}
-
-
-.connector{
-
-  margin:
-    17px 0;
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:31px;
-
-  color:#b29358;
-}
-
-
-.subtitle{
-
-  position:relative;
-  z-index:2;
-
-  margin-top:25px;
-
-  font-size:31px;
-
-  color:#60465b;
-
-  font-weight:400;
-}
-
-
-/* =========================================================
-   ORNAMENT
-========================================================= */
-
-.ornament{
-
-  position:relative;
-
-  z-index:2;
-
-  width:150px;
-
-  height:1px;
-
-  margin:34px auto;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #b99b63 25%,
-      #b99b63 75%,
-      transparent
-    );
-}
-
-.ornament::before{
-
-  content:"";
-
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  width:6px;
-  height:6px;
-
-  transform:
-    translate(-50%,-50%)
-    rotate(45deg);
-
-  background:#b99b63;
-}
-
-
-/* =========================================================
-   MESSAGE
-========================================================= */
-
-.message{
-
-  position:relative;
-  z-index:2;
-
-  max-width:520px;
-
-  margin:auto;
-
-  font-size:20px;
-
-  line-height:2.2;
-
-  color:#594754;
-}
-
-.message strong{
-
-  color:#8b5870;
-
-  font-size:25px;
-}
-
-
-/* =========================================================
-   DETAILS
-========================================================= */
-
-.details{
-
-  position:relative;
-  z-index:2;
-
-  max-width:590px;
-
-  margin:
-    52px auto 0;
-
+  background:var(--plum);
+  color:white;
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  border:
-    1px solid
-    rgba(169,137,98,.28);
+  grid-template-columns:1fr 1fr;
 }
 
-
-.detail{
-
-  padding:23px 15px;
-
-  min-height:105px;
-
-  border:
-    .5px solid
-    rgba(169,137,98,.20);
-
-  background:
-    rgba(255,250,244,.45);
+.intro-copy{
+  display:flex;
+  align-items:center;
+  padding:10vw;
 }
 
+.intro-copy-inner{
+  max-width:550px;
+}
 
-.detail-label{
-
+.intro-number{
   font-family:"Cormorant Garamond",serif;
-
-  font-size:13px;
-
-  letter-spacing:3px;
-
-  color:#a07584;
-
-  margin-bottom:9px;
+  font-size:clamp(100px,18vw,210px);
+  line-height:.65;
+  color:rgba(232,217,155,.2);
+  margin-bottom:-20px;
 }
 
-
-.detail-value{
-
-  font-size:18px;
-
-  color:#493746;
-
-  line-height:1.6;
+.intro h2{
+  font-family:"Amiri",serif;
+  font-size:clamp(42px,7vw,75px);
+  font-weight:400;
+  line-height:1.1;
 }
 
+.intro p{
+  margin-top:28px;
+  color:#e8d9df;
+  line-height:2.2;
+  font-size:14px;
+}
 
-/* =========================================================
-   COUNTDOWN
-========================================================= */
-
-.countdown-heading{
-
+.intro-art{
   position:relative;
-  z-index:2;
-
-  margin-top:55px;
-
-  font-size:19px;
-
-  color:#76566a;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(201,137,157,.4),transparent 30%),
+    linear-gradient(135deg,#67344f,#30152c);
+  overflow:hidden;
 }
 
+.intro-art:before{
+  content:"";
+  position:absolute;
+  width:70%;
+  height:80%;
+  top:10%;
+  right:15%;
+  border-radius:50% 50% 5% 5%;
+  background:
+    radial-gradient(ellipse 45px 30px at 50% 0,
+    rgba(239,209,216,.6) 0 36%,
+    rgba(200,168,107,.35) 38% 41%,
+    transparent 43%);
+  background-size:90px 62px;
+  opacity:.65;
+  transform:rotate(-12deg) scale(1.2);
+}
+
+.pearl{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#fff5e8;
+  box-shadow:0 0 14px rgba(255,245,232,.7);
+}
+
+/* =========================
+   DATE
+========================= */
+
+.date-section{
+  background:
+    linear-gradient(rgba(251,244,234,.92),rgba(251,244,234,.92)),
+    radial-gradient(circle at 30% 40%,#d8a8b9,transparent 25%),
+    radial-gradient(circle at 70% 60%,#bca4c8,transparent 25%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.date-layout{
+  width:min(1100px,88%);
+  display:grid;
+  grid-template-columns:1fr 1.5fr;
+  gap:8vw;
+  align-items:center;
+}
+
+.date-word{
+  font-family:"Amiri",serif;
+  font-size:clamp(42px,7vw,80px);
+  color:var(--plum);
+}
+
+.date-big{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(150px,28vw,330px);
+  line-height:.7;
+  color:var(--plum);
+  font-weight:300;
+}
+
+.date-details{
+  margin-top:45px;
+  display:flex;
+  gap:45px;
+  flex-wrap:wrap;
+}
+
+.date-detail strong{
+  display:block;
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+  font-weight:500;
+  color:var(--plum);
+}
+
+.date-detail span{
+  font-size:10px;
+  letter-spacing:2px;
+  color:#8a6979;
+}
+
+/* =========================
+   VENUE
+========================= */
+
+.venue{
+  background:#20101f;
+  color:white;
+  padding:10vh 8vw;
+  display:flex;
+  align-items:center;
+}
+
+.venue-inner{
+  width:100%;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:8vw;
+  align-items:end;
+}
+
+.venue-label{
+  color:var(--yellow);
+  font-size:10px;
+  letter-spacing:4px;
+  margin-bottom:25px;
+}
+
+.venue-title{
+  font-family:"Amiri",serif;
+  font-size:clamp(52px,9vw,110px);
+  line-height:1;
+  font-weight:400;
+}
+
+.venue-title em{
+  display:block;
+  font-family:"Cormorant Garamond",serif;
+  font-size:.55em;
+  color:#dfc4cf;
+  direction:ltr;
+  margin-top:12px;
+}
+
+.venue-info{
+  border-top:1px solid rgba(232,217,155,.35);
+  padding-top:28px;
+}
+
+.venue-info p{
+  font-family:"Amiri",serif;
+  font-size:22px;
+  color:#eadfe3;
+  line-height:1.8;
+}
+
+.venue-info small{
+  color:#aa8b9e;
+  font-size:10px;
+}
+
+.location-button{
+  display:inline-block;
+  margin-top:28px;
+  padding:13px 25px;
+  border:1px solid var(--gold);
+  color:var(--yellow);
+  text-decoration:none;
+  font-size:10px;
+}
+
+/* =========================
+   EVENING
+========================= */
+
+.evening{
+  background:linear-gradient(135deg,#ead1d8,#f8e7c8 50%,#c6a7ca);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.evening-inner{
+  width:min(1000px,88%);
+}
+
+.evening-heading{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  margin-bottom:60px;
+}
+
+.evening-heading h2{
+  font-family:"Amiri",serif;
+  color:var(--plum);
+  font-size:clamp(50px,9vw,100px);
+  font-weight:400;
+  line-height:.9;
+}
+
+.evening-heading span{
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
+  color:#785469;
+}
+
+.timeline{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(53,23,47,.35);
+}
+
+.timeline-item{
+  padding:35px 25px;
+  border-left:1px solid rgba(53,23,47,.2);
+}
+
+.timeline-item:last-child{
+  border-left:0;
+}
+
+.timeline-time{
+  font-family:"Cormorant Garamond",serif;
+  font-size:42px;
+  color:var(--plum);
+}
+
+.timeline-name{
+  font-family:"Amiri",serif;
+  font-size:24px;
+  margin-top:8px;
+  color:#4b293e;
+}
+
+.timeline-desc{
+  font-size:10px;
+  color:#765b6b;
+  line-height:2;
+  margin-top:10px;
+}
+
+/* =========================
+   DRESS CODE
+========================= */
+
+.dress{
+  background:var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.dress-inner{
+  width:min(950px,88%);
+  text-align:center;
+}
+
+.dress-kicker{
+  font-size:10px;
+  letter-spacing:4px;
+  color:#8b6879;
+}
+
+.dress h2{
+  font-family:"Amiri",serif;
+  font-size:clamp(60px,10vw,110px);
+  font-weight:400;
+  color:var(--plum);
+  margin:20px 0 35px;
+}
+
+.dress p{
+  max-width:600px;
+  margin:auto;
+  font-family:"Amiri",serif;
+  font-size:22px;
+  line-height:2;
+  color:#674657;
+}
+
+.swatches{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:45px;
+}
+
+.swatch{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:6px solid var(--cream);
+  box-shadow:0 0 0 1px rgba(53,23,47,.18);
+}
+
+.swatch:nth-child(1){background:#c8899b}
+.swatch:nth-child(2){background:#a88bb7}
+.swatch:nth-child(3){background:#e5d69c}
+.swatch:nth-child(4){background:#f4ddd8}
+.swatch:nth-child(5){background:#48233f}
+
+/* =========================
+   COUNTDOWN
+========================= */
 
 .countdown{
-
-  position:relative;
-  z-index:2;
-
-  max-width:530px;
-
-  margin:
-    22px auto 0;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:8px;
-}
-
-
-.time{
-
-  padding:
-    18px 7px;
-
-  border:
-    1px solid
-    rgba(174,142,101,.3);
-
+  min-height:70svh;
   background:
-    rgba(255,250,244,.7);
+    radial-gradient(circle at 20% 50%,rgba(201,137,157,.25),transparent 30%),
+    radial-gradient(circle at 80% 40%,rgba(168,139,183,.22),transparent 30%),
+    var(--plum);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
-
-.time-number{
-
-  display:block;
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:39px;
-
-  color:#72536d;
+.countdown-inner{
+  width:min(1000px,90%);
 }
 
+.countdown-title{
+  font-family:"Amiri",serif;
+  font-size:clamp(45px,8vw,85px);
+  font-weight:400;
+}
 
-.time-label{
-
+.countdown-sub{
+  color:#cdb5c4;
   font-size:11px;
-
-  color:#9b7483;
+  letter-spacing:2px;
+  margin:15px 0 55px;
 }
 
+.clock{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(232,217,155,.35);
+  border-bottom:1px solid rgba(232,217,155,.35);
+}
 
-/* =========================================================
+.clock-item{
+  padding:28px 10px;
+  border-left:1px solid rgba(232,217,155,.2);
+}
+
+.clock-item:last-child{
+  border-left:0;
+}
+
+.clock-number{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(55px,9vw,100px);
+  color:var(--yellow);
+  line-height:1;
+}
+
+.clock-label{
+  font-size:9px;
+  color:#bfa7b6;
+  letter-spacing:2px;
+}
+
+/* =========================
    RSVP
-========================================================= */
+========================= */
 
 .rsvp{
-
-  position:relative;
-  z-index:2;
-
-  max-width:500px;
-
-  margin:
-    48px auto 0;
-
-  padding:
-    22px 15px;
-
-  border-top:
-    1px solid
-    rgba(170,137,91,.35);
-
-  border-bottom:
-    1px solid
-    rgba(170,137,91,.35);
+  background:
+    radial-gradient(circle at 80% 20%,rgba(201,137,157,.3),transparent 25%),
+    var(--cream);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
-
-.rsvp-title{
-
-  font-size:20px;
-
-  color:#765269;
+.rsvp-inner{
+  width:min(800px,88%);
 }
 
-
-.rsvp-text{
-
-  margin-top:6px;
-
-  font-size:16px;
-
-  line-height:1.9;
-
-  color:#675562;
+.rsvp-small{
+  color:#8a6678;
+  font-size:10px;
+  letter-spacing:4px;
 }
 
+.rsvp h2{
+  font-family:"Amiri",serif;
+  color:var(--plum);
+  font-size:clamp(60px,11vw,120px);
+  font-weight:400;
+  line-height:1;
+  margin:25px 0;
+}
 
-/* =========================================================
+.rsvp p{
+  font-family:"Amiri",serif;
+  font-size:22px;
+  color:#6b4a5c;
+  line-height:2;
+}
+
+.rsvp-date{
+  margin-top:35px;
+  font-size:10px;
+  color:#927181;
+}
+
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 .footer{
-
-  position:relative;
-  z-index:2;
-
-  margin-top:35px;
-
-  font-family:"Cormorant Garamond",serif;
-
-  font-size:19px;
-
-  color:#9b7382;
+  min-height:65svh;
+  background:#32152d;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
 }
 
+.footer-inner{
+  width:90%;
+}
 
-/* =========================================================
-   MOBILE
-========================================================= */
+.footer-names{
+  font-family:"Amiri",serif;
+  font-size:clamp(60px,14vw,145px);
+  line-height:.85;
+  font-weight:400;
+}
 
-@media(max-width:600px){
+.footer-amp{
+  font-family:"Cormorant Garamond",serif;
+  color:var(--yellow);
+  font-size:45px;
+  margin:18px 0;
+}
 
-  .door-frame{
-    width:94vw;
-    height:93vh;
-  }
+.footer-line{
+  width:100px;
+  height:1px;
+  background:var(--gold);
+  margin:45px auto 25px;
+}
 
-  .opening-overline{
-    font-size:11px;
-    letter-spacing:5px;
-  }
+.footer p{
+  color:#cdb8c4;
+  font-size:10px;
+  letter-spacing:2px;
+}
 
-  .opening-title{
-    font-size:59px;
-  }
+/* =========================
+   ANIMATIONS
+========================= */
 
-  .opening-names{
-    font-size:29px;
-  }
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 1s ease,transform 1s ease;
+}
 
-  .open-button{
-    width:70px;
-    height:70px;
-  }
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
 
-  .invitation{
-    padding:
-      45px 8px
-      70px;
-  }
+@media(max-width:700px){
 
-  .card{
-    width:97%;
-    padding:
-      68px 18px
-      65px;
-  }
-
-  .card::before{
-    inset:12px;
-  }
-
-  .card::after{
-    inset:18px;
-  }
-
-  .details{
+  .intro{
     grid-template-columns:1fr;
   }
 
-  .detail{
-    min-height:auto;
+  .intro-art{
+    min-height:42svh;
   }
 
-  .countdown{
-    gap:5px;
+  .intro-copy{
+    min-height:58svh;
+    padding:13vw 9vw;
   }
 
-  .time{
-    padding:
-      14px 4px;
+  .date-layout{
+    grid-template-columns:1fr;
+    gap:35px;
   }
 
-  .time-number{
-    font-size:29px;
+  .date-big{
+    font-size:150px;
   }
 
-  .time-label{
-    font-size:10px;
+  .date-details{
+    gap:25px;
   }
 
-  .message{
-    font-size:18px;
+  .venue-inner{
+    grid-template-columns:1fr;
+    gap:50px;
   }
 
-  .subtitle{
-    font-size:27px;
+  .timeline{
+    grid-template-columns:1fr;
   }
 
+  .timeline-item{
+    border-left:0;
+    border-bottom:1px solid rgba(53,23,47,.2);
+  }
+
+  .timeline-item:last-child{
+    border-bottom:0;
+  }
+
+  .clock-number{
+    font-size:47px;
+  }
+
+  .clock-label{
+    font-size:7px;
+  }
+
+  .hero-title{
+    font-size:78px;
+  }
+
+  .flower.one{
+    font-size:75px;
+  }
+
+  .flower.two{
+    font-size:85px;
+  }
 }
-
-
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms !important;
-    transition-duration:.01ms !important;
-  }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =======================================================
+<!-- =========================
      OPENING
-======================================================= -->
+========================= -->
 
-<section id="opening">
+<div id="opening">
 
-  <div class="ambient-light"></div>
+  <div class="opening-glow"></div>
 
-  <div class="door-frame"></div>
-
-  <div class="door door-left">
-    <div class="door-shine"></div>
+  <div class="mermaid-door left">
+    <div class="scales"></div>
+    <div class="flower one">❀</div>
   </div>
 
-  <div class="door door-right">
-    <div class="door-shine"></div>
+  <div class="mermaid-door right">
+    <div class="scales"></div>
+    <div class="flower two">✿</div>
   </div>
 
-  <div class="center-line"></div>
-
-
-  <div class="opening-copy">
-
-    <div class="opening-overline">
-      A PRIVATE CELEBRATION
-    </div>
-
-    <h1 class="opening-title">
-      خطوبة
-    </h1>
+  <div class="opening-content">
+    <div class="opening-small">AN ENGAGEMENT CELEBRATION</div>
 
     <div class="opening-names">
-      عائشة &amp; عزيز
+      عائشة
+      <div class="opening-amp">&</div>
+      عزيز
     </div>
 
-    <button
-      class="open-button"
-      onclick="openInvitation()"
-      aria-label="فتح الدعوة">
-
-      ♡
-
+    <button class="open-button" onclick="openInvitation()">
+      فتح الدعوة
+      <span></span>
     </button>
+  </div>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-floral a">✿</div>
+  <div class="hero-floral b">❀</div>
+
+  <div class="hero-inner reveal">
+
+    <div class="eyebrow">
+      بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
+    </div>
+
+    <div class="hero-title">
+      <span>عائشة</span>
+      <span>و</span>
+      <span>عزيز</span>
+    </div>
+
+    <div class="hero-symbol">✦</div>
+
+    <div class="hero-sub">
+      بمناسبة خطوبتهما
+    </div>
+
+  </div>
+
+  <div class="scroll-note">
+    SCROLL TO DISCOVER
+  </div>
+
+</section>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="intro">
+
+  <div class="intro-copy">
+
+    <div class="intro-copy-inner reveal">
+
+      <div class="intro-number">01</div>
+
+      <h2>
+        بكل الحب<br>
+        والفرح
+      </h2>
+
+      <p>
+        يسعدنا دعوتكم لمشاركتنا أجمل لحظاتنا،
+        والاحتفال معنا بخطوبة عائشة وعزيز
+        في أمسية مليئة بالحب والفرح والذكريات الجميلة.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="intro-art">
+    <div class="pearl" style="top:18%;right:20%"></div>
+    <div class="pearl" style="top:42%;right:70%"></div>
+    <div class="pearl" style="top:72%;right:30%"></div>
+    <div class="pearl" style="top:25%;right:55%"></div>
+    <div class="pearl" style="top:82%;right:75%"></div>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DATE
+========================= -->
+
+<section class="date-section">
+
+  <div class="date-layout reveal">
+
+    <div>
+      <div class="date-word">
+        السبت
+      </div>
+
+      <div class="date-details">
+
+        <div class="date-detail">
+          <strong>12</strong>
+          <span>DECEMBER</span>
+        </div>
+
+        <div class="date-detail">
+          <strong>2026</strong>
+          <span>YEAR</span>
+        </div>
+
+        <div class="date-detail">
+          <strong>8:00</strong>
+          <span>PM</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="date-big">
+      12
+    </div>
 
   </div>
 
 </section>
 
 
+<!-- =========================
+     VENUE
+========================= -->
 
-<!-- =======================================================
-     INVITATION
-======================================================= -->
+<section class="venue">
 
-<main class="invitation">
+  <div class="venue-inner">
 
-  <article class="card">
+    <div class="reveal">
 
-    <div class="top-mark">
-      Aisha &amp; Aziz
-    </div>
-
-
-    <div class="bismillah">
-      بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ
-    </div>
-
-
-    <div class="intro">
-      بكل الحب والفرح
-    </div>
-
-
-    <div class="names">
-
-      <h1 class="name">
-        عائشة
-      </h1>
-
-      <div class="connector">
-        و
+      <div class="venue-label">
+        THE VENUE
       </div>
 
-      <h1 class="name">
-        عزيز
-      </h1>
+      <div class="venue-title">
+        فندق
+        <em>The Ritz-Carlton, Doha</em>
+      </div>
 
     </div>
 
+    <div class="venue-info reveal">
 
-    <div class="subtitle">
-      بمناسبة خطوبتهما
+      <p>
+        Fountain Courtyard
+      </p>
+
+      <small>
+        الدوحة، قطر
+      </small>
+
+      <br>
+
+      <a
+        class="location-button"
+        href="https://www.google.com/maps/search/?api=1&query=The+Ritz-Carlton+Doha"
+        target="_blank"
+      >
+        الموقع
+      </a>
+
     </div>
 
+  </div>
 
-    <div class="ornament"></div>
+</section>
 
 
-    <p class="message">
+<!-- =========================
+     EVENING
+========================= -->
 
-      يسعدنا دعوتكم لمشاركتنا
-      <br>
+<section class="evening">
 
-      فرحتنا بهذه المناسبة الجميلة
+  <div class="evening-inner reveal">
 
-      <br><br>
+    <div class="evening-heading">
+      <h2>
+        تفاصيل<br>
+        الأمسية
+      </h2>
 
-      والاحتفال بخطوبة
+      <span>THE EVENING</span>
+    </div>
 
-      <br>
+    <div class="timeline">
 
-      <strong>
-        عائشة وعزيز
-      </strong>
+      <div class="timeline-item">
+        <div class="timeline-time">8:00</div>
+        <div class="timeline-name">الاستقبال</div>
+        <div class="timeline-desc">
+          نرحب بكم لبدء الأمسية
+          وسط أجواء مليئة بالورد والأنوار.
+        </div>
+      </div>
 
-      <br><br>
+      <div class="timeline-item">
+        <div class="timeline-time">8:30</div>
+        <div class="timeline-name">الاحتفال</div>
+        <div class="timeline-desc">
+          لحظة الاحتفال بخطوبة
+          عائشة وعزيز.
+        </div>
+      </div>
 
-      في ليلة تجمع الأحبة،
-      والفرح، وأجمل الذكريات.
+      <div class="timeline-item">
+        <div class="timeline-time">9:00</div>
+        <div class="timeline-name">العشاء</div>
+        <div class="timeline-desc">
+          عشاء فاخر وحلويات
+          وأمسية لا تُنسى.
+        </div>
+      </div>
 
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     DRESS CODE
+========================= -->
+
+<section class="dress">
+
+  <div class="dress-inner reveal">
+
+    <div class="dress-kicker">
+      THE DRESS CODE
+    </div>
+
+    <h2>
+      أناقة حالمة
+    </h2>
+
+    <p>
+      ننتظركم بإطلالات أنيقة وناعمة،
+      مستوحاة من ألوان الغروب واللؤلؤ
+      والزهور الحالمة.
     </p>
 
-
-    <!-- EVENT DETAILS -->
-
-    <section class="details">
-
-
-      <div class="detail">
-
-        <div class="detail-label">
-          التاريخ
-        </div>
-
-        <div class="detail-value">
-          السبت
-          <br>
-          12 ديسمبر 2026
-        </div>
-
-      </div>
-
-
-      <div class="detail">
-
-        <div class="detail-label">
-          الوقت
-        </div>
-
-        <div class="detail-value">
-          8:00 مساءً
-        </div>
-
-      </div>
-
-
-      <div class="detail">
-
-        <div class="detail-label">
-          VENUE
-        </div>
-
-        <div class="detail-value">
-          The Ritz-Carlton, Doha
-        </div>
-
-      </div>
-
-
-      <div class="detail">
-
-        <div class="detail-label">
-          LOCATION
-        </div>
-
-        <div class="detail-value">
-          Fountain Courtyard
-          <br>
-          الدوحة، قطر
-        </div>
-
-      </div>
-
-
-      <div class="detail">
-
-        <div class="detail-label">
-          DRESS CODE
-        </div>
-
-        <div class="detail-value">
-          Elegant Pastel Glam
-        </div>
-
-      </div>
-
-
-      <div class="detail">
-
-        <div class="detail-label">
-          THE EVENING
-        </div>
-
-        <div class="detail-value">
-          عشاء • حلويات • مشروبات
-        </div>
-
-      </div>
-
-
-    </section>
-
-
-    <!-- COUNTDOWN -->
-
-    <div class="countdown-heading">
-      لم يتبقَ على فرحتنا سوى
+    <div class="swatches">
+      <div class="swatch"></div>
+      <div class="swatch"></div>
+      <div class="swatch"></div>
+      <div class="swatch"></div>
+      <div class="swatch"></div>
     </div>
 
+  </div>
 
-    <section class="countdown">
-
-      <div class="time">
-
-        <span
-          class="time-number"
-          id="days">
-          00
-        </span>
-
-        <span class="time-label">
-          يوم
-        </span>
-
-      </div>
+</section>
 
 
-      <div class="time">
+<!-- =========================
+     COUNTDOWN
+========================= -->
 
-        <span
-          class="time-number"
-          id="hours">
-          00
-        </span>
+<section class="countdown">
 
-        <span class="time-label">
-          ساعة
-        </span>
+  <div class="countdown-inner reveal">
 
-      </div>
-
-
-      <div class="time">
-
-        <span
-          class="time-number"
-          id="minutes">
-          00
-        </span>
-
-        <span class="time-label">
-          دقيقة
-        </span>
-
-      </div>
-
-
-      <div class="time">
-
-        <span
-          class="time-number"
-          id="seconds">
-          00
-        </span>
-
-        <span class="time-label">
-          ثانية
-        </span>
-
-      </div>
-
-    </section>
-
-
-    <!-- RSVP -->
-
-    <section class="rsvp">
-
-      <div class="rsvp-title">
-        تأكيد الحضور
-      </div>
-
-      <div class="rsvp-text">
-
-        نتمنى تأكيد حضوركم قبل
-        1 ديسمبر 2026
-
-        <br>
-
-        لتكتمل فرحتنا بوجودكم معنا.
-
-      </div>
-
-    </section>
-
-
-    <div class="footer">
-      بانتظاركم لنحتفل معاً
+    <div class="countdown-title">
+      العدّ التنازلي
     </div>
 
-  </article>
+    <div class="countdown-sub">
+      UNTIL WE CELEBRATE
+    </div>
 
-</main>
+    <div class="clock">
 
+      <div class="clock-item">
+        <div class="clock-number" id="days">00</div>
+        <div class="clock-label">DAYS</div>
+      </div>
+
+      <div class="clock-item">
+        <div class="clock-number" id="hours">00</div>
+        <div class="clock-label">HOURS</div>
+      </div>
+
+      <div class="clock-item">
+        <div class="clock-number" id="minutes">00</div>
+        <div class="clock-label">MINUTES</div>
+      </div>
+
+      <div class="clock-item">
+        <div class="clock-number" id="seconds">00</div>
+        <div class="clock-label">SECONDS</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     RSVP
+========================= -->
+
+<section class="rsvp">
+
+  <div class="rsvp-inner reveal">
+
+    <div class="rsvp-small">
+      KINDLY RSVP
+    </div>
+
+    <h2>
+      حضوركم<br>
+      يسعدنا
+    </h2>
+
+    <p>
+      وجودكم معنا هو أجمل هدية،
+      وننتظر مشاركتكم لنا هذه اللحظة الخاصة.
+    </p>
+
+    <div class="rsvp-date">
+      يرجى تأكيد الحضور قبل 1 ديسمبر 2026
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<section class="footer">
+
+  <div class="footer-inner reveal">
+
+    <div class="footer-names">
+      عائشة
+      <div class="footer-amp">&</div>
+      عزيز
+    </div>
+
+    <div class="footer-line"></div>
+
+    <p>
+      WITH LOVE · 12 · 12 · 2026
+    </p>
+
+  </div>
+
+</section>
 
 
 <script>
 
-/* =========================================================
-   OPENING
-========================================================= */
+/* =========================
+   OPEN INVITATION
+========================= */
 
 function openInvitation(){
 
-  const opening =
-    document.getElementById("opening");
+  const opening = document.getElementById("opening");
 
-  opening.classList.add("open");
+  opening.classList.add("opened");
 
-  setTimeout(function(){
-
-    opening.classList.add("hidden");
-
-    document.body.classList.add("ready");
-
-  },1800);
+  setTimeout(() => {
+    document.body.style.overflow = "auto";
+  }, 1000);
 
 }
 
 
-/* =========================================================
+/* =========================
    COUNTDOWN
-========================================================= */
+========================= */
 
-const eventDate =
-  new Date(
-    "2026-12-12T20:00:00+03:00"
-  );
-
+const targetDate = new Date("December 12, 2026 20:00:00 GMT+0300").getTime();
 
 function updateCountdown(){
 
-  const now =
-    new Date();
-
-  const difference =
-    eventDate - now;
-
+  const now = new Date().getTime();
+  const difference = targetDate - now;
 
   if(difference <= 0){
 
-    document.getElementById("days")
-      .textContent = "00";
-
-    document.getElementById("hours")
-      .textContent = "00";
-
-    document.getElementById("minutes")
-      .textContent = "00";
-
-    document.getElementById("seconds")
-      .textContent = "00";
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
 
     return;
   }
 
+  const days = Math.floor(
+    difference / (1000 * 60 * 60 * 24)
+  );
 
-  const days =
-    Math.floor(
-      difference /
-      (1000 * 60 * 60 * 24)
-    );
+  const hours = Math.floor(
+    (difference / (1000 * 60 * 60)) % 24
+  );
 
+  const minutes = Math.floor(
+    (difference / (1000 * 60)) % 60
+  );
 
-  const hours =
-    Math.floor(
-      (
-        difference /
-        (1000 * 60 * 60)
-      ) % 24
-    );
+  const seconds = Math.floor(
+    (difference / 1000) % 60
+  );
 
-
-  const minutes =
-    Math.floor(
-      (
-        difference /
-        (1000 * 60)
-      ) % 60
-    );
-
-
-  const seconds =
-    Math.floor(
-      (
-        difference /
-        1000
-      ) % 60
-    );
-
-
-  document.getElementById("days")
-    .textContent =
+  document.getElementById("days").textContent =
     String(days).padStart(2,"0");
 
-
-  document.getElementById("hours")
-    .textContent =
+  document.getElementById("hours").textContent =
     String(hours).padStart(2,"0");
 
-
-  document.getElementById("minutes")
-    .textContent =
+  document.getElementById("minutes").textContent =
     String(minutes).padStart(2,"0");
 
-
-  document.getElementById("seconds")
-    .textContent =
+  document.getElementById("seconds").textContent =
     String(seconds).padStart(2,"0");
 
 }
 
-
 updateCountdown();
+setInterval(updateCountdown,1000);
 
-setInterval(
-  updateCountdown,
-  1000
+
+/* =========================
+   SCROLL REVEALS
+========================= */
+
+const observer = new IntersectionObserver(
+  entries => {
+
+    entries.forEach(entry => {
+
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+      }
+
+    });
+
+  },
+  {
+    threshold:.15
+  }
 );
+
+document.querySelectorAll(".reveal").forEach(el => {
+  observer.observe(el);
+});
+
+
+/* =========================
+   PREVENT SCROLL BEHIND COVER
+========================= */
+
+document.body.style.overflow = "hidden";
 
 </script>
 
