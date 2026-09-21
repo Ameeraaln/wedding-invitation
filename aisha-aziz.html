@@ -1,12 +1,25 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aisha & Aziz | Engagement</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Aisha & Aziz ♡</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Great+Vibes&display=swap');
+
+:root {
+  --pink: #e96b9a;
+  --hot-pink: #d93678;
+  --rose: #f8b5cc;
+  --lavender: #b99adf;
+  --purple: #8053a8;
+  --gold: #d4a85f;
+  --cream: #fff7f7;
+  --dark: #492c3c;
+}
 
 * {
   box-sizing: border-box;
@@ -18,23 +31,27 @@ html {
 
 body {
   margin: 0;
-  background: #f7f0e8;
-  color: #3d332d;
-  font-family: 'Montserrat', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
 }
 
 /* =========================
-   ENVELOPE OPENING
+   OPENING
 ========================= */
 
 #opening {
   position: fixed;
   inset: 0;
-  z-index: 999;
-  background: #f7f0e8;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
+  background:
+    radial-gradient(circle at 20% 20%, #ffd9e7, transparent 30%),
+    radial-gradient(circle at 80% 80%, #e3d0ff, transparent 35%),
+    linear-gradient(135deg, #fff4f7, #f9e9ff);
   transition: opacity 1s ease, visibility 1s ease;
 }
 
@@ -45,135 +62,236 @@ body {
 }
 
 .opening-content {
+  width: 100%;
   text-align: center;
+  padding: 25px;
 }
 
-.small-title {
-  font-size: 10px;
+/* floating flowers */
+
+.flower {
+  position: absolute;
+  font-size: 28px;
+  animation: float 5s ease-in-out infinite;
+  opacity: .7;
+}
+
+.f1 { top: 12%; left: 8%; }
+.f2 { top: 20%; right: 10%; animation-delay: 1s; }
+.f3 { bottom: 17%; left: 12%; animation-delay: 2s; }
+.f4 { bottom: 10%; right: 8%; animation-delay: 3s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-18px) rotate(12deg); }
+}
+
+.invited {
+  font-size: 9px;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: #9a8065;
-  margin-bottom: 35px;
+  color: var(--purple);
+  margin-bottom: 18px;
 }
+
+.opening-title {
+  font-family: "Great Vibes", cursive;
+  font-size: 48px;
+  color: var(--hot-pink);
+  margin-bottom: 28px;
+}
+
+/* ENVELOPE */
 
 .envelope {
-  width: 310px;
-  height: 205px;
+  width: min(330px, 88vw);
+  height: 215px;
   position: relative;
-  cursor: pointer;
-  perspective: 900px;
   margin: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 18px 25px rgba(143, 67, 110, .2));
 }
 
-.envelope-back {
+/* lace */
+
+.lace {
+  position: absolute;
+  inset: -12px;
+  z-index: 20;
+  pointer-events: none;
+  border: 5px dotted #e7a7c1;
+  border-radius: 20px;
+  box-shadow:
+    0 0 0 5px rgba(255,255,255,.7),
+    0 0 0 9px #d88bb0;
+}
+
+.lace::before,
+.lace::after {
+  content: "✿  ❀  ✿  ❀  ✿  ❀  ✿";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #d47fa9;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.lace::before {
+  top: -15px;
+}
+
+.lace::after {
+  bottom: -15px;
+}
+
+/* envelope body */
+
+.envelope-body {
   position: absolute;
   inset: 0;
-  background: #e9d7c4;
-  border: 1px solid #c7ab8c;
-  box-shadow: 0 20px 50px rgba(75, 53, 37, .12);
+  background: linear-gradient(135deg, #ffb8d0, #e986b1);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #c96891;
 }
 
-.envelope-paper {
+/* side folds */
+
+.left-fold,
+.right-fold {
   position: absolute;
-  width: 88%;
-  height: 86%;
-  background: #fffdf9;
-  left: 6%;
-  top: 7%;
-  transition: transform 1.1s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.paper-text {
-  text-align: center;
-}
-
-.paper-text .initials {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px;
-  color: #9a8065;
-}
-
-.paper-text small {
-  display: block;
-  font-size: 8px;
-  letter-spacing: 3px;
-  color: #8e7b6b;
-}
-
-.flap {
-  position: absolute;
+  bottom: 0;
   width: 0;
   height: 0;
-  border-left: 155px solid transparent;
-  border-right: 155px solid transparent;
-  border-top: 105px solid #ddc4aa;
-  top: 0;
-  left: 0;
-  transform-origin: top;
-  transition: transform 1s ease;
   z-index: 4;
 }
 
 .left-fold {
-  position: absolute;
-  bottom: 0;
   left: 0;
-  border-top: 102px solid transparent;
-  border-bottom: 103px solid transparent;
-  border-left: 155px solid #ead7c2;
-  z-index: 3;
+  border-top: 108px solid transparent;
+  border-bottom: 108px solid transparent;
+  border-left: 165px solid #f29abd;
 }
 
 .right-fold {
-  position: absolute;
-  bottom: 0;
   right: 0;
-  border-top: 102px solid transparent;
-  border-bottom: 103px solid transparent;
-  border-right: 155px solid #ead7c2;
-  z-index: 3;
+  border-top: 108px solid transparent;
+  border-bottom: 108px solid transparent;
+  border-right: 165px solid #f29abd;
 }
+
+/* paper */
+
+.paper {
+  position: absolute;
+  z-index: 2;
+  width: 82%;
+  height: 88%;
+  left: 9%;
+  top: 6%;
+  background: #fffdfd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1);
+  box-shadow: 0 8px 20px rgba(90,40,70,.15);
+}
+
+.paper-inner {
+  text-align: center;
+}
+
+.paper-aa {
+  font-family: "Great Vibes", cursive;
+  font-size: 45px;
+  color: var(--hot-pink);
+}
+
+.paper-inner small {
+  display: block;
+  font-size: 7px;
+  letter-spacing: 3px;
+  color: var(--purple);
+}
+
+/* flap */
+
+.flap {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 165px solid transparent;
+  border-right: 165px solid transparent;
+  border-top: 112px solid #f7a9c5;
+  transform-origin: top center;
+  transition: transform 1s ease;
+}
+
+/* bottom fold */
 
 .bottom-fold {
   position: absolute;
+  z-index: 5;
   bottom: 0;
   left: 0;
-  border-left: 155px solid transparent;
-  border-right: 155px solid transparent;
-  border-bottom: 110px solid #e3ccb3;
-  z-index: 4;
+  border-left: 165px solid transparent;
+  border-right: 165px solid transparent;
+  border-bottom: 112px solid #ea8fb6;
 }
+
+/* ribbon */
+
+.ribbon-v {
+  position: absolute;
+  z-index: 8;
+  width: 20px;
+  height: 100%;
+  background: rgba(255,255,255,.42);
+  left: calc(50% - 10px);
+}
+
+.ribbon-h {
+  position: absolute;
+  z-index: 8;
+  height: 20px;
+  width: 100%;
+  background: rgba(255,255,255,.42);
+  top: calc(50% - 10px);
+}
+
+/* seal */
 
 .seal {
   position: absolute;
-  z-index: 6;
-  width: 53px;
-  height: 53px;
-  border-radius: 50%;
-  background: #a78660;
-  color: white;
+  z-index: 10;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,-50%);
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f2c76e, #b77c31);
+  color: white;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  box-shadow: 0 5px 15px rgba(0,0,0,.15);
-  transition: opacity .5s ease;
+  align-items: center;
+  font-family: "Great Vibes", cursive;
+  font-size: 27px;
+  border: 3px solid #ffe4a8;
+  box-shadow: 0 5px 15px rgba(120,70,30,.3);
+  transition: opacity .4s;
 }
 
 .envelope.open .flap {
   transform: rotateX(180deg);
-  z-index: 1;
 }
 
-.envelope.open .envelope-paper {
+.envelope.open .paper {
   transform: translateY(-125px);
 }
 
@@ -186,16 +304,21 @@ body {
   font-size: 9px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: #806d5b;
+  color: var(--purple);
+  animation: pulse 1.7s infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: .45; }
 }
 
 /* =========================
-   MAIN INVITATION
+   INVITATION
 ========================= */
 
 #invitation {
   opacity: 0;
-  transition: opacity 1.3s ease;
+  transition: opacity 1.2s ease;
 }
 
 #invitation.show {
@@ -204,518 +327,243 @@ body {
 
 .hero {
   min-height: 100vh;
+  padding: 70px 22px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 60px 20px;
   position: relative;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 20%, #ffd2e2, transparent 30%),
+    radial-gradient(circle at 90% 80%, #e0ceff, transparent 35%),
+    #fff7fa;
 }
 
-.hero:before,
-.hero:after {
-  content: '';
+.hero::before {
+  content: "♡";
   position: absolute;
-  width: 250px;
-  height: 250px;
-  border: 1px solid rgba(167,134,96,.25);
-  border-radius: 50%;
-}
-
-.hero:before {
-  left: -150px;
-  top: 100px;
-}
-
-.hero:after {
-  right: -150px;
-  bottom: 100px;
+  font-size: 260px;
+  color: rgba(233,107,154,.07);
+  transform: rotate(-15deg);
 }
 
 .hero-content {
-  max-width: 850px;
+  position: relative;
+  z-index: 2;
 }
 
-.pre-title {
+.grace {
   font-size: 9px;
-  letter-spacing: 6px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: #9a8065;
-  margin-bottom: 30px;
+  color: var(--purple);
 }
 
 .names {
-  font-family: 'Cormorant Garamond', serif;
+  margin: 25px 0 5px;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(65px, 18vw, 125px);
   font-weight: 400;
-  font-size: clamp(70px, 13vw, 145px);
-  line-height: .75;
-  margin: 0;
+  line-height: .9;
+  color: var(--hot-pink);
+  text-shadow: 0 5px 20px rgba(217,54,120,.15);
 }
 
-.and {
+.amp {
+  font-size: 43px;
+  color: var(--gold);
   display: block;
-  font-size: 40px;
-  color: #aa8b68;
-  font-style: italic;
-  line-height: 1.5;
 }
 
-.hero-description {
-  margin: 38px auto 0;
-  max-width: 500px;
-  font-family: 'Cormorant Garamond', serif;
+.tagline {
+  font-family: "Cormorant Garamond", serif;
   font-size: 25px;
-  line-height: 1.4;
+  line-height: 1.3;
+  margin: 30px auto;
+  max-width: 350px;
 }
 
-.hero-date {
-  margin-top: 25px;
-  font-size: 10px;
-  letter-spacing: 4px;
+.date {
+  display: inline-block;
+  padding: 12px 20px;
+  border-top: 1px solid #d7a3bb;
+  border-bottom: 1px solid #d7a3bb;
+  font-size: 9px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: #8c7a69;
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* sections */
 
 .section {
-  padding: 110px 22px;
-  max-width: 1050px;
-  margin: auto;
+  padding: 85px 20px;
+  position: relative;
 }
 
 .section-card {
-  background: rgba(255,253,249,.7);
-  border: 1px solid #ded1c2;
-  padding: 70px 30px;
+  max-width: 650px;
+  margin: auto;
+  padding: 55px 24px;
+  background: rgba(255,255,255,.72);
+  border: 1px solid #f0bdd0;
+  border-radius: 15px;
   text-align: center;
+  box-shadow: 0 15px 40px rgba(130,65,100,.07);
 }
 
 .label {
+  color: var(--hot-pink);
   font-size: 9px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: #aa8b68;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: 56px;
-  margin: 0 0 25px;
+  margin: 0 0 22px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 48px;
+  font-weight: 500;
+  color: var(--dark);
 }
 
 p {
-  max-width: 650px;
-  margin: auto;
-  color: #70645a;
+  color: #725d69;
   font-size: 13px;
-  line-height: 2;
+  line-height: 1.9;
 }
 
 .details {
+  margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 50px;
-  border-top: 1px solid #ded1c2;
-  border-bottom: 1px solid #ded1c2;
+  grid-template-columns: 1fr;
+  border-top: 1px solid #efd0dd;
 }
 
 .detail {
-  padding: 30px 15px;
-  border-right: 1px solid #ded1c2;
-}
-
-.detail:last-child {
-  border-right: none;
+  padding: 22px 10px;
+  border-bottom: 1px solid #efd0dd;
 }
 
 .detail strong {
   display: block;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 500;
-  margin-bottom: 8px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 27px;
+  color: var(--purple);
 }
 
 .detail span {
   font-size: 8px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #8c7a69;
+  color: #9b8390;
 }
 
-/* =========================
-   STORY
-========================= */
+/* personality section */
 
-.story {
-  min-height: 500px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 60px;
+.personality {
+  text-align: center;
+  background: linear-gradient(145deg,#ffe1eb,#eee0ff);
 }
 
-.story-text {
-  text-align: left;
+.big-heart {
+  font-size: 65px;
+  animation: heartbeat 1.5s infinite;
 }
+
+@keyframes heartbeat {
+  50% { transform: scale(1.12); }
+}
+
+.quote {
+  font-family: "Great Vibes", cursive;
+  color: var(--hot-pink);
+  font-size: 38px;
+  line-height: 1.2;
+  max-width: 350px;
+  margin: 20px auto;
+}
+
+/* monogram */
 
 .monogram {
-  width: 280px;
-  height: 280px;
-  border: 1px solid #aa8b68;
+  width: 190px;
+  height: 190px;
+  border: 2px solid var(--gold);
   border-radius: 50%;
-  margin: auto;
+  margin: 25px auto;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
-.monogram:after {
-  content: '';
+.monogram::after {
+  content: "";
   position: absolute;
-  inset: 12px;
-  border: 1px solid rgba(170,139,104,.4);
+  inset: 10px;
+  border: 1px solid #e8bfd1;
   border-radius: 50%;
 }
 
 .monogram span {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 75px;
-  color: #aa8b68;
+  font-family: "Great Vibes", cursive;
+  color: var(--hot-pink);
+  font-size: 58px;
 }
 
-/* =========================
-   RSVP
-========================= */
+/* RSVP */
 
 .rsvp {
-  background: #eee3d6;
-  max-width: none;
-}
-
-.rsvp-inner {
-  max-width: 800px;
-  margin: auto;
+  background:
+    radial-gradient(circle at 20% 20%, #ffc9dd, transparent 35%),
+    radial-gradient(circle at 80% 80%, #dbc8ff, transparent 35%),
+    #fceef4;
   text-align: center;
-  padding: 110px 25px;
 }
 
 .whatsapp {
   display: inline-block;
-  margin-top: 35px;
-  padding: 17px 35px;
-  border: 1px solid #4d4138;
-  color: #4d4138;
+  margin-top: 28px;
+  padding: 17px 28px;
+  border-radius: 50px;
+  background: linear-gradient(135deg,var(--hot-pink),var(--purple));
+  color: white;
   text-decoration: none;
   font-size: 9px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  transition: .3s;
-}
-
-.whatsapp:hover {
-  background: #4d4138;
-  color: white;
+  box-shadow: 0 10px 25px rgba(180,70,130,.25);
 }
 
 .contact {
-  margin-top: 25px;
+  margin-top: 18px;
   font-size: 10px;
-  color: #7c6d60;
+  color: #806d79;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* footer */
 
 footer {
+  padding: 55px 20px;
   text-align: center;
-  padding: 60px 20px;
-  background: #f7f0e8;
+  background: #fff5f8;
 }
 
-footer .aa {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 40px;
-  color: #aa8b68;
+.footer-aa {
+  font-family: "Great Vibes", cursive;
+  font-size: 48px;
+  color: var(--hot-pink);
 }
 
 footer p {
   font-size: 8px;
   letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-top: 15px;
 }
 
-/* MOBILE */
+/* sparkles */
 
-@media (max-width: 700px) {
+.sparkle {
+```
 
-  .envelope {
-    transform: scale(.82);
-  }
-
-  .details {
-    grid-template-columns: 1fr;
-  }
-
-  .detail {
-    border-right: none;
-    border-bottom: 1px solid #ded1c2;
-  }
-
-  .detail:last-child {
-    border-bottom: none;
-  }
-
-  .story {
-    grid-template-columns: 1fr;
-  }
-
-  .story-text {
-    text-align: center;
-  }
-
-  h2 {
-    font-size: 45px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- ENVELOPE -->
-<div id="opening">
-
-  <div class="opening-content">
-
-    <div class="small-title">
-      You are invited
-    </div>
-
-    <div class="envelope" id="envelope">
-
-      <div class="envelope-back"></div>
-
-      <div class="envelope-paper">
-        <div class="paper-text">
-          <div class="initials">A & A</div>
-          <small>Engagement</small>
-        </div>
-      </div>
-
-      <div class="flap"></div>
-      <div class="left-fold"></div>
-      <div class="right-fold"></div>
-      <div class="bottom-fold"></div>
-
-      <div class="seal">A</div>
-
-    </div>
-
-    <div class="tap">
-      Tap the envelope to open
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- INVITATION -->
-<main id="invitation">
-
-  <!-- HERO -->
-  <section class="hero">
-
-    <div class="hero-content">
-
-      <div class="pre-title">
-        With the grace of Allah
-      </div>
-
-      <h1 class="names">
-        Aisha
-        <span class="and">&amp;</span>
-        Aziz
-      </h1>
-
-      <div class="hero-description">
-        Together with their families, they invite you
-        to celebrate their engagement.
-      </div>
-
-      <!-- CHANGE THIS -->
-      <div class="hero-date">
-        Friday · 14 November 2026 · Doha
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- DETAILS -->
-  <section class="section">
-
-    <div class="section-card">
-
-      <div class="label">
-        A beautiful beginning
-      </div>
-
-      <h2>
-        A new chapter begins
-      </h2>
-
-      <p>
-        With love, happiness and the grace of Allah,
-        Aisha and Aziz are delighted to celebrate this
-        special beginning surrounded by the people
-        they love.
-      </p>
-
-      <div class="details">
-
-        <div class="detail">
-          <strong>14.11.2026</strong>
-          <span>Date</span>
-        </div>
-
-        <div class="detail">
-          <strong>7:30 PM</strong>
-          <span>Time</span>
-        </div>
-
-        <div class="detail">
-          <strong>Ritz-Carlton</strong>
-          <span>Doha, Qatar</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- STORY -->
-  <section class="section">
-
-    <div class="story">
-
-      <div class="story-text">
-
-        <div class="label">
-          A &amp; A
-        </div>
-
-        <h2>
-          Two hearts,<br>
-          one beautiful beginning.
-        </h2>
-
-        <p>
-          Your presence would make this evening even
-          more meaningful. Join Aisha and Aziz for an
-          elegant celebration filled with love, laughter
-          and unforgettable memories.
-        </p>
-
-      </div>
-
-      <div class="monogram">
-        <span>A A</span>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- RSVP -->
-  <section class="rsvp">
-
-    <div class="rsvp-inner">
-
-      <div class="label">
-        Kindly respond
-      </div>
-
-      <h2>
-        Will you join us?
-      </h2>
-
-      <p>
-        Please confirm your attendance through WhatsApp.
-        We would love to celebrate this special evening with you.
-      </p>
-
-      <!-- WHATSAPP -->
-      <a
-        class="whatsapp"
-        href="https://wa.me/97477788900?text=Hello%2C%20I%20would%20like%20to%20RSVP%20for%20Aisha%20%26%20Aziz%27s%20engagement."
-        target="_blank"
-      >
-        RSVP on WhatsApp
-      </a>
-
-      <div class="contact">
-        WhatsApp · +974 7778 8900
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- FOOTER -->
-  <footer>
-
-    <div class="aa">
-      A &amp; A
-    </div>
-
-    <p>
-      Aisha &amp; Aziz · Doha
-    </p>
-
-  </footer>
-
-</main>
-
-
-<script>
-
-const envelope = document.getElementById("envelope");
-const opening = document.getElementById("opening");
-const invitation = document.getElementById("invitation");
-
-envelope.addEventListener("click", () => {
-
-  envelope.classList.add("open");
-
-  setTimeout(() => {
-    opening.classList.add("hide");
-    invitation.classList.add("show");
-
-    setTimeout(() => {
-      opening.style.display = "none";
-    }, 1200);
-
-  }, 1200);
-
-});
-
-</script>
-
-</body>
-</html>
