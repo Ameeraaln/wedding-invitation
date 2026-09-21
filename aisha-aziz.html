@@ -1,158 +1,1196 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aisha & Aziz ♡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Aisha & Aziz — Engagement</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Italianno&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#fff4fa;color:#4d2940;font-family:"DM Sans",sans-serif;overflow-x:hidden}
-button,a{-webkit-tap-highlight-color:transparent}
-#opening{min-height:100svh;width:100%;position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 15% 20%,#ffd2e7 0 7%,transparent 8%),radial-gradient(circle at 85% 15%,#e3c9ff 0 8%,transparent 9%),radial-gradient(circle at 80% 85%,#ffd8e9 0 9%,transparent 10%),linear-gradient(135deg,#fff0f7,#f2ddff 50%,#ffe4ef);transition:opacity .8s ease,visibility .8s ease}
-#opening.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.opening-small{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:#a75b83;margin-bottom:8px}
-.opening-title{font-family:"Great Vibes",cursive;font-size:clamp(50px,14vw,90px);color:#b72d68;line-height:1;text-align:center}
-.opening-subtitle{margin-top:12px;font-family:"Cormorant Garamond",serif;font-size:21px;letter-spacing:2px;color:#68435a}
-.decoration{position:absolute;font-size:34px;animation:float 4s ease-in-out infinite}
-.flower1{top:12%;left:8%}.flower2{top:18%;right:8%;animation-delay:.8s}.flower3{bottom:13%;left:10%;animation-delay:1.4s}.flower4{bottom:18%;right:10%;animation-delay:2s}
-.sparkle{position:absolute;color:#d88ab0;font-size:24px;animation:twinkle 2s ease-in-out infinite}
-.spark1{top:30%;left:20%}.spark2{top:38%;right:18%;animation-delay:.5s}.spark3{bottom:28%;left:22%;animation-delay:1s}.spark4{bottom:30%;right:23%;animation-delay:1.5s}
-@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(5deg)}}
-@keyframes twinkle{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
-.envelope-area{margin-top:35px;position:relative;cursor:pointer;width:min(360px,82vw);height:250px}
-.envelope{position:relative;width:100%;height:220px}
-.lace{position:absolute;inset:-13px;border:5px double #ef9fc2;border-radius:25px;outline:3px dotted #d86f9c;outline-offset:4px;z-index:1}
-.envelope-back{position:absolute;inset:0;background:#e99abb;border-radius:18px;box-shadow:0 20px 40px rgba(139,44,94,.18),0 4px 10px rgba(139,44,94,.12);z-index:2}
-.letter{position:absolute;left:8%;width:84%;height:175px;top:20px;background:#fffdfb;border-radius:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;z-index:3;transition:transform 1s cubic-bezier(.2,.8,.2,1),box-shadow 1s ease}
-.letter-name{font-family:"Great Vibes",cursive;color:#ad2d67;font-size:42px}
-.letter-text{font-family:"Cormorant Garamond",serif;font-size:19px;color:#70445c;margin-top:6px}
-.envelope-front{position:absolute;left:0;right:0;bottom:0;height:125px;background:linear-gradient(145deg,#e891b5,#d875a2);border-radius:0 0 18px 18px;z-index:5;border-top:2px solid rgba(255,255,255,.4)}
-.flap{position:absolute;top:0;left:5%;width:90%;height:100px;background:#f0a9c7;border-radius:12px 12px 45px 45px;z-index:6;transform-origin:top center;transition:transform 1s ease,opacity .7s ease}
-.ribbon{position:absolute;left:50%;top:0;transform:translateX(-50%);width:48px;height:220px;background:rgba(255,240,248,.45);z-index:7}
-.seal{position:absolute;left:50%;top:72px;transform:translateX(-50%);width:68px;height:68px;border-radius:50%;background:#b92f6b;border:4px solid #ffd9e9;display:flex;align-items:center;justify-content:center;color:white;font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:700;z-index:10;box-shadow:0 5px 15px rgba(105,27,66,.2);transition:transform .7s ease,opacity .4s ease}
-.envelope-area.opened .flap{transform:rotateX(180deg);opacity:.15}
-.envelope-area.opened .seal{opacity:0;transform:translateX(-50%) scale(.5)}
-.envelope-area.opened .letter{transform:translateY(-135px);box-shadow:0 20px 40px rgba(90,35,65,.2)}
-.tap{margin-top:15px;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#a64272;animation:pulse 1.8s infinite}
-@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
-#invitation{display:none;min-height:100vh;background:radial-gradient(circle at top left,#ffdce9,transparent 30%),radial-gradient(circle at bottom right,#e7d3ff,transparent 30%),#fff9fc}
-#invitation.show{display:block;animation:appear 1.2s ease}
-@keyframes appear{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:70px 25px}
-.hero-small{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:#a04c76}
-.hero h1{font-family:"Great Vibes",cursive;font-size:clamp(65px,17vw,130px);font-weight:400;line-height:1;color:#b52f69;margin:20px 0}
-.hero .amp{font-family:"Cormorant Garamond",serif;font-size:30px;color:#9d6681}
-.hero-message{max-width:480px;font-family:"Cormorant Garamond",serif;font-size:24px;line-height:1.4;color:#644258}
-.flowers{font-size:38px;margin-top:25px}
-.info{padding:80px 22px;text-align:center}
-.section-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#a5527c}
-.info h2{font-family:"Cormorant Garamond",serif;font-size:48px;font-weight:500;color:#672f4c;margin:12px 0 40px}
-.info-card{max-width:520px;margin:15px auto;padding:30px 22px;background:rgba(255,255,255,.75);border:1px solid #f1c4d8;border-radius:22px;box-shadow:0 10px 35px rgba(105,38,72,.07)}
-.card-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#ae4d78;margin-bottom:10px}
-.card-main{font-family:"Cormorant Garamond",serif;font-size:27px;color:#592d46}
-.card-note{margin-top:8px;color:#876477;font-size:14px}
-.rsvp{padding:90px 25px;text-align:center;background:linear-gradient(135deg,#f8d6e7,#ead8ff)}
-.rsvp h2{font-family:"Great Vibes",cursive;font-size:70px;font-weight:400;color:#a72d64}
-.rsvp p{max-width:420px;margin:15px auto 30px;font-family:"Cormorant Garamond",serif;font-size:23px;line-height:1.4}
-.rsvp-button{display:inline-block;padding:17px 32px;background:#b62f6b;color:white;text-decoration:none;border-radius:50px;font-size:12px;letter-spacing:2px;text-transform:uppercase;box-shadow:0 10px 25px rgba(151,35,91,.25);transition:transform .2s ease}
-.rsvp-button:hover{transform:translateY(-3px)}
-footer{padding:30px 20px;text-align:center;background:#fff9fc;color:#9b7185;font-size:12px;letter-spacing:1px}
-@media(max-width:500px){.opening-subtitle{font-size:18px}.envelope-area{width:78vw;max-width:330px}.letter-name{font-size:36px}.letter-text{font-size:17px}.seal{width:60px;height:60px;top:68px}.hero-message{font-size:21px}.info h2{font-size:42px}}
+
+/* =========================================================
+   LUXURY WEDDING INVITATION
+   Aisha & Aziz
+========================================================= */
+
+:root {
+    --burgundy: #4a182c;
+    --deep: #32131f;
+    --wine: #68243e;
+    --blush: #d7a3aa;
+    --champagne: #d8bd91;
+    --cream: #f8f1e7;
+    --paper: #fcf8f0;
+    --ink: #3b202b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "DM Sans", sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   OPENING
+========================================================= */
+
+#opening {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(120, 45, 69, .18),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #35131f 0%,
+            #521c31 48%,
+            #2d111c 100%
+        );
+
+    transition:
+        opacity 1.1s ease,
+        visibility 1.1s ease;
+}
+
+#opening.exit {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* subtle grain */
+#opening::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    opacity: .12;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.08) 0px,
+            rgba(255,255,255,.08) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    pointer-events: none;
+}
+
+/* =========================================================
+   ORNAMENT
+========================================================= */
+
+.corner {
+    position: absolute;
+    width: 115px;
+    height: 115px;
+
+    border-color: rgba(216,189,145,.6);
+    border-style: solid;
+
+    opacity: .7;
+}
+
+.corner.tl {
+    top: 28px;
+    left: 28px;
+    border-width: 1px 0 0 1px;
+}
+
+.corner.tr {
+    top: 28px;
+    right: 28px;
+    border-width: 1px 1px 0 0;
+}
+
+.corner.bl {
+    bottom: 28px;
+    left: 28px;
+    border-width: 0 0 1px 1px;
+}
+
+.corner.br {
+    bottom: 28px;
+    right: 28px;
+    border-width: 0 1px 1px 0;
+}
+
+.corner::after {
+    content: "";
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    border: 1px solid var(--champagne);
+    transform: rotate(45deg);
+}
+
+/* =========================================================
+   OPENING CONTENT
+========================================================= */
+
+.opening-content {
+    position: relative;
+    z-index: 3;
+
+    width: min(90%, 480px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.eyebrow {
+    color: var(--champagne);
+
+    font-size: 9px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+
+    margin-bottom: 14px;
+}
+
+.opening-names {
+    color: var(--cream);
+
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
+
+    font-size: clamp(47px, 13vw, 78px);
+    line-height: .85;
+
+    letter-spacing: -2px;
+}
+
+.opening-amp {
+    display: block;
+
+    margin: 12px 0;
+
+    color: var(--champagne);
+
+    font-family: "Italianno", cursive;
+    font-size: 42px;
+    line-height: .6;
+}
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope-stage {
+    position: relative;
+
+    width: min(355px, 78vw);
+    height: 255px;
+
+    margin-top: 52px;
+
+    cursor: pointer;
+}
+
+.envelope-shadow {
+    position: absolute;
+
+    width: 78%;
+    height: 25px;
+
+    left: 11%;
+    bottom: -12px;
+
+    background: rgba(0,0,0,.28);
+
+    filter: blur(18px);
+
+    border-radius: 50%;
+}
+
+/* lace/card outline */
+
+.stationery-border {
+    position: absolute;
+    inset: -13px;
+
+    border: 1px solid rgba(216,189,145,.7);
+
+    outline: 1px solid rgba(216,189,145,.25);
+    outline-offset: 5px;
+
+    pointer-events: none;
+}
+
+/* envelope */
+
+.envelope {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #9a5368,
+            #77344d 55%,
+            #5d253c
+        );
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.3),
+        inset 0 1px rgba(255,255,255,.18);
+
+    overflow: visible;
+}
+
+/* inner paper texture */
+
+.envelope::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    opacity: .14;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 4px,
+            rgba(255,255,255,.2) 5px
+        );
+
+    pointer-events: none;
+}
+
+/* envelope inner card */
+
+.invitation-card {
+    position: absolute;
+
+    left: 8%;
+    width: 84%;
+
+    bottom: 15px;
+
+    height: 210px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffdf8,
+            #f5eee4
+        );
+
+    border: 1px solid rgba(216,189,145,.8);
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform 1.35s cubic-bezier(.2,.75,.2,1),
+        box-shadow 1s ease;
+}
+
+.card-inner {
+    width: 84%;
+    height: 82%;
+
+    border: 1px solid rgba(104,36,62,.28);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.card-mini {
+    font-size: 7px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--wine);
+}
+
+.card-names {
+    margin-top: 9px;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 29px;
+    font-weight: 400;
+
+    color: var(--burgundy);
+}
+
+.card-line {
+    width: 42px;
+    height: 1px;
+
+    background: var(--champagne);
+
+    margin: 9px 0;
+}
+
+.card-date {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    color: #71505b;
+}
+
+/* envelope bottom */
+
+.envelope-bottom {
+    position: absolute;
+    inset: auto 0 0;
+
+    height: 145px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #87425a,
+            #672b44
+        );
+
+    z-index: 5;
+
+    clip-path: polygon(
+        0 0,
+        50% 58%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+/* flap */
+
+.flap {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 130px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #a65c70,
+            #7b354e
+        );
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 80%
+    );
+
+    transform-origin: top center;
+
+    z-index: 7;
+
+    transition:
+        transform 1.15s cubic-bezier(.2,.8,.2,1),
+        opacity .7s ease;
+}
+
+/* gold edge */
+
+.flap::after {
+    content: "";
+
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 8px;
+
+    height: 1px;
+
+    background: rgba(216,189,145,.6);
+}
+
+/* wax seal */
+
+.seal {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    top: 92px;
+
+    transform: translateX(-50%);
+
+    width: 61px;
+    height: 61px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #b86478,
+            #7b2947
+        );
+
+    border: 2px solid rgba(216,189,145,.7);
+
+    box-shadow:
+        0 7px 18px rgba(0,0,0,.25),
+        inset 2px 2px 4px rgba(255,255,255,.15);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f6dfb7;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 17px;
+    letter-spacing: 1px;
+
+    transition:
+        transform .7s ease,
+        opacity .5s ease;
+}
+
+.seal::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 7px;
+
+    border: 1px solid rgba(246,223,183,.6);
+
+    border-radius: 50%;
+}
+
+/* =========================================================
+   OPEN STATE
+========================================================= */
+
+.envelope-stage.opened .flap {
+    transform: rotateX(180deg);
+    opacity: .1;
+}
+
+.envelope-stage.opened .seal {
+    opacity: 0;
+
+    transform:
+        translateX(-50%)
+        scale(.4)
+        rotate(15deg);
+}
+
+.envelope-stage.opened .invitation-card {
+    transform: translateY(-145px);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.25);
+}
+
+/* =========================================================
+   TAP
+========================================================= */
+
+.tap-label {
+    margin-top: 29px;
+
+    color: rgba(248,241,231,.75);
+
+    font-size: 8px;
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   MAIN INVITATION
+========================================================= */
+
+#invitation {
+    display: none;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(216,189,145,.15),
+            transparent 25%
+        ),
+        var(--paper);
+}
+
+#invitation.visible {
+    display: block;
+
+    animation: invitationReveal 1.2s ease;
+}
+
+@keyframes invitationReveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 100svh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        70px 28px
+        calc(70px + env(safe-area-inset-bottom));
+
+    text-align: center;
+
+    position: relative;
+}
+
+.hero-frame {
+    position: absolute;
+
+    inset: 22px;
+
+    border: 1px solid rgba(104,36,62,.25);
+
+    pointer-events: none;
+}
+
+.hero-frame::before,
+.hero-frame::after {
+    content: "";
+
+    position: absolute;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid var(--champagne);
+}
+
+.hero-frame::before {
+    top: -1px;
+    left: -1px;
+
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.hero-frame::after {
+    bottom: -1px;
+    right: -1px;
+
+    border-left: 0;
+    border-top: 0;
+}
+
+.hero-kicker {
+    color: var(--wine);
+
+    font-size: 8px;
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+}
+
+.hero-names {
+    margin-top: 23px;
+
+    color: var(--burgundy);
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(64px, 18vw, 112px);
+    font-weight: 300;
+
+    line-height: .75;
+    letter-spacing: -3px;
+}
+
+.hero-amp {
+    display: block;
+
+    color: var(--champagne);
+
+    font-family: "Italianno", cursive;
+    font-size: 55px;
+
+    line-height: .8;
+
+    margin: 16px 0;
+}
+
+.hero-rule {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 32px 0 25px;
+}
+
+.hero-rule span {
+    width: 48px;
+    height: 1px;
+
+    background: var(--champagne);
+}
+
+.hero-rule i {
+    width: 5px;
+    height: 5px;
+
+    border: 1px solid var(--wine);
+
+    transform: rotate(45deg);
+}
+
+.hero-copy {
+    max-width: 390px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 23px;
+    line-height: 1.5;
+
+    color: #5e3b49;
+}
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.details {
+    padding: 100px 25px;
+
+    background: var(--burgundy);
+
+    color: var(--cream);
+
+    text-align: center;
+
+    position: relative;
+}
+
+.details::before {
+    content: "";
+
+    position: absolute;
+    inset: 17px;
+
+    border: 1px solid rgba(216,189,145,.35);
+}
+
+.details-label {
+    position: relative;
+
+    color: var(--champagne);
+
+    font-size: 8px;
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+}
+
+.details-title {
+    position: relative;
+
+    margin-top: 13px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 48px;
+    font-weight: 300;
+}
+
+.detail-list {
+    position: relative;
+
+    max-width: 440px;
+
+    margin: 55px auto 0;
+}
+
+.detail {
+    padding: 27px 0;
+
+    border-top: 1px solid rgba(216,189,145,.3);
+}
+
+.detail:last-child {
+    border-bottom: 1px solid rgba(216,189,145,.3);
+}
+
+.detail-label {
+    font-size: 7px;
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: var(--champagne);
+}
+
+.detail-main {
+    margin-top: 8px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 26px;
+}
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp {
+    min-height: 75svh;
+
+    padding: 100px 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(216,189,145,.17),
+            transparent 45%
+        ),
+        var(--cream);
+}
+
+.rsvp-small {
+    color: var(--wine);
+
+    font-size: 8px;
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+}
+
+.rsvp-title {
+    margin-top: 20px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    color: var(--burgundy);
+
+    font-size: 60px;
+    font-weight: 300;
+}
+
+.rsvp-copy {
+    max-width: 370px;
+
+    margin: 18px auto 35px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 21px;
+    line-height: 1.45;
+
+    color: #654754;
+}
+
+.rsvp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 205px;
+
+    padding: 16px 27px;
+
+    border: 1px solid var(--burgundy);
+
+    color: var(--cream);
+    background: var(--burgundy);
+
+    text-decoration: none;
+
+    font-size: 8px;
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    transition:
+        background .25s ease,
+        color .25s ease;
+}
+
+.rsvp-button:hover {
+    background: transparent;
+    color: var(--burgundy);
+}
+
+footer {
+    padding: 30px;
+
+    background: var(--deep);
+
+    color: rgba(248,241,231,.65);
+
+    text-align: center;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 16px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .corner {
+        width: 75px;
+        height: 75px;
+    }
+
+    .opening-content {
+        width: 88%;
+    }
+
+    .opening-names {
+        font-size: 55px;
+    }
+
+    .envelope-stage {
+        width: 82vw;
+        height: 235px;
+        margin-top: 43px;
+    }
+
+    .invitation-card {
+        height: 190px;
+    }
+
+    .envelope-bottom {
+        height: 135px;
+    }
+
+    .flap {
+        height: 120px;
+    }
+
+    .seal {
+        top: 82px;
+        width: 57px;
+        height: 57px;
+    }
+
+    .hero-frame {
+        inset: 15px;
+    }
+
+    .hero-names {
+        font-size: 72px;
+    }
+
+    .details-title {
+        font-size: 43px;
+    }
+
+    .rsvp-title {
+        font-size: 54px;
+    }
+}
+
 </style>
 </head>
+
 <body>
 
+<!-- ======================================================
+     OPENING
+====================================================== -->
+
 <section id="opening">
-<div class="decoration flower1">🌸</div><div class="decoration flower2">🌷</div><div class="decoration flower3">🌺</div><div class="decoration flower4">🌸</div>
-<div class="sparkle spark1">✦</div><div class="sparkle spark2">✧</div><div class="sparkle spark3">✦</div><div class="sparkle spark4">✧</div>
 
-<div class="opening-small">a little something special</div>
-<div class="opening-title">Aisha & Aziz</div>
-<div class="opening-subtitle">An invitation to celebrate love ♡</div>
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
 
-<div class="envelope-area" id="envelope">
-<div class="envelope">
-<div class="lace"></div>
-<div class="envelope-back"></div>
-<div class="letter">
-<div class="letter-name">Aisha & Aziz</div>
-<div class="letter-text">Our beautiful beginning ♡</div>
-</div>
-<div class="ribbon"></div>
-<div class="envelope-front"></div>
-<div class="flap"></div>
-<div class="seal">A & A</div>
-</div>
-</div>
+    <div class="opening-content">
 
-<div class="tap">tap the envelope to open</div>
+        <div class="eyebrow">
+            Together with their families
+        </div>
+
+        <div class="opening-names">
+            Aisha
+            <span class="opening-amp">&</span>
+            Aziz
+        </div>
+
+        <div class="envelope-stage" id="envelope">
+
+            <div class="stationery-border"></div>
+
+            <div class="envelope-shadow"></div>
+
+            <div class="envelope">
+
+                <div class="invitation-card">
+
+                    <div class="card-inner">
+
+                        <div class="card-mini">
+                            An Invitation
+                        </div>
+
+                        <div class="card-names">
+                            Aisha & Aziz
+                        </div>
+
+                        <div class="card-line"></div>
+
+                        <div class="card-date">
+                            Engagement Celebration
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="envelope-bottom"></div>
+
+                <div class="flap"></div>
+
+                <div class="seal">
+                    A · A
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="tap-label">
+            Open invitation
+        </div>
+
+    </div>
+
 </section>
+
+
+<!-- ======================================================
+     INVITATION
+====================================================== -->
 
 <main id="invitation">
-<section class="hero">
-<div class="hero-small">With the grace of Allah</div>
-<h1>Aisha <span class="amp">&</span> Aziz</h1>
-<p class="hero-message">We’re so excited to celebrate this beautiful beginning with you. Come celebrate love, happiness, and the start of our forever. ♡</p>
-<div class="flowers">🌸 ✨ 🌷 ✨ 🌸</div>
-</section>
 
-<section class="info">
-<div class="section-label">Save the moment</div>
-<h2>The Celebration</h2>
+    <section class="hero">
 
-<div class="info-card">
-<div class="card-title">Date</div>
-<div class="card-main">DATE TO BE ADDED</div>
-<div class="card-note">We can't wait to celebrate with you.</div>
-</div>
+        <div class="hero-frame"></div>
 
-<div class="info-card">
-<div class="card-title">Time</div>
-<div class="card-main">TIME TO BE ADDED</div>
-</div>
+        <div class="hero-kicker">
+            In the name of Allah, the Most Gracious, the Most Merciful
+        </div>
 
-<div class="info-card">
-<div class="card-title">Venue</div>
-<div class="card-main">The Ritz-Carlton Doha</div>
-<div class="card-note">Doha, Qatar</div>
-</div>
-</section>
+        <div class="hero-names">
+            Aisha
 
-<section class="rsvp">
-<div class="section-label">We hope you can join us</div>
-<h2>RSVP</h2>
-<p>Your presence would make this celebration even more special.</p>
-<a class="rsvp-button" href="https://wa.me/97477788900?text=Hello%20Aisha%20%26%20Aziz%2C%20I%27d%20like%20to%20RSVP%20for%20your%20engagement%20%F0%9F%92%97" target="_blank">RSVP on WhatsApp</a>
-</section>
+            <span class="hero-amp">
+                &amp;
+            </span>
 
-<footer>Aisha & Aziz ♡</footer>
+            Aziz
+        </div>
+
+        <div class="hero-rule">
+            <span></span>
+            <i></i>
+            <span></span>
+        </div>
+
+        <p class="hero-copy">
+            With joyful hearts, we invite you to celebrate
+            this beautiful beginning and share in a night
+            filled with love, family and happiness.
+        </p>
+
+    </section>
+
+
+    <section class="details">
+
+        <div class="details-label">
+            The Celebration
+        </div>
+
+        <div class="details-title">
+            Join us
+        </div>
+
+        <div class="detail-list">
+
+            <div class="detail">
+
+                <div class="detail-label">
+                    Date
+                </div>
+
+                <div class="detail-main">
+                    DATE TO BE ADDED
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="detail-label">
+                    Time
+                </div>
+
+                <div class="detail-main">
+                    TIME TO BE ADDED
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="detail-label">
+                    Venue
+                </div>
+
+                <div class="detail-main">
+                    The Ritz-Carlton Doha
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="rsvp">
+
+        <div class="rsvp-small">
+            We would love to celebrate with you
+        </div>
+
+        <div class="rsvp-title">
+            Kindly RSVP
+        </div>
+
+        <p class="rsvp-copy">
+            Your presence will make this special
+            celebration even more meaningful.
+        </p>
+
+        <a
+            class="rsvp-button"
+            href="https://wa.me/97477788900?text=Hello%20Aisha%20%26%20Aziz%2C%20I%27d%20like%20to%20RSVP%20for%20your%20engagement."
+            target="_blank"
+        >
+            Confirm Attendance
+        </a>
+
+    </section>
+
+
+    <footer>
+        Aisha & Aziz · With love
+    </footer>
+
 </main>
 
+
 <script>
-const envelope=document.getElementById("envelope");
-const opening=document.getElementById("opening");
-const invitation=document.getElementById("invitation");
 
-envelope.addEventListener("click",function(){
-if(envelope.classList.contains("opened"))return;
-envelope.classList.add("opened");
-setTimeout(function(){
-invitation.classList.add("show");
-opening.classList.add("hidden");
-document.body.style.overflow="auto";
-window.scrollTo(0,0);
-},1400);
+const envelope = document.getElementById("envelope");
+const opening = document.getElementById("opening");
+const invitation = document.getElementById("invitation");
+
+envelope.addEventListener("click", () => {
+
+    if (envelope.classList.contains("opened")) {
+        return;
+    }
+
+    envelope.classList.add("opened");
+
+    setTimeout(() => {
+
+        invitation.classList.add("visible");
+
+        opening.classList.add("exit");
+
+        document.body.style.overflow = "auto";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+
+    }, 1350);
+
 });
-</script>
-</body>
-</html>'''
 
-path = Path("/mnt/data/aisha-aziz.html")
-path.write_text(html, encoding="utf-8")
-print(path)
+</script>
+
+</body>
+</html>
